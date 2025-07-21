@@ -128,12 +128,14 @@ export default function Services() {
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-8 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
-          >
-            Voir tous nos services
-          </Button>
+          <Link href="/services">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-8 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+            >
+              Voir tous nos services
+            </Button>
+          </Link>
         </motion.div>
 
       </div>

@@ -152,3 +152,12 @@
   height: 6px;
   animation-duration: 3.5s;
 }
+
+@keyframes scroll-background {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-60px, -60px); }
+}
+
+.animate-background-scroll {
+  animation: scroll-background 30s linear infinite;
+}

@@ -28,13 +28,13 @@ export default function ContactPage() {
     {
       icon: MessageCircle,
       title: "WhatsApp",
-      value: "+225 XX XX XX XX XX",
+      value: "+225 07 08 97 67 37",
       description: "Réponse immédiate",
     },
     {
       icon: Phone,
       title: "Téléphone",
-      value: "+225 XX XX XX XX XX",
+      value: "+225 01 53 26 51 47",
       description: "Lun-Ven 9h-18h",
     },
     {
@@ -225,11 +225,13 @@ export default function ContactPage() {
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold mb-4">Consultation gratuite</h3>
                   <p className="mb-6 opacity-90">
-                    Discutons de votre projet lors d'un appel de 30 minutes sans engagement
+                    Discutons de votre projet lors d'un appel de 15 minutes sans engagement
                   </p>
-                  <Button className="bg-white text-amber-700 hover:bg-gray-100 font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                    Réserver un appel
-                  </Button>
+                  <a href="https://calendly.com/contact-artivisio/15min">
+                    <Button className="bg-white text-amber-700 hover:bg-gray-100 font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+                      Réserver un appel
+                    </Button>
+                  </a>
                 </CardContent>
               </Card>
             </motion.div>

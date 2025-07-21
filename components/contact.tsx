@@ -157,7 +157,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-medium text-gray-800">Téléphone</p>
-                      <p className="text-gray-600">+33 1 23 45 67 89</p>
+                      <p className="text-gray-600">+225 01 53 26 51 47</p>
                     </div>
                   </div>
 
@@ -167,7 +167,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-medium text-gray-800">Localisation</p>
-                      <p className="text-gray-600">Paris, France</p>
+                      <p className="text-gray-600">Abidjan, Côte d'Ivoire</p>
                     </div>
                   </div>
                 </div>
