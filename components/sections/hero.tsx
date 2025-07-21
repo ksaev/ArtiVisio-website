@@ -37,9 +37,10 @@ export default function Hero() {
   }
 
   const slides = [
-    { src: "cv.webp", caption: "CVs qui captivent les recruteurs" },
-    { src: "portfolio.webp", caption: "Votre vitrine professionnelle sur mesure" },
-    { src: "entretien.jpg", caption: "Préparez vos entretiens avec un coach expert" },
+    { src: "cv.webp", caption: "CVs qui captivent les recruteurs",fit:"cover"},
+    { src: "portfolio.webp", caption: "Votre vitrine professionnelle sur mesure",fit:"cover"},
+    { src: "entretien.jpg", caption: "Préparez vos entretiens avec un coach expert",fit:"cover"},
+    { src: "artivisio.webp", caption: "Votre partenaire vers un avenir professionnel solide",fit:"contain" },
   ]
 
   useEffect(() => {
@@ -164,14 +165,14 @@ export default function Hero() {
                   i === index ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <Image
-                  src={slide.src}
-                  alt={slide.caption}
-                  fill
-                  priority={i === 0}
-                  className="object-cover"
-                />
-                <div className="absolute bottom-4 left-4 md:bottom-6 md:left-10 text-sm md:text-xl font-semibold bg-black/60 px-3 md:px-4 py-2 rounded-md shadow-md max-w-[90%] leading-snug text-white">
+              <Image
+                src={slide.src}
+                alt={slide.caption}
+                layout="fill"
+                objectFit={`${slide.fit}`}
+                className="w-full h-full"
+              />
+              <div className="absolute bottom-4 left-4 md:bottom-6 md:left-10 text-sm md:text-xl font-semibold bg-black/50 px-3 md:px-4 py-2 rounded-md shadow-md max-w-[90%] leading-snug text-white">
                   {slide.caption}
                 </div>
               </div>

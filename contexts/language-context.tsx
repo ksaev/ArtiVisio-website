@@ -23,7 +23,7 @@ const translations = {
 
     // Hero
     "hero.title": "Construisons votre image professionnelle.",
-    "hero.subtitle": "Vous avez le talent. Nous créons l’image qui le révèle. Pour convaincre les recruteurs, séduire les clients ou capter les bons projets.",
+    "hero.subtitle": "Vous avez le talent. Nous façonnons l’image qui le révèle. Pour convaincre les recruteurs, séduire les clients, et capter les projets qui vous correspondent.",
     "hero.cta": "Découvrir nos réalisations",
     "hero.video": "Construire mon image pro",
 
@@ -82,7 +82,7 @@ const translations = {
 
     // Hero
     "hero.title": "Build your professional image",
-    "hero.subtitle": "You have the talent. We create the image that reveals it. To convince recruiters, attract clients, or land the right projects.",
+    "hero.subtitle": "You have the talent. We shape the image that reveals it. To convince recruiters, attract clients, and secure the projects that fit you",
     "hero.cta": "View our work",
     "hero.video": "Build My Image",
 
