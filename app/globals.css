@@ -161,3 +161,8 @@
 .animate-background-scroll {
   animation: scroll-background 30s linear infinite;
 }
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
