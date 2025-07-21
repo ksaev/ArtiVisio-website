@@ -37,7 +37,7 @@ export default function Hero() {
   }
 
   const slides = [
-    { src: "cv.webp", caption: "CVs qui captivent les recruteurs" },
+    { src: "cv.png", caption: "CVs qui captivent les recruteurs" },
     { src: "portfolio.webp", caption: "Votre vitrine professionnelle sur mesure" },
     { src: "entretien.jpg", caption: "Préparez vos entretiens avec un coach expert" },
   ]
