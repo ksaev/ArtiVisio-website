@@ -40,7 +40,7 @@ export default function Hero() {
     { src: "cv.webp", caption: "CVs qui captivent les recruteurs",fit:"cover"},
     { src: "portfolio.webp", caption: "Votre vitrine professionnelle sur mesure",fit:"cover"},
     { src: "entretien.jpg", caption: "Préparez vos entretiens avec un coach expert",fit:"cover"},
-    { src: "artivisio.webp", caption: "Votre partenaire vers un avenir professionnel solide",fit:"contain" },
+    { src: "logo.webp", caption: "Votre partenaire vers un avenir professionnel solide",fit:"contain" },
   ]
 
   useEffect(() => {
