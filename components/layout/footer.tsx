@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Linkedin, Instagram, MessageCircle,Facebook, Download } from "lucide-react"
+import {FaWhatsapp,FaFacebook} from "react-icons/fa"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
@@ -10,8 +11,13 @@ import { useState, useEffect } from "react"
 import { ArrowUp } from "lucide-react"
 
   const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" })
-}
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const scrollToTopWhatsApp = () => {
+    const message = encodeURIComponent("Bonjour, je vous contacte via le site web ArtiVisio concernant vos services.");
+    window.open(`https://wa.me/22508976737?text=${message}`, "_blank", "noopener,noreferrer");
+  }
 
 export default function Footer() {
   const { t } = useLanguage()
@@ -46,28 +52,28 @@ useEffect(() => {
     {
       title: t("footer.services"),
       links: [
-        { name: "CV Professionnels", href: "/services" },
-        { name: "Portfolios Web", href: "/portfolios" },
-        { name: "Coaching LinkedIn", href: "/coaching" },
-        { name: "Offres d'emploi", href: "/offres-emploi" },
+        { name: t("footer.cv"), href: "/services" },
+        { name: t("footer.portfolio"), href: "/portfolios" },
+        { name: t("footer.linkedin"), href: "/coaching" },
+        { name: t("footer.jobs"), href: "/offres-emploi" },
       ],
     },
     {
       title: t("footer.resources"),
       links: [
-        { name: "Portfolio", href: "/portfolios" },
-        { name: "Témoignages", href: "/#testimonials" },
-        { name: "Blog", href: "#" },
-        { name: "FAQ", href: "#" },
+        { name: t("footer.portfolios"), href: "/portfolios" },
+        { name: t("footer.testimonials"), href: "/#testimonials" },
+        { name: t("footer.blog"), href: "/blog" },
+        { name: t("footer.faq"), href: "/faq" },
       ],
     },
     {
       title: t("footer.legal"),
       links: [
-        { name: "Mentions légales", href: "#" },
-        { name: "Politique de confidentialité", href: "#" },
-        { name: "CGV", href: "#" },
-        { name: "Cookies", href: "#" },
+        { name: t("footer.mentions"), href: "/mentions" },
+        { name: t("footer.privacy"), href: "/politique" },
+        { name: t("footer.terms"), href: "/cgv" },
+        { name: t("footer.cookies"), href: "/cookies" },
       ],
     },
   ]
@@ -188,16 +194,26 @@ useEffect(() => {
         >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-sm">
-              © {currentYear} Artivisio. {t("footer.copyright")}
+              © 2025 Artivisio. {t("footer.copyright")}
             </p>
           </div>
         </motion.div>
       </div>
 
       <Button
+        aria-label="Contact WhatsApp"
+        onClick={scrollToTopWhatsApp}
+        className={`sm:w-14 sm:h-14 fixed bottom-28 right-8 w-14 h-14 rounded-full bg-gradient-to-r from-green-800 to-green-700 hover:from-green-600 hover:to-green-900 text-white shadow-2xl transition-all duration-300 z-50 ${
+          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
+        }`}
+      >
+        <FaWhatsapp style={{ width: "30px", height: "30px" }}  />
+      </Button>
+
+      <Button
         aria-label="Revenir en haut"
         onClick={scrollToTop}
-        className={`sm:w-14 sm:h-14 fixed bottom-8 right-8 w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-2xl transition-all duration-300 z-50 ${
+        className={`sm:w-14 sm:h-14 fixed bottom-12 right-8 w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-2xl transition-all duration-300 z-50 ${
           showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
         }`}
       >
