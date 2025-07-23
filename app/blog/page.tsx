@@ -2,72 +2,99 @@
 
 import React from "react";
 import Link from "next/link";
+import { useLanguage } from "@/contexts/language-context";
 
-const BlogCard = ({ title, excerpt, slug, date }) => (
-  <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition duration-300 ease-in-out border border-gray-100">
-    <h3 className="text-2xl font-bold text-primary mb-2">{title}</h3>
-    <p className="text-gray-700 text-sm mb-4">{excerpt}</p>
-    <div className="flex items-center justify-between text-sm text-gray-500">
-      <span>{date}</span>
-      <Link
-        href={`/blog/${slug}`}
-        className="text-primary font-medium underline hover:text-primary/80"
-      >
-        Lire l’article
-      </Link>
-    </div>
-  </div>
-);
+const blogArticles = [
+  {
+    slug: "presence-digitale",
+    date: "2025-07-15",
+    titleKey: "blog.presenceDigitale.title",
+    excerptKey: "blog.presenceDigitale.excerpt",
+  },
+  {
+    slug: "tendances-webdesign-2025",
+    date: "2025-07-10",
+    titleKey: "blog.tendancesWebdesign.title",
+    excerptKey: "blog.tendancesWebdesign.excerpt",
+  },
+  {
+    slug: "reseaux-sociaux-impact",
+    date: "2025-07-05",
+    titleKey: "blog.reseauxSociaux.title",
+    excerptKey: "blog.reseauxSociaux.excerpt",
+  },
+  {
+    slug: "cv-efficace-conseils",
+    date: "2025-06-25",
+    titleKey: "blog.cvEfficace.title",
+    excerptKey: "blog.cvEfficace.excerpt",
+  },
+  {
+    slug: "personal-branding-clefs",
+    date: "2025-06-20",
+    titleKey: "blog.personalBranding.title",
+    excerptKey: "blog.personalBranding.excerpt",
+  },
+  {
+    slug: "recherche-emploi-erreurs",
+    date: "2025-06-15",
+    titleKey: "blog.rechercheEmploi.title",
+    excerptKey: "blog.rechercheEmploi.excerpt",
+  },
+  {
+    slug: "portfolios-inspirants",
+    date: "2025-06-10",
+    titleKey: "blog.portfoliosInspirants.title",
+    excerptKey: "blog.portfoliosInspirants.excerpt",
+  },
+  {
+    slug: "optimisation-linkedin",
+    date: "2025-06-01",
+    titleKey: "blog.optimisationLinkedIn.title",
+    excerptKey: "blog.optimisationLinkedIn.excerpt",
+  }
+];
 
 export default function BlogPage() {
-  const articles = [
-    {
-      title: "5 erreurs à éviter dans votre CV",
-      excerpt:
-        "Un recruteur passe en moyenne 7 secondes sur un CV. Voici les erreurs courantes qui peuvent nuire à votre candidature et comment les éviter efficacement.",
-      slug: "erreurs-cv",
-      date: "20 juillet 2025",
-    },
-    {
-      title: "Comment construire son image professionnelle",
-      excerpt:
-        "Votre image influence votre positionnement sur le marché. Découvrez les clés du personal branding pour vous démarquer durablement.",
-      slug: "image-professionnelle",
-      date: "10 juillet 2025",
-    },
-    {
-      title: "Les codes pour réussir une candidature spontanée",
-      excerpt:
-        "Oser candidater sans offre, c’est possible — à condition de respecter certains codes essentiels. Voici notre guide express.",
-      slug: "candidature-spontanee",
-      date: "1 juillet 2025",
-    },
-  ];
+  const { t } = useLanguage();
 
   return (
-    <section className="min-h-screen bg-white py-16 px-4 sm:px-8 lg:px-24 text-gray-800">
+    <section className="bg-white min-h-screen py-16 px-6 sm:px-10 lg:px-24 text-gray-800">
       <div className="max-w-6xl mx-auto space-y-12">
         <header className="text-center">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-primary mb-4">
-            Le Blog ArtiVisio
+            {t("blog.title")}
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Astuces emploi, visibilité, coaching, et retours d'expérience — restez informé et gagnez en impact avec nos ressources.
-          </p>
+          <p className="text-lg text-gray-600">{t("blog.intro")}</p>
         </header>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {articles.map((article, index) => (
-            <BlogCard key={index} {...article} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {blogArticles.map((article, index) => (
+            <article
+              key={index}
+              className="bg-gray-50 rounded-xl shadow-sm p-6 hover:shadow-md transition"
+            >
+              <h2 className="text-xl font-semibold mb-2 text-primary">
+                {t(article.titleKey)}
+              </h2>
+              <p className="text-sm text-gray-500 mb-4">{article.date}</p>
+              <p className="text-gray-700 mb-4">{t(article.excerptKey)}</p>
+              <Link
+                href={`/blog/${article.slug}`}
+                className="text-primary font-medium underline"
+              >
+                {t("blog.readMore")}
+              </Link>
+            </article>
           ))}
         </div>
 
         <div className="text-center">
           <Link
-            href="/blog/tous-les-articles"
-            className="inline-block mt-8 px-6 py-3 text-white bg-primary rounded-full text-sm font-semibold shadow-md hover:bg-primary/90 transition"
+            href="/blog/archive"
+            className="inline-block mt-6 text-primary font-semibold underline"
           >
-            Voir tous les articles
+            {t("blog.seeAll")}
           </Link>
         </div>
       </div>

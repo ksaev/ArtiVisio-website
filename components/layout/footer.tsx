@@ -203,7 +203,7 @@ useEffect(() => {
       <Button
         aria-label="Contact WhatsApp"
         onClick={scrollToTopWhatsApp}
-        className={`sm:w-14 sm:h-14 fixed bottom-28 right-8 w-14 h-14 rounded-full bg-gradient-to-r from-green-800 to-green-700 hover:from-green-600 hover:to-green-900 text-white shadow-2xl transition-all duration-300 z-50 ${
+        className={`sm:w-12 sm:h-12 fixed bottom-28 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-green-800 to-green-700 hover:from-green-600 hover:to-green-900 text-white shadow-2xl transition-all duration-300 z-50 ${
           showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
         }`}
       >
@@ -213,11 +213,11 @@ useEffect(() => {
       <Button
         aria-label="Revenir en haut"
         onClick={scrollToTop}
-        className={`sm:w-14 sm:h-14 fixed bottom-12 right-8 w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-2xl transition-all duration-300 z-50 ${
+        className={`sm:w-12 sm:h-12 fixed bottom-14 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-amber-800 to-amber-700 hover:from-amber-600 hover:to-amber-700 text-white shadow-2xl transition-all duration-300 z-50 ${
           showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
         }`}
       >
-        <ArrowUp className="h-6 w-6" />
+        <ArrowUp style={{ width: "30px", height: "30px" }} />
       </Button>
 
     </footer>
