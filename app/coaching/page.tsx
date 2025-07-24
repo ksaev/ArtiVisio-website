@@ -220,7 +220,7 @@ export default function CoachingPage() {
             <Badge variant="outline" className="mb-4">
               Nos Services
             </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className=" m-5 text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               Un accompagnement sur mesure pour chaque étape
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -372,7 +372,7 @@ export default function CoachingPage() {
           >
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">Prêt à booster votre carrière ?</h2>
             <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
-              Réservez votre session de coaching et transformez votre présence LinkedIn dès aujourd'hui
+              Réservez votre session de coaching et donnez un nouvel élan à votre carrière dès aujourd’hui.
             </p>
             <Link href="/contact">
               <Button className="bg-white text-amber-700 hover:bg-gray-100 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">

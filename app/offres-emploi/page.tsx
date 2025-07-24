@@ -334,6 +334,7 @@ const countries = [
                 onClick={() => {
                   setSearchTerm("")
                   setSelectedSector("all")
+                  setSelectedCountry("all")
                 }}
               >
                 Réinitialiser les filtres
