@@ -7,11 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { useLanguage } from "@/contexts/language-context"
 import { useState } from "react"
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 
 export default function OffresEmploiPage() {
   const { t } = useLanguage()
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedSector, setSelectedSector] = useState("all")
+  const [selectedCountry, setSelectedCountry] = useState("all")
 
   const jobOffers = [
     {
@@ -25,6 +27,7 @@ export default function OffresEmploiPage() {
       description: "Recherche développeur expérimenté en React/Node.js pour projets innovants",
       requirements: ["3+ ans d'expérience", "React, Node.js", "Base de données"],
       posted: "Il y a 2 jours",
+      countryId: "ci",
     },
     {
       id: 2,
@@ -37,6 +40,7 @@ export default function OffresEmploiPage() {
       description: "Pilotage de campagnes marketing digital pour le marché malien",
       requirements: ["5+ ans marketing", "Digital marketing", "Gestion d'équipe"],
       posted: "Il y a 1 jour",
+      countryId: "ml",
     },
     {
       id: 3,
@@ -49,6 +53,8 @@ export default function OffresEmploiPage() {
       description: "Accompagnement stratégique d'entreprises ouest-africaines",
       requirements: ["MBA ou équivalent", "Consulting", "Anglais courant"],
       posted: "Il y a 3 jours",
+      countryId: "dak",
+
     },
     {
       id: 4,
@@ -61,6 +67,8 @@ export default function OffresEmploiPage() {
       description: "Gestion RH pour filiale gabonaise, recrutement et formation",
       requirements: ["Master RH", "5+ ans expérience", "Gestion d'équipe"],
       posted: "Il y a 1 semaine",
+      countryId: "ga",
+
     },
     {
       id: 5,
@@ -73,29 +81,73 @@ export default function OffresEmploiPage() {
       description: "Développement commercial secteur énergie et infrastructure",
       requirements: ["Ingénieur", "Commercial B2B", "Mobilité régionale"],
       posted: "Il y a 4 jours",
+      countryId: "ma",
+
     },
     {
       id: 6,
       title: "Data Analyst",
       company: "Jumia Technologies",
-      location: "Lagos, Nigeria",
+      location: "Niamey, Niger",
       salary: "400 000 - 700 000 FCFA",
       type: "CDI",
       sector: "tech",
       description: "Analyse de données e-commerce pour optimiser les performances",
       requirements: ["Python/R", "SQL", "Visualisation de données"],
       posted: "Il y a 5 jours",
+     countryId: "ne",
     },
   ]
 
-  const sectors = [
-    { id: "all", label: "Tous les secteurs" },
-    { id: "tech", label: "Technologie" },
-    { id: "marketing", label: "Marketing" },
-    { id: "consulting", label: "Conseil" },
-    { id: "rh", label: "Ressources Humaines" },
-    { id: "commercial", label: "Commercial" },
-  ]
+const sectors = [
+  { id: "all", label: "Tous les secteurs" },
+  { id: "tech", label: "Technologie / Développement" },
+  { id: "marketing", label: "Marketing / Communication" },
+  { id: "consulting", label: "Conseil / Stratégie" },
+  { id: "rh", label: "Ressources Humaines / Recrutement" },
+  { id: "commercial", label: "Commercial / Vente" },
+  { id: "finance", label: "Finance / Comptabilité" },
+  { id: "legal", label: "Juridique / Droit" },
+  { id: "education", label: "Éducation / Formation" },
+  { id: "logistics", label: "Logistique / Transport" },
+  { id: "health", label: "Santé / Médical" },
+  { id: "admin", label: "Administratif / Support" },
+  { id: "design", label: "Design / Création" },
+  { id: "engineering", label: "Ingénierie / BTP" },
+  { id: "public", label: "Secteur Public / ONG" },
+  { id: "agriculture", label: "Agriculture / Agro-industrie" },
+  { id: "tourism", label: "Tourisme / Hôtellerie" },
+  { id: "customer", label: "Relation Client / Support" },
+  { id: "data", label: "Data / Intelligence Artificielle" },
+  { id: "freelance", label: "Freelance / Indépendant" },
+]
+
+
+const countries = [
+  { id: "all", label: "Tous les pays" },
+  { id: "ci", label: "Côte d’Ivoire" },
+  { id: "sn", label: "Sénégal" },
+  { id: "ml", label: "Mali" },
+  { id: "bf", label: "Burkina Faso" },
+  { id: "ne", label: "Niger" },
+  { id: "tg", label: "Togo" },
+  { id: "bj", label: "Bénin" },
+  { id: "gn", label: "Guinée" },
+  { id: "cm", label: "Cameroun" },
+  { id: "td", label: "Tchad" },
+  { id: "ma", label: "Maroc" },
+  { id: "dz", label: "Algérie" },
+  { id: "tn", label: "Tunisie" },
+  { id: "ga", label: "Gabon" },
+  { id: "cd", label: "RDC (Congo)" },
+  { id: "fr", label: "France" },
+  { id: "ca", label: "Canada (Québec)" },
+  { id: "be", label: "Belgique" },
+  { id: "lu", label: "Luxembourg" },
+  { id: "intl", label: "International / Télétravail" },
+]
+
+
 
   const filteredJobs = jobOffers.filter((job) => {
     const matchesSearch =
@@ -103,7 +155,8 @@ export default function OffresEmploiPage() {
       job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
       job.location.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesSector = selectedSector === "all" || job.sector === selectedSector
-    return matchesSearch && matchesSector
+    const matchesCountry = selectedCountry === "all" || job.countryId === selectedCountry
+    return matchesSearch && matchesSector && matchesCountry
   })
 
   const containerVariants = {
@@ -144,7 +197,7 @@ export default function OffresEmploiPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Découvrez les meilleures opportunités d'emploi en Afrique francophone
+              Trouvez un emploi ou une mission freelance dans votre secteur, votre pays ou à distance.
             </p>
           </motion.div>
         </div>
@@ -154,13 +207,13 @@ export default function OffresEmploiPage() {
       <section className="py-8 bg-white/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="flex flex-col md:flex-row gap-4 mb-8"
+            className="flex flex-col sm:flex-row gap-4 mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <div className="flex-1 relative gap-4">
+              <Search className="absolute left-3 top-5 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
                 type="text"
                 placeholder="Rechercher un poste, entreprise ou ville..."
@@ -169,24 +222,41 @@ export default function OffresEmploiPage() {
                 className="pl-10 border-amber-200 focus:border-amber-500 focus:ring-amber-500"
               />
             </div>
-            <div className="flex flex-wrap gap-2">
+
+          <Select
+            value={selectedSector}
+            onValueChange={(value) => setSelectedSector(value)}
+          >
+            <SelectTrigger className="w-full sm:w-64 border-amber-600 focus:ring-amber-500">
+              <Filter className="h-4 w-4 mr-2 text-amber-600" />
+              <SelectValue placeholder="Filtrer par secteur" />
+            </SelectTrigger>
+            <SelectContent>
               {sectors.map((sector) => (
-                <Button
-                  key={sector.id}
-                  variant={selectedSector === sector.id ? "default" : "outline"}
-                  size="sm"
-                  className={`transition-all duration-300 ${
-                    selectedSector === sector.id
-                      ? "bg-gradient-to-r from-amber-600 to-amber-700 text-white"
-                      : "border-amber-600 text-amber-700 hover:bg-amber-50"
-                  }`}
-                  onClick={() => setSelectedSector(sector.id)}
-                >
-                  <Filter className="h-4 w-4 mr-1" />
+                <SelectItem key={sector.id} value={sector.id}>
                   {sector.label}
-                </Button>
+                </SelectItem>
               ))}
-            </div>
+            </SelectContent>
+          </Select>
+
+          <Select
+            value={selectedCountry}
+            onValueChange={(value) => setSelectedCountry(value)}
+          >
+            <SelectTrigger className="w-full sm:w-64 border-amber-600 focus:ring-amber-500">
+              <Filter className="h-4 w-4 mr-2 text-amber-600" />
+              <SelectValue placeholder="Filtrer par pays" />
+            </SelectTrigger>
+            <SelectContent>
+              {countries.map((country) => (
+                <SelectItem key={country.id} value={country.id}>
+                  {country.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
           </motion.div>
         </div>
       </section>
@@ -194,7 +264,7 @@ export default function OffresEmploiPage() {
       {/* Jobs List */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="space-y-6" variants={containerVariants} initial="hidden" animate="visible">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 " variants={containerVariants} initial="hidden" animate="visible">
             {filteredJobs.map((job) => (
               <motion.div key={job.id} variants={itemVariants}>
                 <Card className="bg-white/80 backdrop-blur-sm border-amber-200/50 hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
@@ -240,14 +310,8 @@ export default function OffresEmploiPage() {
                       </ul>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-3">
-                      <Button className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300">
-                        Postuler maintenant
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="border-amber-600 text-amber-700 hover:bg-amber-50 rounded-full bg-transparent"
-                      >
-                        Sauvegarder
+                      <Button className="w-full justify-center bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300">
+                        Voir l'offre complète
                       </Button>
                     </div>
                   </CardContent>

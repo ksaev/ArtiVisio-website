@@ -17,7 +17,7 @@ const translations = {
     "nav.services": "Services",
     "nav.portfolios": "Portfolios",
     "nav.coaching": "Coaching",
-    "nav.jobs": "Offres",
+    "nav.jobs": "Offres d'emploi",
     "nav.contact": "Contact",
     "nav.start": "Commencer",
 
@@ -597,7 +597,6 @@ const translations = {
   "blog.optimisationLinkedIn.section2.bullet2": "A compelling headline that summarizes your value.",
   "blog.optimisationLinkedIn.section2.bullet3": "A detailed and impactful summary that highlights your experience and ambitions.",
   "blog.optimisationLinkedIn.section2.bullet4": "Recommendations and relevant endorsements from colleagues or clients.",
-
 
   "blog.presenceDigitale.description": "Discover key strategies to establish and optimize your online presence to maximize visibility.",
   "blog.presenceDigitale.intro": "In a hyperconnected world, digital presence has become essential for any business or professional seeking to stand out.",
