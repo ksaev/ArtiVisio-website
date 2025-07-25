@@ -436,7 +436,7 @@ const countries = [
               )}
 
               {/* Boutons */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex gap-4 w-full">
                 <Button className="bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8">
                   <Send className="mr-2" style={{ width: "20px", height: "20px" }}/> 
                   Postuler
