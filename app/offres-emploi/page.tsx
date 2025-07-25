@@ -10,6 +10,8 @@ import { useState } from "react"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { useRouter } from "next/navigation"
 import { Share, View, Eye, Send } from "lucide-react"
+import Link from "next/link"
+
 
 export default function OffresEmploiPage() {
   const { t } = useLanguage()
@@ -30,6 +32,7 @@ export default function OffresEmploiPage() {
     requirements: string[]
     posted: string
     countryId: string
+    mail : string
   }
 
   const jobOffers: JobOffer[] = [
@@ -45,6 +48,7 @@ export default function OffresEmploiPage() {
       requirements: ["3+ ans d'expérience", "React, Node.js", "Base de données"],
       posted: "Il y a 2 jours",
       countryId: "ci",
+      mail : "contact@techcorp-abidjan.com"
     },
     {
       id: 2,
@@ -58,6 +62,7 @@ export default function OffresEmploiPage() {
       requirements: ["5+ ans marketing", "Digital marketing", "Gestion d'équipe"],
       posted: "Il y a 1 jour",
       countryId: "ml",
+      mail : "contact@orange-mali.com"
     },
     {
       id: 3,
@@ -71,7 +76,7 @@ export default function OffresEmploiPage() {
       requirements: ["MBA ou équivalent", "Consulting", "Anglais courant"],
       posted: "Il y a 3 jours",
       countryId: "dak",
-
+      mail : "contact@mckinsey-dakar.com"
     },
     {
       id: 4,
@@ -85,6 +90,7 @@ export default function OffresEmploiPage() {
       requirements: ["Master RH", "5+ ans expérience", "Gestion d'équipe"],
       posted: "Il y a 1 semaine",
       countryId: "ga",
+      mail : "contact@total-energies-gabon.com"
 
     },
     {
@@ -99,6 +105,7 @@ export default function OffresEmploiPage() {
       requirements: ["Ingénieur", "Commercial B2B", "Mobilité régionale"],
       posted: "Il y a 4 jours",
       countryId: "ma",
+      mail : "contact@schneider-electric-maroc.com"
 
     },
     {
@@ -112,7 +119,9 @@ export default function OffresEmploiPage() {
       description: "Analyse de données e-commerce pour optimiser les performances",
       requirements: ["Python/R", "SQL", "Visualisation de données"],
       posted: "Il y a 5 jours",
-     countryId: "ne",
+      countryId: "ne",
+      mail : "contact@jumia-technologies-niger.com"
+
     },
   ]
 
@@ -436,11 +445,13 @@ const countries = [
               )}
 
               {/* Boutons */}
-              <div className="grid grid-cols-2 gap-4 w-full sm:flex-row justify-center">
-                <Button className="bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8">
-                  <Send className="mr-2" style={{ width: "20px", height: "20px" }}/> 
-                  Postuler
-                </Button>
+              <div  className="grid grid-cols-2 gap-4 w-full sm:flex-row justify-center">
+                    <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8">
+                      <a className="w-full" href={`mailto:${selectedJob.mail}`}>
+                        <Send className="mr-2" style={{ width: "20px", height: "20px" }}/> 
+                        Postuler
+                       </a>
+                    </Button>
 
                 <Button
                   className="border text-white border-amber-600 hover:bg-amber-500 rounded-full px-8"
