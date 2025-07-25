@@ -8,14 +8,31 @@ import { Input } from "@/components/ui/input"
 import { useLanguage } from "@/contexts/language-context"
 import { useState } from "react"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
+import { useRouter } from "next/navigation"
+import { Share, View, Eye, Send } from "lucide-react"
 
 export default function OffresEmploiPage() {
   const { t } = useLanguage()
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedSector, setSelectedSector] = useState("all")
   const [selectedCountry, setSelectedCountry] = useState("all")
+  const [selectedJob, setSelectedJob] = useState<JobOffer | null>(null)
 
-  const jobOffers = [
+  interface JobOffer {
+    id: number
+    title: string
+    company: string
+    location: string
+    salary: string
+    type: string
+    sector: string
+    description: string
+    requirements: string[]
+    posted: string
+    countryId: string
+  }
+
+  const jobOffers: JobOffer[] = [
     {
       id: 1,
       title: "Développeur Full-Stack",
@@ -196,7 +213,7 @@ const countries = [
                 Offres d'Emploi
               </span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Trouvez un emploi ou une mission freelance dans votre secteur, votre pays ou à distance.
             </p>
           </motion.div>
@@ -259,6 +276,19 @@ const countries = [
 
           </motion.div>
         </div>
+        <div className="w-full flex flex-col items-center justify-center gap-4 py-8 px-2">
+          <p className="text-xl text-center text-gray-600 max-w-xl">
+            Vous avez repéré une offre mais vous hésitez sur votre CV, votre lettre ou votre profil ?
+          </p>
+          <a href="/coaching">
+          <Button
+            className="text-lg px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300"
+          >
+            Besoin d’aide pour postuler ?
+          </Button>
+          </a>
+        </div>
+
       </section>
 
       {/* Jobs List */}
@@ -300,7 +330,6 @@ const countries = [
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 mb-4">{job.description}</p>
                     <div className="mb-6">
                       <h4 className="font-semibold text-gray-800 mb-2">Exigences :</h4>
                       <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
@@ -310,7 +339,8 @@ const countries = [
                       </ul>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-3">
-                      <Button className="w-full justify-center bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300">
+                      <Button onClick={() => setSelectedJob(job)} className="w-full justify-center bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300">
+                        <Eye className="mr-2" style={{ width: "30px", height: "30px" }} />
                         Voir l'offre complète
                       </Button>
                     </div>
@@ -363,7 +393,79 @@ const countries = [
             </Button>
           </motion.div>
         </div>
+
+        {/* ✅ MODALE */}
+        {selectedJob && (
+          <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center px-4">
+            <div className="bg-white rounded-2xl shadow-xl max-w-2xl w-full p-6 relative">
+              {/* Fermer */}
+              <button
+                onClick={() => setSelectedJob(null)}
+                className="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-2xl"
+              >
+                &times;
+              </button>
+
+              {/* Titre & infos */}
+              <h2 className="text-2xl font-bold text-amber-700 mb-2">
+                {selectedJob.title}
+              </h2>
+              <p className="text-sm text-gray-600 font-medium mb-1">
+                {selectedJob.company} – {selectedJob.location}
+              </p>
+              <p className="text-sm flex items-center text-gray-600 font-medium mb-1">
+                 <DollarSign className="h-4 w-4 mr-1" />{selectedJob.salary}
+              </p>
+              <p className="flex items-center text-sm text-gray-600 font-medium mb-1">
+                 <Clock className="h-4 w-4 mr-1" />{selectedJob.type}
+              </p>
+              <p className="text-gray-700 mb-4">{selectedJob.description}</p>
+
+              {/* Liste */}
+              {selectedJob.requirements && (
+                <>
+                  <h4 className="font-semibold text-gray-800 mb-2">
+                    Exigences :
+                  </h4>
+                  <ul className="list-disc list-inside text-sm text-gray-700 mb-6 space-y-1">
+                    {selectedJob.requirements.map((req, i) => (
+                      <li key={i}>{req}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              {/* Boutons */}
+              <div className="flex flex-wrap gap-4">
+                <Button className="bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8">
+                  <Send className="mr-2" style={{ width: "20px", height: "20px" }}/> 
+                  Postuler
+                </Button>
+
+                <Button
+                  className="border text-white border-amber-600 hover:bg-amber-500 rounded-full px-8"
+                  onClick={() => {
+                    if (navigator.share) {
+                      navigator.share({
+                        title: selectedJob.title,
+                        text: selectedJob.description,
+                        url: window.location.href,
+                      })
+                    } else {
+                      navigator.clipboard.writeText(window.location.href)
+                      alert('Lien copié dans le presse-papiers !')
+                    }
+                  }}
+                >
+                  <Share className="mr-2" style={{ width: "20px", height: "20px" }} />
+                  Partager
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
     </div>
+    
   )
 }
