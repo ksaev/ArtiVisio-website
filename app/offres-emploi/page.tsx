@@ -286,7 +286,7 @@ const countries = [
           </motion.div>
         </div>
         <div className="w-full flex flex-col items-center justify-center gap-4 py-8 px-2">
-          <p className="text-xl text-center text-gray-600 max-w-xl">
+          <p className="text-lg text-center text-gray-600 max-w-xl">
             Vous avez repéré une offre mais vous hésitez sur votre CV, votre lettre ou votre profil ?
           </p>
           <a href="/coaching">
@@ -452,7 +452,6 @@ const countries = [
                         Postuler
                        </a>
                     </Button>
-
                 <Button
                   className="border text-white border-amber-600 hover:bg-amber-500 rounded-full px-8"
                   onClick={() => {
