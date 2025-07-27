@@ -6,9 +6,17 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
-import { LucideProps } from "lucide-react"
 import { Container } from "@/components/ui/container"
 import { cn } from "@/lib/utils"
+import {
+  Briefcase,
+  LucideProps,
+  Clock,
+  ShieldCheck,
+  Smartphone,
+  Target,
+  LayoutTemplate
+} from "lucide-react"
 
 export default function ServicesPage() {
   const { t } = useLanguage()
@@ -168,38 +176,45 @@ export default function ServicesPage() {
   ]
 
 
-    const points = [
-    {
-      title: "Image professionnelle",
-      description:
-        "Chaque document devient une vitrine. Digitaliser, c'est projeter sérieux, rigueur et crédibilité.",
-    },
-    {
-      title: "Gain de temps",
-      description:
-        "Tous vos fichiers sont centralisés, accessibles, modifiables et prêts à être partagés en un clic.",
-    },
-    {
-      title: "Sécurité & sauvegarde",
-      description:
-        "Vos documents sont protégés, sauvegardés automatiquement et accessibles à tout moment.",
-    },
-    {
-      title: "Accessibilité mobile/web",
-      description:
-        "Vos rapports, CV ou offres peuvent être consultés sur téléphone ou en ligne depuis n’importe où.",
-    },
-    {
-      title: "Coaching stratégique inclus",
-      description:
-        "Nous vous aidons à choisir les bons formats, les bons moments, et à préparer vos diffusions.",
-    },
-    {
-      title: "Design moderne & adapté",
-      description:
-        "Mise en page claire, typographies cohérentes, supports esthétiques et alignés à votre cible.",
-    },
-  ]
+const points = [
+  {
+    title: "Image professionnelle",
+    description:
+      "Chaque document devient une vitrine. Digitaliser, c'est projeter sérieux, rigueur et crédibilité.",
+    icon: Briefcase, // icône symbolisant le pro et le business
+  },
+  {
+    title: "Gain de temps",
+    description:
+      "Tous vos fichiers sont centralisés, accessibles, modifiables et prêts à être partagés en un clic.",
+    icon: Clock, // montre = rapidité, productivité
+  },
+  {
+    title: "Sécurité & sauvegarde",
+    description:
+      "Vos documents sont protégés, sauvegardés automatiquement et accessibles à tout moment.",
+    icon: ShieldCheck, // bouclier = protection
+  },
+  {
+    title: "Accessibilité mobile/web",
+    description:
+      "Vos rapports, CV ou offres peuvent être consultés sur téléphone ou en ligne depuis n’importe où.",
+    icon: Smartphone, // icône mobile pour l’accessibilité
+  },
+  {
+    title: "Coaching stratégique inclus",
+    description:
+      "Nous vous aidons à choisir les bons formats, les bons moments, et à préparer vos diffusions.",
+    icon: Target, // cible = stratégie, orientation
+  },
+  {
+    title: "Design moderne & adapté",
+    description:
+      "Mise en page claire, typographies cohérentes, supports esthétiques et alignés à votre cible.",
+    icon: LayoutTemplate, // layout/design visuel
+  },
+]
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -327,25 +342,29 @@ export default function ServicesPage() {
         </motion.p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-          {points.map((point, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-              className={cn(
-                "rounded-2xl border bg-white p-6 shadow-sm hover:shadow-xl hover:border-primary transition-all duration-300 cursor-default group"
-              )}
-            >
-              <h3 className="text-lg sm:text-sm font-semibold group-hover:text-primary transition-colors">
-                {point.title}
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                {point.description}
-              </p>
-            </motion.div>
-          ))}
+{points.map((point, index) => {
+  const Icon = point.icon
+  return (
+    <div
+      key={index}
+      className="group p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col gap-3"
+    >
+      <div className="flex items-center gap-3">
+        <Icon className="h-6 w-6 text-amber-600 group-hover:text-primary transition-colors" />
+        <h3 className="text-lg sm:text-lg font-semibold group-hover:text-primary transition-colors">
+          {point.title}
+        </h3>
+      </div>
+      <p className="mt-2 text-base text-muted-foreground">
+        {point.description}
+      </p>
+    </div>
+  )
+})}
+
+
+
+
         </div>
       </Container>
     </section>      

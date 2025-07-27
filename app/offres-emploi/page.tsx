@@ -282,20 +282,28 @@ const countries = [
               ))}
             </SelectContent>
           </Select>
-
           </motion.div>
         </div>
+
         <div className="w-full flex flex-col items-center justify-center gap-4 py-8 px-2">
-          <p className="text-lg text-center text-gray-600 max-w-xl">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+
+          <p className="text-lg pb-6 text-center  text-gray-600 max-w-xl">
             Vous avez repéré une offre mais vous hésitez sur votre CV, votre lettre ou votre profil ?
           </p>
           <a href="/coaching">
           <Button
-            className="text-lg px-6 py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300"
+            className="text-lg px-6 py-6 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300"
           >
             Besoin d’aide pour postuler ?
           </Button>
           </a>
+           </motion.div>
         </div>
 
       </section>

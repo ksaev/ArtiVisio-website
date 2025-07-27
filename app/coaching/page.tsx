@@ -217,6 +217,12 @@ export default function CoachingPage() {
       {/* Services de Coaching */}
       <section id="services" className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
           <div className="text-center mb-16 bg-white/50 w-full">
+            <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <Badge variant="outline" className="mb-4">
               Nos Services
             </Badge>
@@ -226,10 +232,17 @@ export default function CoachingPage() {
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Choisissez le programme qui correspond à vos objectifs professionnels
             </p>
+            </motion.div>
           </div>
 
         <div className="container mx-auto px-4 w-full">
-
+           <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+          <div className="text-center mb-16 bg-white/50 w-full">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
             {services.map((service, index) => (
               <Card key={index} className="bg-white/80 backdrop-blur-sm border-amber-200/50 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] h-full">
@@ -262,11 +275,20 @@ export default function CoachingPage() {
             ))}
           </div>
         </div>
+           </motion.div>
+        </div>
       </section>
 
       {/* Processus de Coaching */}
       <section className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
+
           <div className="text-center mb-16 bg-white/50 w-full">
+            <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <Badge variant="outline" className="mb-4">
               Notre Méthode
             </Badge>
@@ -274,9 +296,18 @@ export default function CoachingPage() {
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Une approche structurée et personnalisée pour maximiser vos résultats
             </p>
+
+            </motion.div>
+
           </div>
 
         <div className="container mx-auto px-4">
+            <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {coachingProcess.map((step, index) => (
               <div key={index} className="text-center">
@@ -288,6 +319,7 @@ export default function CoachingPage() {
               </div>
             ))}
           </div>
+          </motion.div>
         </div>
       </section>
 
@@ -295,14 +327,27 @@ export default function CoachingPage() {
       <section className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50 ">
 
           <div className="text-center mb-16 bg-white/50 w-full">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <Badge variant="outline" className="mb-4">
               Témoignages
             </Badge>
             <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Ils ont transformé leur carrière</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">Découvrez les success stories de nos clients</p>
+          </motion.div>
           </div>
 
         <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
@@ -331,20 +376,34 @@ export default function CoachingPage() {
               </Card>
             ))}
           </div>
+          </motion.div>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
-         
+
           <div className="text-center mb-16 bg-white/50 w-full">
+            <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <Badge variant="outline" className="mb-4">
               FAQ
             </Badge>
             <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Questions fréquentes</h2>
+          </motion.div>
           </div>
 
         <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
           <div className="max-w-3xl mx-auto space-y-6">
             {faqs.map((faq, index) => (
               <Card key={index}>
@@ -357,6 +416,7 @@ export default function CoachingPage() {
               </Card>
             ))}
           </div>
+          </motion.div>
         </div>
       </section>
 
