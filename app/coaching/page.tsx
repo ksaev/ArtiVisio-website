@@ -203,7 +203,7 @@ export default function CoachingPage() {
           >
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-amber-700 to-amber-900 bg-clip-text text-transparent">
-                Coaching LinkedIn
+                Coaching Professionnel
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -220,10 +220,10 @@ export default function CoachingPage() {
             <Badge variant="outline" className="mb-4">
               Nos Services
             </Badge>
-            <h2 className=" m-5 text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className=" m-5 text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
               Un accompagnement sur mesure pour chaque étape
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Choisissez le programme qui correspond à vos objectifs professionnels
             </p>
           </div>
@@ -270,8 +270,8 @@ export default function CoachingPage() {
             <Badge variant="outline" className="mb-4">
               Notre Méthode
             </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Comment se déroule votre coaching ?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Comment se déroule votre coaching ?</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Une approche structurée et personnalisée pour maximiser vos résultats
             </p>
           </div>
@@ -298,8 +298,8 @@ export default function CoachingPage() {
             <Badge variant="outline" className="mb-4">
               Témoignages
             </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Ils ont transformé leur carrière</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Découvrez les success stories de nos clients</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Ils ont transformé leur carrière</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">Découvrez les success stories de nos clients</p>
           </div>
 
         <div className="container mx-auto px-4">
@@ -341,7 +341,7 @@ export default function CoachingPage() {
             <Badge variant="outline" className="mb-4">
               FAQ
             </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Questions fréquentes</h2>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Questions fréquentes</h2>
           </div>
 
         <div className="container mx-auto px-4">

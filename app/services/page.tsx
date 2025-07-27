@@ -7,6 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
 import { LucideProps } from "lucide-react"
+import { Container } from "@/components/ui/container"
+import { cn } from "@/lib/utils"
 
 export default function ServicesPage() {
   const { t } = useLanguage()
@@ -24,15 +26,16 @@ export default function ServicesPage() {
   const services: ServiceType[] = [
     {
       icon: FileText,
-      title: "CV Professionnels",
+      title: "CV Professionnels + LM",
       description: "CV modernes et impactants optimisés pour le marché africain",
-      price: "5 000 - 10 000 FCFA",
+      price: "3 000 - 10 000 FCFA",
       features: [
         "Design professionnel et moderne",
         "Version PDF haute qualité",
         "Version web responsive",
         "Optimisé pour les ATS",
-        "Adapté au marché africain",
+        "Version en français et/ou en anglais",
+        "Lettre de motivation offerte",
         "Révisions incluses",
       ],
       popular: true,
@@ -41,13 +44,13 @@ export default function ServicesPage() {
       icon: Globe,
       title: "Portfolios Interactifs",
       description: "Sites web personnalisés pour présenter vos réalisations",
-      price: "10 000 - 15 000 FCFA",
+      price: "10 000 - 25 000 FCFA",
       features: [
         "Design responsive unique",
         "Galerie de projets interactive",
         "Page de contact intégrée",
         "SEO optimisé",
-        "Hébergement inclus",
+        "3 mois d’hébergement & support offerts",
         "Formation à la gestion",
       ],
       popular: false,
@@ -56,7 +59,7 @@ export default function ServicesPage() {
       icon: Palette,
       title: "Branding Personnel",
       description: "Identité visuelle complète et pages de présentation",
-      price: "8 000 - 12 000 FCFA",
+      price: "8 000 - 35 000 FCFA",
       features: [
         "Logo professionnel",
         "Charte graphique complète",
@@ -86,14 +89,13 @@ export default function ServicesPage() {
       icon: Search,
       title: "Pages Personnalisées",
       description: "Mini sites web pour votre présence professionnelle",
-      price: "6 000 - 10 000 FCFA",
+      price: "6 000 - 15 000 FCFA",
       features: [
         "Page de présentation",
         "Formulaire de contact",
         "Intégration réseaux sociaux",
         "Design mobile-first",
-        "Nom de domaine inclus",
-        "Hébergement 1 an",
+        "3 mois d’hébergement & support offerts",
       ],
       popular: false,
     },
@@ -119,25 +121,10 @@ export default function ServicesPage() {
   const bureau: ServiceType[] = [
 
     {
-      icon: GraduationCap,
-      title: "Coaching & Formations Personnalisées",
-      description: "Développement professionnel sur-mesure pour étudiants, freelances et jeunes actifs",
-      price: "À partir de 5 000 FCFA",
-      features: [
-        "Coaching carrière individuel (CV, entretien, projet pro)",
-        "Ateliers pratiques : rédaction, branding, orientation",
-        "Formations bureautique (Word, Excel, PowerPoint...)",
-        "Formations digitales : Canva, Notion, outils IA",
-        "Accompagnement en freelancing et création de profil",
-        "Attestation incluse & suivi personnalisé"
-      ],
-      popular: false,
-    },
-    {
       icon: FileText, 
       title: "Structuration de Rapports",
       description: "Optimisez vos rapports (stage, mémoire, pro) avec une structure claire et impactante.",
-      price: "5 000 - 12 000 FCFA",
+      price: "5 000 - 20 000 FCFA",
       features: [
         "Mise en page professionnelle",
         "Hiérarchie claire (titres, sommaire, annexes)",
@@ -155,7 +142,7 @@ export default function ServicesPage() {
     description: "Slides percutants pour soutenances, pitches ou réunions stratégiques.",
     price: "6 000 - 10 000 FCFA",
     features: [
-      "Création ou refonte de présentation (PowerPoint / Canva)",
+      "Création ou refonte de présentation (PowerPoint)",
       "Visuels et infographies intégrés",
       "Alignement avec votre branding",
       "Animations légères et transitions clean",
@@ -167,7 +154,7 @@ export default function ServicesPage() {
     icon: Pencil, 
     title: "Documents Administratifs",
     description: "Rédaction claire et conforme de courriers, attestations et demandes officielles.",
-    price: "3 000 - 6 000 FCFA",
+    price: "3 000 - 10 000 FCFA",
     features: [
       "Rédaction professionnelle et structurée",
       "Respect du ton administratif / corporate",
@@ -178,6 +165,40 @@ export default function ServicesPage() {
     popular: false,
   }
 
+  ]
+
+
+    const points = [
+    {
+      title: "Image professionnelle",
+      description:
+        "Chaque document devient une vitrine. Digitaliser, c'est projeter sérieux, rigueur et crédibilité.",
+    },
+    {
+      title: "Gain de temps",
+      description:
+        "Tous vos fichiers sont centralisés, accessibles, modifiables et prêts à être partagés en un clic.",
+    },
+    {
+      title: "Sécurité & sauvegarde",
+      description:
+        "Vos documents sont protégés, sauvegardés automatiquement et accessibles à tout moment.",
+    },
+    {
+      title: "Accessibilité mobile/web",
+      description:
+        "Vos rapports, CV ou offres peuvent être consultés sur téléphone ou en ligne depuis n’importe où.",
+    },
+    {
+      title: "Coaching stratégique inclus",
+      description:
+        "Nous vous aidons à choisir les bons formats, les bons moments, et à préparer vos diffusions.",
+    },
+    {
+      title: "Design moderne & adapté",
+      description:
+        "Mise en page claire, typographies cohérentes, supports esthétiques et alignés à votre cible.",
+    },
   ]
 
   const containerVariants = {
@@ -244,12 +265,12 @@ export default function ServicesPage() {
                   ))}
                 </ul>
 
-                <Link href="/contact">
+                <a href={`https://wa.me/22508976737?text=Bonjour%2C+je+veux+commander+le+service+de+${service.title}`} target="_blank" rel="noopener noreferrer">
                   <Button className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group">
                     Commander maintenant
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
-                </Link>
+                </a>
               </CardContent>
             </Card>
           </motion.div>
@@ -281,30 +302,109 @@ export default function ServicesPage() {
         </div>
       </section>
 
+
+    <section className="bg-muted/40 py-16">
+      <Container className="space-y-12">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-bold text-center"
+        >
+          Pourquoi digitaliser & faire appel à notre expertise ?
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto text-muted-foreground"
+        >
+          Nos documents ne sont pas juste esthétiques. Ils sont conçus pour transmettre une image forte,
+          claire, professionnelle et vous faire gagner en efficacité.
+        </motion.p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+          {points.map((point, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              viewport={{ once: true }}
+              className={cn(
+                "rounded-2xl border bg-white p-6 shadow-sm hover:shadow-xl hover:border-primary transition-all duration-300 cursor-default group"
+              )}
+            >
+              <h3 className="text-lg sm:text-sm font-semibold group-hover:text-primary transition-colors">
+                {point.title}
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {point.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
+    </section>      
+
       {/* Bloc 1 : Services classiques */}
       <section className="py-20 ">
+         <motion.div
+            className="text-center text-white"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
         <div className="text-center mb-16 bg-white/50 w-full px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Boostez Votre Présence Professionnelle</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+
+          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Boostez Votre Présence Professionnelle</h2>
+           <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto text-muted-foreground"
+        >
             Offrez-vous une image professionnelle forte et moderne grâce à nos services conçus pour vous démarquer en ligne comme hors ligne. Idéal pour étudiants, freelances, jeunes pros et entrepreneurs.
-          </p>
+        </motion.p>
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ServiceCards items={services} />
         </div>
+        </motion.div>
       </section>
 
       {/* Bloc 2 : Accompagnement bureautique */}
       <section className="py-20 bg-amber-50/50">
-        <div className="text-center mb-16 w-full px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Accompagnement Bureautique Professionnel</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <motion.div
+            className="text-center text-white"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+        <div className="text-center mb-16 bg-white/50 w-full px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Accompagnement Bureautique Professionnel</h2>
+           <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto text-muted-foreground"
+        >
             Structuration, présentation et rédaction administrative pour booster vos projets et communications professionnelles.
-          </p>
+        </motion.p>
         </div>
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ServiceCards items={bureau} />
         </div>
+       </motion.div>
+
       </section>
 
       {/* CTA final */}
