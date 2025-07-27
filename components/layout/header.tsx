@@ -56,7 +56,7 @@ export default function Header() {
               >
               <div className="w-10 h-10  from-amber-500/25 rounded-lg flex items-center justify-center shadow-md shadow-amber-800/10 transition-transform duration-200 hover:scale-105">
                     <span className="text-white font-bold text-xl">                
-                      <Image src="/arti.png" alt="Logo" width={100} height={100} loading="lazy" />
+                      <Image src="/arti.webp" alt="Logo" width={100} height={100} loading="lazy" />
                     </span>
                   </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-amber-700 to-amber-900 bg-clip-text text-transparent">
