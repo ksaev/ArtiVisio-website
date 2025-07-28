@@ -8,14 +8,66 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useLanguage } from "@/contexts/language-context"
+import {FaWhatsapp,FaFacebook, FaLinkedin} from "react-icons/fa"
+import { useState,useEffect, useRef } from "react"
+import { useToast } from "@/components/ui/use-toast"
+import { toast } from "react-hot-toast"
+
 
 export default function ContactPage() {
   const { t } = useLanguage()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+ // const { toast } = useToast()
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
+      { threshold: 0.1 }
+    )
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted")
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        toast.success("Votre message a bien été envoyé. Notre équipe vous répondra sous peu")  
+        setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" })
+      } else {
+        toast.error("Une erreur est survenue. Veuillez réessayer plus tard.")
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi :", error)
+      toast.error("Erreur réseau. Veuillez vérifier votre connexion Internet.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactMethods = [
@@ -26,7 +78,7 @@ export default function ContactPage() {
       description: "Réponse sous 24h",
     },
     {
-      icon: MessageCircle,
+      icon:  FaWhatsapp,
       title: "WhatsApp",
       value: "+225 07 08 97 67 37",
       description: "Réponse immédiate",
@@ -46,10 +98,11 @@ export default function ContactPage() {
   ]
 
   const socialLinks = [
-    { icon: Linkedin, href: "https://www.linkedin.com/company/artivisioco/?viewAsMember=true", label: "LinkedIn", color: "hover:text-blue-600" },
-    { icon: MessageCircle, href: "https://wa.me/22508976737", label: "WhatsApp", color: "hover:text-green-600" },
-    { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61552513933160", label: "Facebook", color: "hover:text-blue-600" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/company/artivisioco/?viewAsMember=true", label: "LinkedIn", color: "hover:text-blue-600" },
+    { icon: FaWhatsapp, href: "https://chat.whatsapp.com/CwvOp480ovNBnCzKMJ20QG", label: "WhatsApp", color: "hover:text-green-600" },
+    { icon: FaFacebook, href: "https://www.facebook.com/profile.php?id=61552513933160", label: "Facebook", color: "hover:text-blue-600" },
   ]
+  
 
   return (
     <div className="min-h-screen">
@@ -91,7 +144,10 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="firstName"
+                          name="firstName"
                           type="text"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
                           required
                           className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
                           placeholder="Votre prénom"
@@ -103,7 +159,10 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="lastName"
+                          name="lastName"
                           type="text"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
                           required
                           className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
                           placeholder="Votre nom"
@@ -117,7 +176,10 @@ export default function ContactPage() {
                       </label>
                       <Input
                         id="email"
+                        name="email"
                         type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
                         required
                         className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
                         placeholder="votre@email.com"
@@ -130,7 +192,10 @@ export default function ContactPage() {
                       </label>
                       <Input
                         id="subject"
+                        name="subject"
                         type="text"
+                        value={formData.subject}
+                        onChange={handleInputChange}
                         required
                         className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
                         placeholder="Sujet de votre message"
@@ -143,8 +208,11 @@ export default function ContactPage() {
                       </label>
                       <Textarea
                         id="message"
+                        name="message"
                         required
                         rows={6}
+                        value={formData.message}
+                        onChange={handleInputChange}
                         className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
                         placeholder="Décrivez votre projet ou vos besoins..."
                       />
@@ -153,9 +221,21 @@ export default function ContactPage() {
                     <Button
                       type="submit"
                       className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
+                      disabled={isSubmitting}
                     >
-                      <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                      {t("contact.send")}
+                    <span className="relative flex items-center justify-center">
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                          Envoi en cours...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-5 w-5 mr-2 group-hover:translate-x-1 transition-transform duration-300" />
+                          Envoyer le message
+                        </>
+                      )}
+                    </span>
                     </Button>
                   </form>
                 </CardContent>
@@ -205,6 +285,8 @@ export default function ContactPage() {
                       <motion.a
                         key={social.label}
                         href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className={`w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 transition-all duration-300 ${social.color} hover:scale-110`}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
@@ -212,7 +294,7 @@ export default function ContactPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: index * 0.1 }}
                       >
-                        <social.icon className="h-6 w-6" />
+                        <social.icon style={{ width: "30px", height: "30px" }} />
                         <span className="sr-only">{social.label}</span>
                       </motion.a>
                     ))}
@@ -241,3 +323,5 @@ export default function ContactPage() {
     </div>
   )
 }
+
+

@@ -9,6 +9,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import Image from "next/image"
 import SeoHead from "@/components/seoHead"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "react-hot-toast"
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -35,11 +37,18 @@ export default function Header() {
 
   return (
     <>
-      <meta name="apple-mobile-web-app-title" content="ArtiVisio" />
-      {/*<SeoHead />*/}
+      <SeoHead
+        title="ArtiVisio - Création & Coaching Digital"
+        description="Solutions modernes de création de sites, coaching digital et design professionnel."
+        url="https://artivisio.com"
+        image="/arti.webp"
+      />
+
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white/90 backdrop-blur-md shadow-lg border-b border-amber-200/50" : "bg-transparent"
+          isScrolled
+            ? "bg-white/90 backdrop-blur-md shadow-lg border-b border-amber-200/50"
+            : "bg-transparent"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -54,11 +63,9 @@ export default function Header() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-              <div className="w-10 h-10  from-amber-500/25 rounded-lg flex items-center justify-center shadow-md shadow-amber-800/10 transition-transform duration-200 hover:scale-105">
-                    <span className="text-white font-bold text-xl">                
-                      <Image src="/arti.webp" alt="Logo" width={100} height={100} loading="lazy" />
-                    </span>
-                  </div>
+              <div className="w-10 h-10 bg-[#fdf8f4] border border-[#d6bfae] rounded-lg flex items-center justify-center shadow-md shadow-[#bfa07a]/20 transition-transform duration-200 hover:scale-105">
+                  <Image src="/arti.webp" alt="Logo" width={100} height={100} loading="lazy" />
+                </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-amber-700 to-amber-900 bg-clip-text text-transparent">
                   ArtiVisio
                 </span>
@@ -77,7 +84,9 @@ export default function Header() {
                   <Link
                     href={item.href}
                     className={`font-medium transition-colors duration-200 relative group ${
-                      pathname === item.href ? "text-amber-700" : "text-gray-700 hover:text-amber-700"
+                      pathname === item.href
+                        ? "text-amber-700"
+                        : "text-gray-700 hover:text-amber-700"
                     }`}
                   >
                     {item.name}
@@ -108,11 +117,11 @@ export default function Header() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                <Link href="/contact">
+                <a href="https://chat.whatsapp.com/CwvOp480ovNBnCzKMJ20QG" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-6 py-2 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300">
                     {t("nav.start")}
                   </Button>
-                </Link>
+                </a>
               </motion.div>
             </div>
 
@@ -139,7 +148,9 @@ export default function Header() {
                     key={item.name}
                     href={item.href}
                     className={`block font-medium py-2 transition-colors ${
-                      pathname === item.href ? "text-amber-700" : "text-gray-700 hover:text-amber-700"
+                      pathname === item.href
+                        ? "text-amber-700"
+                        : "text-gray-700 hover:text-amber-700"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -170,6 +181,6 @@ export default function Header() {
           )}
         </div>
       </motion.header>
-  </>
+    </>
   )
 }

@@ -405,9 +405,11 @@ const countries = [
             <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
               Publiez vos offres d'emploi et trouvez les meilleurs talents d'Afrique francophone
             </p>
+            <Link href="/add-offres">
             <Button className="bg-white text-amber-700 hover:bg-gray-100 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
               Publier une offre
             </Button>
+            </Link>
           </motion.div>
         </div>
 

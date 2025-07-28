@@ -19,7 +19,7 @@ const translations = {
     "nav.coaching": "Coaching",
     "nav.jobs": "Offres d'emploi",
     "nav.contact": "Contact",
-    "nav.start": "Commencer",
+    "nav.start": "Rejoignez-nous",
 
     // Hero
     "hero.title": "Construisons votre image professionnelle.",
@@ -345,7 +345,7 @@ const translations = {
     "nav.coaching": "Coaching",
     "nav.jobs": "Jobs",
     "nav.contact": "Contact",
-    "nav.start": "Get Started",
+    "nav.start": "Join Us",
 
     // Hero
     "hero.title": "Build your professional image",

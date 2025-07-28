@@ -7,10 +7,12 @@ import VideoSection from "@/components/video-section" // fixed
 import PricingSection from "@/components/sections/pricing-section"
 import Testimonials from "@/components/testimonials" // fixed
 import Contact from "@/components/contact" // fixed
+import { Toaster } from "react-hot-toast"
 
 export default function HomePage() {
   return (
     <>
+      <Toaster /> {/* 👈 Très important */}
       <Hero />
       <Services />
       <Portfolio />

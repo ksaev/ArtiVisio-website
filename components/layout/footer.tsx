@@ -2,13 +2,16 @@
 
 import { motion } from "framer-motion"
 import { Linkedin, Instagram, MessageCircle,Facebook, Download } from "lucide-react"
-import {FaWhatsapp,FaFacebook} from "react-icons/fa"
+import {FaWhatsapp,FaFacebook, FaLinkedin} from "react-icons/fa"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import { ArrowUp } from "lucide-react"
+import { toast } from 'react-hot-toast'
+import { Input } from "@/components/ui/input"
+
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -22,6 +25,7 @@ import { ArrowUp } from "lucide-react"
 export default function Footer() {
   const { t } = useLanguage()
   const currentYear = new Date().getFullYear()
+  const [email, setEmail] = useState("")
   const [showScrollTop, setShowScrollTop] = useState(false)
 
 useEffect(() => {
@@ -43,9 +47,9 @@ useEffect(() => {
 
 
   const socialLinks = [
-    { icon: Linkedin, href: "https://www.linkedin.com/company/artivisioco/?viewAsMember=true", label: "LinkedIn" },
-    { icon: MessageCircle, href: "https://wa.me/22508976737", label: "WhatsApp" },
-    { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61552513933160", label: "Facebook" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/company/artivisioco/?viewAsMember=true", label: "LinkedIn" },
+    { icon: FaWhatsapp, href: "https://wa.me/22508976737", label: "WhatsApp" },
+    { icon: FaFacebook, href: "https://www.facebook.com/profile.php?id=61552513933160", label: "Facebook" },
   ]
 
   const footerLinks = [
@@ -78,6 +82,46 @@ useEffect(() => {
     },
   ]
 
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email) return toast.error("Veuillez entrer votre adresse e-mail.")
+
+    const loadingToast = toast.loading("Envoi en cours...")
+
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
+
+      if (res.ok) throw new Error("Erreur lors de l'inscription.")
+
+      toast.success(`🎉 Merci pour votre inscription, ${email} !`, {
+        id: loadingToast,
+      })
+      setEmail("")
+    } catch (err) {
+      toast.error("Une erreur est survenue. Veuillez réessayer.", {
+        id: loadingToast,
+      })
+    }
+  }
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,16 +136,20 @@ useEffect(() => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <Link href="/">
-                <div className="flex items-center space-x-2 mb-6">
-                  <div className="w-10 h-10 bg-gradient-to-br from-amber-600 to-amber-800 rounded-lg flex items-center justify-center">
-                    <Image src="/blanc.png" alt="Logo" width={100} height={100} loading="lazy" />
-                  </div>
-                  <span className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
-                    Artivisio
-                  </span>
+            <Link href="/">
+              <motion.div
+                className="flex items-center space-x-2"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+              <div className="w-10 h-10 bg-[#fdf8f4] border border-[#d6bfae] rounded-lg flex items-center justify-center shadow-md shadow-[#bfa07a]/20 transition-transform duration-200 hover:scale-105">
+                  <Image src="/arti.webp" alt="Logo" width={100} height={100} loading="lazy" />
                 </div>
-              </Link>
+                <span className="text-2xl font-bold bg-gradient-to-r from-amber-700 to-amber-900 bg-clip-text text-transparent">
+                  ArtiVisio
+                </span>
+              </motion.div>
+            </Link>
               <p className="text-gray-400 mb-6 leading-relaxed">{t("footer.description")}</p>
 
               {/* Social Links */}
@@ -118,7 +166,7 @@ useEffect(() => {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    <social.icon className="h-5 w-5" />
+                    <social.icon  style={{ width: "25px", height: "25px" }}/>
                     <span className="sr-only">{social.label}</span>
                   </motion.a>
                 ))}
@@ -160,27 +208,32 @@ useEffect(() => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div>
-              <h4 className="text-lg font-semibold mb-2 text-amber-400">Téléchargez nos modèles gratuits</h4>
-              <p className="text-gray-400">CV professionnels et templates adaptés au marché africain</p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
+          {/* Newsletter */}
+         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <h4 className="text-lg font-semibold mb-2 text-amber-400">              
+              Newsletter
+            </h4>
+            <p className="text-gray-400">
+              Restez informé de nos nouveautés et offres spéciales.
+            </p>
+          </div>
+          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+              <Input
+                type="email"
+                placeholder="Votre adresse e-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="border-amber-600 text-amber-400  hover:text-white transition-all duration-300 bg-transparent"
+              />
               <Button
-                variant="outline"
+                type="submit"
                 className="border-amber-600 text-amber-400 hover:bg-amber-600 hover:text-white transition-all duration-300 bg-transparent"
-              >
-                <Download className="mr-2 h-4 w-4" />
-                CV PDF
-              </Button>
-              <Button
                 variant="outline"
-                className="border-amber-600 text-amber-400 hover:bg-amber-600 hover:text-white transition-all duration-300 bg-transparent"
               >
-                <Download className="mr-2 h-4 w-4" />
-                CV Word
+                S’inscrire
               </Button>
-            </div>
+            </form>
           </div>
         </motion.div>
 

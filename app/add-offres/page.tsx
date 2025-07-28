@@ -84,9 +84,7 @@ export default function FormulaireOffre() {
     datePublication: new Date().toISOString().split("T")[0],
     enAvant: false,
   })
-    
-
-
+  
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -161,7 +159,6 @@ export default function FormulaireOffre() {
         datePublication: new Date().toISOString().split("T")[0],
         enAvant: false,
       })
-
       setToastStatus("success")
       setToastProgress(100)
       launchConfetti()
@@ -173,14 +170,21 @@ export default function FormulaireOffre() {
   }
 
   return (
-    <>
+    <div className="bg-gradient-to-br from-amber-50/50 to-stone-50/50 min-h-screen py-8 px-6 sm:px-10 lg:px-24 text-gray-800">
       <form
         onSubmit={handleSubmit}
         className="max-w-3xl mx-auto p-8 bg-white rounded-xl shadow-md space-y-6"
       >
-        <h2 className="text-3xl font-extrabold text-primary mb-6 justify-center text-center items-center">Ajouter une offre d'emploi</h2>
+        <h2 className="text-4xl font-extrabold text-primary mb-6 justify-center text-center items-center">
+          Publier une offre d'emploi
+        </h2>
+      
+        <h3 className="text-xl pt-8 font-extrabold text-black mb-6 underline justify-center text-center ">
+              Informations relatives à l’offre
+        </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
           <div>
             <label htmlFor="titre" className="block font-semibold text-primary mb-1">Titre du poste *</label>
             <input
@@ -302,8 +306,9 @@ export default function FormulaireOffre() {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-1 ">
-     
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+          <div>
+
             <label className="block font-semibold text-primary mb-1"
               > Date limite * </label>    
               <input type="date"
@@ -314,8 +319,23 @@ export default function FormulaireOffre() {
                 onChange={handleChange}
                 placeholder="Date limite de candidature"
                 className="input w-full border-2 border-primary px-4 py-2 rounded bg-white focus:outline-none focus:ring-2 focus:ring-primary" />
-        </div>
+          </div>
 
+
+          <div>
+            <label htmlFor="titre" className="block font-semibold text-primary mb-1">Adresse de candidature *</label>
+            <input
+              type="mail"
+              id="titre"
+              name="titre"
+              value={form.titre}
+              onChange={handleChange}
+              required
+              className="w-full border-2 border-primary px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+        </div>
 
         <div>
           <label htmlFor="description" className="block font-semibold text-primary mb-1">Description *</label>
@@ -339,7 +359,7 @@ export default function FormulaireOffre() {
             Salaire
           </label>
           <input
-            type="text"
+            type="number"
             id="salaire"
             name="salaire"
             value={form.salaire}
@@ -363,6 +383,68 @@ export default function FormulaireOffre() {
           </label>
         </div>
 
+        <h3 className="text-xl pt-8 font-extrabold text-black mb-6 underline justify-center text-center ">
+          Informations sur la personne ayant soumis l’offre
+        </h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <div>
+            <label htmlFor="titre" className="block font-semibold text-primary mb-1">Nom et Prénom(s)*</label>
+            <input
+              type="text"
+              id="titre"
+              name="titre"
+              value={form.titre}
+              onChange={handleChange}
+              required
+              className="w-full border-2 border-primary px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="entreprise" className="block font-semibold text-primary mb-1">Localisation *</label>
+            <input
+              type="text"
+              id="entreprise"
+              name="entreprise"
+              value={form.entreprise}
+              onChange={handleChange}
+              required
+              className="w-full border-2 border-primary px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6">
+          
+          <div>
+            <label htmlFor="titre" className="block font-semibold text-primary mb-1">Localisation *</label>
+            <input
+              type="text"
+              id="titre"
+              name="titre"
+              value={form.titre}
+              onChange={handleChange}
+              required
+              className="w-full border-2 border-primary px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="entreprise" className="block font-semibold text-primary mb-1">Numéro de téléphone *</label>
+            <input
+              type="text"
+              id="entreprise"
+              name="entreprise"
+              value={form.entreprise}
+              onChange={handleChange}
+              required
+              className="w-full border-2 border-primary px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+        </div>
+
         <button
           type="submit"
           className="w-full py-3 rounded-lg bg-primary text-white font-bold text-lg hover:bg-primary/90 transition"
@@ -375,7 +457,7 @@ export default function FormulaireOffre() {
         <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-white border border-primary px-6 py-3 rounded-lg shadow-md w-[90%] max-w-md">
           <span className="text-primary font-semibold flex items-center gap-2">
             {toastStatus === "loading" && "⏳ Envoi de l’offre en cours..."}
-            {toastStatus === "success" && "🎉 Offre publiée avec succès !"}
+            {toastStatus === "success" && "🎉 🎉 Votre offre a été envoyée avec succès. Elle sera examinée par notre équipe avant publication."}
             {toastStatus === "error" && "❌ Une erreur est survenue. Veuillez réessayer."}
           </span>
           {toastStatus == "error" && (
@@ -388,6 +470,6 @@ export default function FormulaireOffre() {
           )}
         </div>
       )}
-    </>
+    </div>
   )
 }

@@ -95,6 +95,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out",
         "slide-up": "slide-up 0.6s ease-out",
+        toastbar: 'toastbar 10s linear forwards', 
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
@@ -107,6 +108,7 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
+  
 } satisfies Config
 
 export default config
