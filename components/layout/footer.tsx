@@ -103,14 +103,6 @@ useEffect(() => {
     const loadingToast = toast.loading("Envoi en cours...")
 
     try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      })
-
-      if (res.ok) throw new Error("Erreur lors de l'inscription.")
-
       toast.success(`🎉 Merci pour votre inscription, ${email} !`, {
         id: loadingToast,
       })
