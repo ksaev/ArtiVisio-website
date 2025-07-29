@@ -12,6 +12,8 @@ import {FaWhatsapp,FaFacebook, FaLinkedin} from "react-icons/fa"
 import { useState,useEffect, useRef } from "react"
 import { useToast } from "@/components/ui/use-toast"
 import { toast } from "react-hot-toast"
+import ReCAPTCHA from "react-google-recaptcha"
+
 
 
 export default function ContactPage() {
@@ -28,6 +30,8 @@ export default function ContactPage() {
   const [isVisible, setIsVisible] = useState(false)
  // const { toast } = useToast()
   const sectionRef = useRef<HTMLDivElement>(null)
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,13 +50,17 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    
+    const token = await recaptchaRef.current?.executeAsync()
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, recaptchaToken: token }),
       })
+
+      recaptchaRef.current?.reset()
 
       const result = await response.json()
 
@@ -217,6 +225,12 @@ export default function ContactPage() {
                         placeholder="Décrivez votre projet ou vos besoins..."
                       />
                     </div>
+
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                      size="invisible"
+                      ref={recaptchaRef}
+                    />
 
                     <Button
                       type="submit"

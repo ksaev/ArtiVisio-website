@@ -486,3 +486,12 @@ html {
 html, body {
   overflow-x: hidden;
 }
+::selection {
+  background-color: #D6C3B1;
+  color: #1F1208; 
+}
+
+.grecaptcha-badge {
+  opacity: 0.01; /* Très transparent, mais encore visible techniquement */
+}
+

@@ -4,7 +4,21 @@ import nodemailer from "nodemailer"
 // POST /api/contact
 export async function POST(req: NextRequest) {
   try {
-    const { firstName, lastName, email, subject, message } = await req.json()
+    const { firstName, lastName, email, subject, message, recaptchaToken, } = await req.json()
+    // ✅ Validation reCAPTCHA v2 invisible
+    if (!recaptchaToken) {
+      return NextResponse.json({ error: "reCAPTCHA token manquant." }, { status: 400 })
+    }
+
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY
+    const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaToken}`
+
+    const recaptchaRes = await fetch(verificationUrl, { method: "POST" })
+    const recaptchaJson = await recaptchaRes.json()
+
+    if (!recaptchaJson.success) {
+      return NextResponse.json({ error: "Échec de la validation reCAPTCHA." }, { status: 403 })
+    }
 
     // Validation des champs requis
     if (!firstName || !lastName || !email || !message) {
@@ -26,7 +40,7 @@ export async function POST(req: NextRequest) {
     })
 
     // Contenu de l'email
-    await transporter.sendMail({
+    {/*await transporter.sendMail({
       from: `"${firstName} ${lastName}" <${email}>`,
       to: process.env.SMTP_USER,
       subject: `NOUVEAU MESSAGE DE CONTACT DU SITE WEB: ${subject || "Sans sujet"}`,
@@ -37,20 +51,20 @@ export async function POST(req: NextRequest) {
         <p><strong>Sujet :</strong> ${subject || "Non précisé"}</p>
         <p><strong>Message :</strong><br/>${message}</p>
       `,
-    })
+    })*/}
 
-      await transporter.sendMail({
-      from: `"Artivisio" <contact.artivisio@gmail.com>`,  // Doit être ton mail exact
-      to: "contact@artivisio.com",                      // Peut être Gmail ou pas
-      replyTo: `"${firstName} ${lastName}" <${email}>`,
-      subject: "Merci pour votre message",
-      html:`        
-       <h2>Nouvelle demande de contact :</h2>
-        <p><strong>Nom :</strong> ${firstName} ${lastName}</p>
-        <p><strong>Email :</strong> ${email}</p>
-        <p><strong>Sujet :</strong> ${subject || "Non précisé"}</p>
-        <p><strong>Message :</strong><br/>${message}</p>`,
-    })
+        await transporter.sendMail({
+        from: `"Artivisio" <contact.artivisio@gmail.com>`,  // Doit être ton mail exact
+        to: "contact@artivisio.com",                      // Peut être Gmail ou pas
+        replyTo: `"${firstName} ${lastName}" <${email}>`,
+        subject: "Contact client site web",
+        html:`        
+        <h2>Nouvelle demande de contact :</h2>
+          <p><strong>Nom :</strong> ${firstName} ${lastName}</p>
+          <p><strong>Email :</strong> ${email}</p>
+          <p><strong>Sujet :</strong> ${subject || "Non précisé"}</p>
+          <p><strong>Message :</strong><br/>${message}</p>`,
+      })
 
     // Réponse OK
     return NextResponse.json({
