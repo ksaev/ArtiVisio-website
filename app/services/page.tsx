@@ -319,7 +319,7 @@ const points = [
 
 
     <section className="bg-muted/40 py-16">
-      <Container className="space-y-12">
+      <Container className="space-y-12 max-w-6xl">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -341,29 +341,26 @@ const points = [
           claire, professionnelle et vous faire gagner en efficacité.
         </motion.p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-{points.map((point, index) => {
-  const Icon = point.icon
-  return (
-    <div
-      key={index}
-      className="group p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col gap-3"
-    >
-      <div className="flex items-center gap-3">
-        <Icon className="h-6 w-6 text-amber-600 group-hover:text-primary transition-colors" />
-        <h3 className="text-lg sm:text-lg font-semibold group-hover:text-primary transition-colors">
-          {point.title}
-        </h3>
-      </div>
-      <p className="mt-2 text-base text-muted-foreground">
-        {point.description}
-      </p>
-    </div>
-  )
-})}
-
-
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
+          {points.map((point, index) => {
+            const Icon = point.icon
+            return (
+              <div
+                key={index}
+                className="group p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col gap-3"
+              >
+                <div className="flex items-center gap-3">
+                  <Icon className="h-6 w-6 text-amber-600 group-hover:text-primary transition-colors" />
+                  <h3 className="text-lg sm:text-lg font-semibold group-hover:text-primary transition-colors">
+                    {point.title}
+                  </h3>
+                </div>
+                <p className="mt-2 text-base text-muted-foreground">
+                  {point.description}
+                </p>
+              </div>
+            )
+          })}
 
         </div>
       </Container>

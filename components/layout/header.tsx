@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Menu, X, Globe } from "lucide-react"
+import { Menu, X, Globe, Moon, Sun, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
@@ -11,12 +11,16 @@ import Image from "next/image"
 import SeoHead from "@/components/seoHead"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "react-hot-toast"
+import { useTheme } from "next-themes";
+
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { language, setLanguage, t } = useLanguage()
   const pathname = usePathname()
+  const { theme, setTheme } = useTheme();
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,6 +106,17 @@ export default function Header() {
 
             {/* Language Switcher & CTA */}
             <div className="hidden lg:flex items-center space-x-4">
+                
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="w-full justify-start"
+                >
+                  <Sun className="h-4 w-4 mr-2 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-4 w-4 ml-2 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                </Button>
+
               <Button
                 variant="ghost"
                 size="sm"
@@ -158,6 +173,16 @@ export default function Header() {
                   </Link>
                 ))}
                 <div className="flex items-center justify-between pt-4 border-t border-amber-200">
+                  <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="w-full justify-start"
+                >
+                  <Sun className="h-4 w-4 mr-2 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-4 w-4 ml-2 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                </Button>
+
                   <Button
                     variant="ghost"
                     size="sm"

@@ -39,8 +39,8 @@ export default function Services() {
     {
       icon: Server,
       title: "Hébergement & Gestion",
-      description: "Hébergement professionnel et maintenance sur mesure",
-      features: ["Next.js & Vercel", "Base de données Supabase", "Support technique"],
+      description: "Solutions techniques complètes avec maintenance",
+      features: [  "Chargement ultra-rapide", "Stockage sécurisé de vos données", "Assistance personnalisée 24h/24"],
     },
   ]
 

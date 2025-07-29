@@ -12,6 +12,10 @@ interface LanguageContextType {
 
 const translations = {
   fr: {
+    //Teasing popup
+    "popup.teasing.message": "Faites évoluer votre carrière avec un accompagnement sur mesure",
+    "popup.teasing.link": "Voir les programmes",
+
     // Navigation
     "nav.home": "Accueil",
     "nav.services": "Services",
@@ -42,7 +46,7 @@ const translations = {
     "services.landing.title": "Pages Personnalisées",
     "services.landing.desc": "Mini sites web pour votre présence professionnelle",
     "services.hosting.title": "Hébergement & Support",
-    "services.hosting.desc": "Solutions techniques complètes avec Supabase",
+    "services.hosting.desc": "Solutions techniques complètes avec maintenance",
 
     // Pricing
     "pricing.starter": "Starter",
@@ -338,6 +342,11 @@ const translations = {
   },
 
   en: {
+
+    //Teasing popup
+    "popup.teasing.message": "Take your career to the next level with personalized coaching",
+    "popup.teasing.link": "View programs",
+
     // Navigation
     "nav.home": "Home",
     "nav.services": "Services",

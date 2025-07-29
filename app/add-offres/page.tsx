@@ -232,7 +232,7 @@ export default function FormulaireOffre() {
               value={form.titre}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2 focus:outline-none focus:ring-2 "
             />
           </div>
 
@@ -245,7 +245,7 @@ export default function FormulaireOffre() {
               value={form.entreprise}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2 focus:outline-none focus:ring-2 "
             />
           </div>
         </div>
@@ -260,7 +260,7 @@ export default function FormulaireOffre() {
               value={form.localisation}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2  focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2  focus:outline-none focus:ring-2 "
             />
           </div>
 
@@ -272,7 +272,7 @@ export default function FormulaireOffre() {
               value={form.typePoste}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2  bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2 bg-white focus:outline-none focus:ring-2 "
             >
               <option value="">-- Sélectionner --</option>
               {typesDePoste.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -289,7 +289,7 @@ export default function FormulaireOffre() {
               value={form.domaine}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2  bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2  bg-white focus:outline-none focus:ring-2 "
             >
               <option value="">-- Sélectionner --</option>
               {domaines.map((d) => <option key={d} value={d}>{d}</option>)}
@@ -304,7 +304,7 @@ export default function FormulaireOffre() {
               value={form.niveau}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2  bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2  bg-white focus:outline-none focus:ring-2 "
             >
               <option value="">-- Sélectionner --</option>
               {niveaux.map((n) => <option key={n} value={n}>{n}</option>)}
@@ -321,7 +321,7 @@ export default function FormulaireOffre() {
               value={form.anneesExperience}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2  bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2  bg-white focus:outline-none focus:ring-2 "
             >
               <option value="">-- Sélectionner --</option>
               {anneesExperience.map((a) => <option key={a} value={a}>{a}</option>)}
@@ -336,7 +336,7 @@ export default function FormulaireOffre() {
               value={form.niveauEtudes}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2 bg-white focus:outline-none focus:ring-2 "
             >
               <option value="">-- Sélectionner --</option>
               {niveauxEtudes.map((n) => <option key={n} value={n}>{n}</option>)}
@@ -356,7 +356,7 @@ export default function FormulaireOffre() {
                 required
                 onChange={handleChange}
                 placeholder="Date limite de candidature"
-                className="input w-full border-2 border-primary rounded px-4 py-2  bg-white focus:outline-none focus:ring-2 focus:ring-primary" />
+                className="input w-full border-2 border-amber-500 rounded px-4 py-2  bg-white focus:outline-none focus:ring-2 " />
           </div>
 
 
@@ -369,7 +369,7 @@ export default function FormulaireOffre() {
               value={form.mail}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2  focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2  focus:outline-none focus:ring-2 "
             />
           </div>
 
@@ -385,7 +385,7 @@ export default function FormulaireOffre() {
             placeholder="Description de l'offre"
             required
             rows={5}
-            className="w-full border-2 border-primary rounded px-4 py-3  resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full border-2 border-amber-500 rounded px-4 py-3  resize-none focus:outline-none focus:ring-2 "
           />
         </div>
 
@@ -403,7 +403,7 @@ export default function FormulaireOffre() {
             value={form.salaire}
             placeholder="500.000 - 700.000 FCFA/Mois"
             onChange={handleChange}
-            className="w-full border-2 border-primary rounded px-4 py-2  focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full border-2 border-amber-500 rounded px-4 py-2  focus:outline-none focus:ring-2 "
           />
         </div>
 
@@ -414,7 +414,7 @@ export default function FormulaireOffre() {
             name="enAvant"
             checked={form.enAvant}
             onChange={handleChange}
-            className="w-5 h-5 border-2 border-primary rounded focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-5 h-5 border-2 border-amber-500 rounded focus:outline-none focus:ring-2 "
           />
           <label htmlFor="enAvant" className="text-primary font-semibold">
             Mettre en avant
@@ -436,7 +436,7 @@ export default function FormulaireOffre() {
               value={form.noms}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2  focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2  focus:outline-none focus:ring-2 "
             />
           </div>
 
@@ -449,7 +449,7 @@ export default function FormulaireOffre() {
               value={form.local}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2 focus:outline-none focus:ring-2 "
             />
           </div>
         </div>
@@ -465,7 +465,7 @@ export default function FormulaireOffre() {
               value={form.mailpro}
               onChange={handleChange}
               required
-              className="w-full border-2 border-primary rounded px-4 py-2  focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 border-amber-500 rounded px-4 py-2  focus:outline-none focus:ring-2 "
             />
           </div>
 
@@ -478,7 +478,7 @@ export default function FormulaireOffre() {
               value={form.numero}
               onChange={handleChange}
               required
-              className="w-full border-2 rounded border-primary px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border-2 rounded border-amber-500 px-4 py-2 focus:outline-none focus:ring-2 "
             />
           </div>
         </div>
@@ -491,14 +491,14 @@ export default function FormulaireOffre() {
 
         <button
           type="submit"
-          className="w-full py-3 rounded-lg bg-primary text-white font-bold text-lg hover:bg-primary/90 transition"
+          className="w-full py-3 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300"
         >
           Publier l'offre
         </button>
       </form>
 
       {showToast && (
-        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-white border border-primary px-6 py-3 rounded-lg shadow-md w-[90%] max-w-md">
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-white border border-amber-500 px-6 py-3 rounded-lg shadow-md w-[90%] max-w-md">
           <span className="text-primary font-semibold flex items-center gap-2">
             {toastStatus === "loading" && "⏳ Envoi de l’offre en cours..."}
             {toastStatus === "success" && "🎉 🎉 Votre offre a été envoyée avec succès. Elle sera examinée par notre équipe avant publication."}
