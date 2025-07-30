@@ -7,13 +7,76 @@ import { Send, Mail, Phone, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { useLanguage } from "@/contexts/language-context"
+import {FaWhatsapp,FaFacebook, FaLinkedin} from "react-icons/fa"
+import { useState,useEffect, useRef } from "react"
+import { useToast } from "@/components/ui/use-toast"
+import { toast } from "react-hot-toast"
+import ReCAPTCHA from "react-google-recaptcha"
+
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function Contact() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const { t } = useLanguage()
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+ // const { toast } = useToast()
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
+
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
+      { threshold: 0.1 }
+    )
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted")
+    setIsSubmitting(true)
+    
+    const token = await recaptchaRef.current?.executeAsync()
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, recaptchaToken: token }),
+      })
+
+      recaptchaRef.current?.reset()
+
+      const result = await response.json()
+
+      if (response.ok) {
+        toast.success("Votre message a bien été envoyé. Notre équipe vous répondra sous peu")  
+        setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" })
+      } else {
+        toast.error("Une erreur est survenue. Veuillez réessayer plus tard.")
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'envoi :", error)
+      toast.error("Erreur réseau. Veuillez vérifier votre connexion Internet.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -50,80 +113,113 @@ export default function Contact() {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                          {t("contact.firstName")}
+                        </label>
+                        <Input
+                          id="firstName"
+                          name="firstName"
+                          type="text"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
+                          required
+                          className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
+                          placeholder="Votre prénom"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                          {t("contact.lastName")}
+                        </label>
+                        <Input
+                          id="lastName"
+                          name="lastName"
+                          type="text"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          required
+                          className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
+                          placeholder="Votre nom"
+                        />
+                      </div>
+                    </div>
+
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                        Prénom
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        {t("contact.email")}
                       </label>
                       <Input
-                        id="firstName"
-                        type="text"
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
                         required
                         className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
-                        placeholder="Votre prénom"
+                        placeholder="votre@email.com"
                       />
                     </div>
+
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                        Nom
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                        {t("contact.subject")}
                       </label>
                       <Input
-                        id="lastName"
+                        id="subject"
+                        name="subject"
                         type="text"
+                        value={formData.subject}
+                        onChange={handleInputChange}
                         required
                         className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
-                        placeholder="Votre nom"
+                        placeholder="Sujet de votre message"
                       />
                     </div>
-                  </div>
 
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      required
-                      className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
-                      placeholder="votre@email.com"
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                        {t("contact.message")}
+                      </label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        required
+                        rows={6}
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
+                        placeholder="Décrivez votre projet ou vos besoins..."
+                      />
+                    </div>
+
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                      size="invisible"
+                      ref={recaptchaRef}
                     />
-                  </div>
 
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                      Objet
-                    </label>
-                    <Input
-                      id="subject"
-                      type="text"
-                      required
-                      className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
-                      placeholder="Sujet de votre message"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      required
-                      rows={6}
-                      className="border-amber-200 focus:border-amber-500 focus:ring-amber-500"
-                      placeholder="Décrivez votre projet ou vos besoins..."
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
-                  >
-                    <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    Envoyer le message
-                  </Button>
-                </form>
+                    <Button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
+                      disabled={isSubmitting}
+                    >
+                    <span className="relative flex items-center justify-center">
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                          Envoi en cours...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-5 w-5 mr-2 group-hover:translate-x-1 transition-transform duration-300" />
+                          Envoyer le message
+                        </>
+                      )}
+                    </span>
+                    </Button>
+                  </form>
               </CardContent>
             </Card>
           </motion.div>

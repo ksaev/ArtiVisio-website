@@ -8,6 +8,7 @@ import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
 import { Container } from "@/components/ui/container"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 import {
   Briefcase,
   LucideProps,
@@ -311,37 +312,60 @@ const points = [
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Des solutions complètes et accessibles pour votre réussite professionnelle en Afrique francophone
+                Votre réussite ne doit pas attendre. Nos solutions sont conçues pour propulser votre carrière en Afrique et à l’international.
             </p>
           </motion.div>
         </div>
       </section>
 
+        <div className="text-center mb-0 p-8 bg-white/50 w-full px-4 sm:px-6 lg:px-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-3xl font-bold text-center"
+          >
+            Pourquoi digitaliser vos documents ?
+          </motion.h2>
+        </div>
 
-    <section className="bg-muted/40 py-16">
+
+    <section className="bg-muted/40 py-12 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
       <Container className="space-y-12 max-w-6xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center"
-        >
-          Pourquoi digitaliser & faire appel à notre expertise ?
-        </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center gap-8"
+          >
+          {/* Image à gauche */}
+          <div className="flex-1 flex justify-center">
+            <Image
+              src="/solution.webp"
+              alt="Solutions digitales ArtiVisio"
+              width={300}
+              height={300}
+              className="w-full max-w-sm sm:max-w-sm md:max-w-md object-contain"
+            />
+          </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto text-muted-foreground"
-        >
-          Nos documents ne sont pas juste esthétiques. Ils sont conçus pour transmettre une image forte,
-          claire, professionnelle et vous faire gagner en efficacité.
-        </motion.p>
+
+          {/* Texte à gdroite */}
+          <div className="flex-1 text-center md:text-left space-y-4">
+            <h2 className="text-xl font-bold text-primary">
+              Des documents qui parlent pour vous.
+            </h2>
+            <p className="text-muted-foreground">
+              Chez ArtiVisio, chaque document que nous concevons est pensé comme un levier de crédibilité. Bien plus qu’un simple design, nos créations traduisent votre sérieux, votre rigueur et vos ambitions. Que ce soit pour un CV, un rapport, une présentation ou un support administratif, notre objectif est simple : vous faire remarquer pour les bonnes raisons, tout en vous faisant gagner en temps, en clarté et en impact.
+            </p>
+          </div>
+
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
+
           {points.map((point, index) => {
             const Icon = point.icon
             return (
@@ -375,7 +399,7 @@ const points = [
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-        <div className="text-center mb-16 bg-white/50 w-full px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16 p-8 bg-white/50 w-full px-4 sm:px-6 lg:px-8">
 
           <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Boostez Votre Présence Professionnelle</h2>
            <motion.p
@@ -403,17 +427,17 @@ const points = [
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-        <div className="text-center mb-16 bg-white/50 w-full px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16 p-8 bg-white/50 w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Accompagnement Bureautique Professionnel</h2>
            <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto text-muted-foreground"
-        >
-            Structuration, présentation et rédaction administrative pour booster vos projets et communications professionnelles.
-        </motion.p>
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center max-w-3xl mx-auto text-muted-foreground"
+          >
+              Structuration, présentation et rédaction administrative pour booster vos projets et communications professionnelles.
+          </motion.p>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Menu, X, Globe, Moon, Sun, User } from "lucide-react"
+import { Menu, X, Globe, Moon, Sun, User, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
@@ -134,6 +134,7 @@ export default function Header() {
               >
                 <a href="https://chat.whatsapp.com/CwvOp480ovNBnCzKMJ20QG" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-6 py-2 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300">
+                    <Users className="h-8 w-8"/>
                     {t("nav.start")}
                   </Button>
                 </a>

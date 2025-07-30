@@ -230,7 +230,7 @@ const countries = [
       </section>
 
       {/* Search and Filter Section */}
-      <section className="py-8 bg-white/50">
+      <section className=" p-6 bg-white/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="flex flex-col sm:flex-row gap-4 mb-8"

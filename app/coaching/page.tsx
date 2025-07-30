@@ -196,7 +196,7 @@ export default function CoachingPage() {
       <section className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -216,9 +216,9 @@ export default function CoachingPage() {
 
       {/* Services de Coaching */}
       <section id="services" className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
-          <div className="text-center mb-16 bg-white/50 w-full">
+          <div className="text-center mb-10 p-6 bg-white/50 w-full">
             <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -237,13 +237,13 @@ export default function CoachingPage() {
 
         <div className="container mx-auto px-4 w-full">
            <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-          <div className="text-center mb-16 bg-white/50 w-full">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
+          <div className="text-center mb-10 p-6 bg-white/50 w-full">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
             {services.map((service, index) => (
               <Card key={index} className="bg-white/80 backdrop-blur-sm border-amber-200/50 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] h-full">
                 <CardHeader>
@@ -282,9 +282,9 @@ export default function CoachingPage() {
       {/* Processus de Coaching */}
       <section className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
 
-          <div className="text-center mb-16 bg-white/50 w-full">
+          <div className="text-center mb-10 p-6 bg-white/50 w-full">
             <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -303,12 +303,12 @@ export default function CoachingPage() {
 
         <div className="container mx-auto px-4">
             <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {coachingProcess.map((step, index) => (
               <div key={index} className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
@@ -326,9 +326,9 @@ export default function CoachingPage() {
       {/* Témoignages */}
       <section className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50 ">
 
-          <div className="text-center mb-16 bg-white/50 w-full">
+          <div className="text-center mb-10 p-6 bg-white/50 w-full">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -343,12 +343,12 @@ export default function CoachingPage() {
 
         <div className="container mx-auto px-4">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardContent className="pt-6">
@@ -383,9 +383,9 @@ export default function CoachingPage() {
       {/* FAQ */}
       <section className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
 
-          <div className="text-center mb-16 bg-white/50 w-full">
+          <div className="text-center mb-10 p-6 bg-white/50 w-full">
             <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -399,7 +399,7 @@ export default function CoachingPage() {
 
         <div className="container mx-auto px-4">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
