@@ -6,11 +6,12 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { useLanguage } from "@/contexts/language-context"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { useRouter } from "next/navigation"
 import { Share, View, Eye, Send } from "lucide-react"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 
 
 export default function OffresEmploiPage() {
@@ -184,6 +185,19 @@ const countries = [
     const matchesCountry = selectedCountry === "all" || job.countryId === selectedCountry
     return matchesSearch && matchesSector && matchesCountry
   })
+
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const idParam = searchParams.get("id")
+    if (idParam) {
+      const id = Number(idParam)
+      const job = jobOffers.find((j) => j.id === id)
+      if (job) {
+        setSelectedJob(job)
+      }
+    }
+  }, [searchParams])
 
   const containerVariants = {
     hidden: { opacity: 0 },

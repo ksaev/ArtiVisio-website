@@ -159,8 +159,9 @@ export default function FormulaireOffre() {
 
       // Envoyer notification OneSignal
       const payload = {
-        headings: { en: "Nouvelle offre" },
+        headings: { en: "Nouvelle offre d'emploi disponible" },
         contents: { en: "Une nouvelle offre vient d’être publiée." },
+        url: "http://localhost:3000/offres-emploi?id=1", 
         included_segments: ["All"]
       };
 
