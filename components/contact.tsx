@@ -272,11 +272,8 @@ export default function Contact() {
 
             <Card className="bg-gradient-to-br from-amber-600 to-amber-700 text-white shadow-xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4">Prêt à commencer ?</h3>
-                <p className="mb-6 opacity-90">Obtenez un devis gratuit pour votre projet en moins de 24h</p>
-                <Button className="bg-white text-amber-700 hover:bg-gray-100 font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                  Devis gratuit
-                </Button>
+                <h3 className="text-2xl font-bold mb-4">🔐 Confidentialité garantie</h3>
+                <p className="mb-6 opacity-90">Vos informations sont strictement confidentielles. Elles ne seront jamais partagées ni utilisées à des fins commerciales sans votre accord.</p>
               </CardContent>
             </Card>
           </motion.div>

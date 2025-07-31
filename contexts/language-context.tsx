@@ -19,7 +19,7 @@ const translations = {
     // Navigation
     "nav.home": "Accueil",
     "nav.services": "Services",
-    "nav.creation": "Création",
+    "nav.creation": "Créations",
     "nav.coaching": "Coaching",
     "nav.jobs": "Offres d'emploi",
     "nav.contact": "Contact",
@@ -350,7 +350,7 @@ const translations = {
     // Navigation
     "nav.home": "Home",
     "nav.services": "Services",
-    "nav.creation": "Creation",
+    "nav.creation": "Creations",
     "nav.coaching": "Coaching",
     "nav.jobs": "Jobs",
     "nav.contact": "Contact",
