@@ -161,7 +161,7 @@ export default function FormulaireOffre() {
       const payload = {
         headings: { en: "Nouvelle offre d'emploi disponible" },
         contents: { en: "Une nouvelle offre vient d’être publiée." },
-        url: "http://localhost:3000/offres-emploi?id=1", 
+        url: "http://dev.artivisio.com/offres-emploi?id=1", 
         included_segments: ["All"]
       };
 
