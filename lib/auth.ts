@@ -1,18 +1,13 @@
 // lib/auth.ts
-import NextAuth from "next-auth"
-import authConfig from "@/auth.config"
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
+import { jwtVerify } from 'jose';
 
-const prisma = new PrismaClient()
+const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
 
-export const {
-  handlers: { GET, POST },
-  auth,
-  signIn,
-  signOut,
-} = NextAuth({
-  ...authConfig,
-  adapter: PrismaAdapter(prisma),
-  session: { strategy: "jwt" },
-})
+export async function verifyToken(token: string) {
+  try {
+    const { payload } = await jwtVerify(token, secret);
+    return payload;
+  } catch (error) {
+    return null;
+  }
+}

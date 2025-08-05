@@ -1,21 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
-
-type Job = {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-  salary: string;
-  type: string;
-  sector: string;
-  description: string;
-  requirements: string | string[];
-  posted: Date;
-  expire: Date;
-  countryId: string;
-  mail: string;
-};
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
@@ -38,7 +22,7 @@ export async function GET() {
       orderBy: { posted: "desc" },
     });
 
-    const formattedJobs = jobs.map((job: Job) => {
+    const formattedJobs = jobs.map((job) => {
       let requirementsParsed: string[] = [];
 
       if (Array.isArray(job.requirements)) {
@@ -47,19 +31,17 @@ export async function GET() {
         const raw = job.requirements.trim();
 
         try {
-          // Si c'est un JSON valide de tableau
+          // Cas JSON.stringify([ ... ])
           const parsed = JSON.parse(raw);
           if (Array.isArray(parsed)) {
-            requirementsParsed = parsed.map((item) => item.trim());
+            requirementsParsed = parsed.map((item: string) => item.trim());
           } else {
-            // Sinon on essaie de splitter intelligemment
-            requirementsParsed = raw.split(/[\n/]+/)
-              .map((s) => s.trim())
-              .filter(Boolean);
+            throw new Error("Pas un tableau JSON");
           }
         } catch {
-          // Cas général : split par virgule ou retour à la ligne
-          requirementsParsed = raw.split(/[\n/]+/)
+          // Cas brut : split sur retour ligne ou slash ou virgule
+          requirementsParsed = raw
+            .split(/[\n/,/]+/)
             .map((s) => s.trim())
             .filter(Boolean);
         }
@@ -68,8 +50,8 @@ export async function GET() {
       return {
         ...job,
         requirements: requirementsParsed,
-        posted: new Intl.DateTimeFormat("fr-FR").format(job.posted),
-        expire: new Intl.DateTimeFormat("fr-FR").format(job.expire),
+        posted: new Intl.DateTimeFormat("fr-FR").format(new Date(job.posted)),
+        expire: new Intl.DateTimeFormat("fr-FR").format(new Date(job.expire)),
       };
     });
 
