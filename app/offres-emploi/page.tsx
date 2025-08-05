@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { MapPin, Clock, DollarSign, Building, Search, Filter } from "lucide-react"
+import { MapPin, Clock, DollarSign, Building, Search, Filter,Timer,TimerOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -12,14 +12,9 @@ import { useRouter } from "next/navigation"
 import { Share, View, Eye, Send } from "lucide-react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
+import countries from "@/data/countries_full.json";
+import sectors from "@/data/sectors.json"
 
-
-export default function OffresEmploiPage() {
-  const { t } = useLanguage()
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedSector, setSelectedSector] = useState("all")
-  const [selectedCountry, setSelectedCountry] = useState("all")
-  const [selectedJob, setSelectedJob] = useState<JobOffer | null>(null)
 
   interface JobOffer {
     id: number
@@ -34,145 +29,37 @@ export default function OffresEmploiPage() {
     posted: string
     countryId: string
     mail : string
+    expire: string
   }
 
-  const jobOffers: JobOffer[] = [
-    {
-      id: 1,
-      title: "Développeur Full-Stack",
-      company: "TechCorp Abidjan",
-      location: "Abidjan, Côte d'Ivoire",
-      salary: "800 000 - 1 200 000 FCFA",
-      type: "CDI",
-      sector: "tech",
-      description: "Recherche développeur expérimenté en React/Node.js pour projets innovants",
-      requirements: ["3+ ans d'expérience", "React, Node.js", "Base de données"],
-      posted: "Il y a 2 jours",
-      countryId: "ci",
-      mail : "contact@techcorp-abidjan.com"
-    },
-    {
-      id: 2,
-      title: "Chef de Projet Marketing",
-      company: "Orange Mali",
-      location: "Bamako, Mali",
-      salary: "600 000 - 900 000 FCFA",
-      type: "CDI",
-      sector: "marketing",
-      description: "Pilotage de campagnes marketing digital pour le marché malien",
-      requirements: ["5+ ans marketing", "Digital marketing", "Gestion d'équipe"],
-      posted: "Il y a 1 jour",
-      countryId: "ml",
-      mail : "contact@orange-mali.com"
-    },
-    {
-      id: 3,
-      title: "Consultant en Stratégie",
-      company: "McKinsey Dakar",
-      location: "Dakar, Sénégal",
-      salary: "1 000 000 - 1 500 000 FCFA",
-      type: "CDI",
-      sector: "consulting",
-      description: "Accompagnement stratégique d'entreprises ouest-africaines",
-      requirements: ["MBA ou équivalent", "Consulting", "Anglais courant"],
-      posted: "Il y a 3 jours",
-      countryId: "dak",
-      mail : "contact@mckinsey-dakar.com"
-    },
-    {
-      id: 4,
-      title: "Responsable RH",
-      company: "Total Energies",
-      location: "Libreville, Gabon",
-      salary: "700 000 - 1 000 000 FCFA",
-      type: "CDI",
-      sector: "rh",
-      description: "Gestion RH pour filiale gabonaise, recrutement et formation",
-      requirements: ["Master RH", "5+ ans expérience", "Gestion d'équipe"],
-      posted: "Il y a 1 semaine",
-      countryId: "ga",
-      mail : "contact@total-energies-gabon.com"
 
-    },
-    {
-      id: 5,
-      title: "Ingénieur Commercial",
-      company: "Schneider Electric",
-      location: "Casablanca, Maroc",
-      salary: "500 000 - 800 000 FCFA",
-      type: "CDI",
-      sector: "commercial",
-      description: "Développement commercial secteur énergie et infrastructure",
-      requirements: ["Ingénieur", "Commercial B2B", "Mobilité régionale"],
-      posted: "Il y a 4 jours",
-      countryId: "ma",
-      mail : "contact@schneider-electric-maroc.com"
+export default function OffresEmploiPage() {
+  const { t } = useLanguage()
+  const [searchTerm, setSearchTerm] = useState("")
+  const [selectedSector, setSelectedSector] = useState("all")
+  const [selectedCountry, setSelectedCountry] = useState("all")
+  const [selectedJob, setSelectedJob] = useState<JobOffer | null>(null)
 
-    },
-    {
-      id: 6,
-      title: "Data Analyst",
-      company: "Jumia Technologies",
-      location: "Niamey, Niger",
-      salary: "400 000 - 700 000 FCFA",
-      type: "CDI",
-      sector: "tech",
-      description: "Analyse de données e-commerce pour optimiser les performances",
-      requirements: ["Python/R", "SQL", "Visualisation de données"],
-      posted: "Il y a 5 jours",
-      countryId: "ne",
-      mail : "contact@jumia-technologies-niger.com"
-
-    },
-  ]
-
-const sectors = [
-  { id: "all", label: "Tous les secteurs" },
-  { id: "tech", label: "Technologie / Développement" },
-  { id: "marketing", label: "Marketing / Communication" },
-  { id: "consulting", label: "Conseil / Stratégie" },
-  { id: "rh", label: "Ressources Humaines / Recrutement" },
-  { id: "commercial", label: "Commercial / Vente" },
-  { id: "finance", label: "Finance / Comptabilité" },
-  { id: "legal", label: "Juridique / Droit" },
-  { id: "education", label: "Éducation / Formation" },
-  { id: "logistics", label: "Logistique / Transport" },
-  { id: "health", label: "Santé / Médical" },
-  { id: "admin", label: "Administratif / Support" },
-  { id: "design", label: "Design / Création" },
-  { id: "engineering", label: "Ingénierie / BTP" },
-  { id: "public", label: "Secteur Public / ONG" },
-  { id: "agriculture", label: "Agriculture / Agro-industrie" },
-  { id: "tourism", label: "Tourisme / Hôtellerie" },
-  { id: "customer", label: "Relation Client / Support" },
-  { id: "data", label: "Data / Intelligence Artificielle" },
-  { id: "freelance", label: "Freelance / Indépendant" },
-]
+  const [jobOffers, setJobOffers] = useState<JobOffer[]>([]);
 
 
-const countries = [
-  { id: "all", label: "Tous les pays" },
-  { id: "ci", label: "Côte d’Ivoire" },
-  { id: "sn", label: "Sénégal" },
-  { id: "ml", label: "Mali" },
-  { id: "bf", label: "Burkina Faso" },
-  { id: "ne", label: "Niger" },
-  { id: "tg", label: "Togo" },
-  { id: "bj", label: "Bénin" },
-  { id: "gn", label: "Guinée" },
-  { id: "cm", label: "Cameroun" },
-  { id: "td", label: "Tchad" },
-  { id: "ma", label: "Maroc" },
-  { id: "dz", label: "Algérie" },
-  { id: "tn", label: "Tunisie" },
-  { id: "ga", label: "Gabon" },
-  { id: "cd", label: "RDC (Congo)" },
-  { id: "fr", label: "France" },
-  { id: "ca", label: "Canada (Québec)" },
-  { id: "be", label: "Belgique" },
-  { id: "lu", label: "Luxembourg" },
-  { id: "intl", label: "International / Télétravail" },
-]
+  // Charger les offres depuis l'API au montage
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        const res = await fetch("/api/jobs/get-offers");
+        if (res.ok) {
+          const data = await res.json();
+          setJobOffers(data);
+        } else {
+          console.error("Erreur lors du chargement des offres");
+        }
+      } catch (err) {
+        console.error("Erreur réseau:", err);
+      }
+    }
+    fetchJobs();
+  }, []);
 
 
 
@@ -199,6 +86,11 @@ const countries = [
     }
   }, [searchParams])
 
+  const getCountryLabel = (id: string): string => {
+    const found = countries.find((c) => c.id === id);
+    return found?.label || "Pays inconnu";
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -218,6 +110,17 @@ const countries = [
         duration: 0.6,
       },
     },
+  }
+  async function trackEvent(offerId: number, eventType: "click" | "share") {
+    try {
+      await fetch("/api/admin/login/event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: offerId, type: eventType }),
+      });
+    } catch (err) {
+      console.error("Erreur tracking event", err);
+    }
   }
 
   return (
@@ -340,7 +243,7 @@ const countries = [
                         <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                           <div className="flex items-center">
                             <MapPin className="h-4 w-4 mr-1" />
-                            {job.location}
+                            {job.location}, {getCountryLabel(job.countryId)}
                           </div>
                           <div className="flex items-center">
                             <DollarSign className="h-4 w-4 mr-1" />
@@ -350,13 +253,20 @@ const countries = [
                             <Clock className="h-4 w-4 mr-1" />
                             {job.type}
                           </div>
+                          <div className="flex items-center">
+                            <Timer className=" h-4 w-4 mr-1" />
+                            {job.posted}   
+                          </div>
+                          <div className="flex text-red-600 items-center">
+                            <TimerOff className=" h-4 w-4 mr-1" />
+                            {job.expire}
+                          </div>
                         </div>
                       </div>
                       <div className="text-right">
                         <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium capitalize">
                           {job.sector}
                         </span>
-                        <p className="text-xs text-gray-500 mt-2">{job.posted}</p>
                       </div>
                     </div>
                   </CardHeader>
@@ -470,7 +380,11 @@ const countries = [
 
               {/* Boutons */}
               <div  className="grid grid-cols-2 gap-4 w-full sm:flex-row justify-center">
-                    <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8">
+                    <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8"
+                    onClick={async () => {
+                      await trackEvent(selectedJob.id, "click")
+                    }}
+                    >
                       <a className="w-full" href={`mailto:${selectedJob.mail}`}>
                         <Send className="mr-2" style={{ width: "20px", height: "20px" }}/> 
                         Postuler
@@ -478,7 +392,8 @@ const countries = [
                     </Button>
                 <Button
                   className="border text-white border-amber-600 hover:bg-amber-500 rounded-full px-8"
-                  onClick={() => {
+                  onClick={async () => {
+                    await trackEvent(selectedJob.id, "share")
                     if (navigator.share) {
                       navigator.share({
                         title: selectedJob.title,

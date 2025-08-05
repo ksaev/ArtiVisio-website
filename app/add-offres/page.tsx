@@ -147,7 +147,7 @@ export default function FormulaireOffre() {
       // Exécution manuelle de reCAPTCHA v2 invisible
       const token = await recaptchaRef.current?.executeAsync()
 
-      const res = await fetch("/api/jobs", {
+      const res = await fetch("/api/jobs/user-offers", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, recaptchaToken: token }),
@@ -161,14 +161,14 @@ export default function FormulaireOffre() {
       const payload = {
         headings: { en: "Nouvelle offre d'emploi disponible" },
         contents: { en: "Une nouvelle offre vient d’être publiée." },
-        url: "http://dev.artivisio.com/offres-emploi?id=1", 
+        url: "http://localhost:3000/offres-emploi?id=1", 
         included_segments: ["All"]
       };
 
       await fetch("/api/notifications", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json", 
         },
         body: JSON.stringify(payload),
       });
@@ -517,7 +517,7 @@ export default function FormulaireOffre() {
         <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-white border border-amber-500 px-6 py-3 rounded-lg shadow-md w-[90%] max-w-md">
           <span className="text-primary font-semibold flex items-center gap-2">
             {toastStatus === "loading" && "⏳ Envoi de l’offre en cours..."}
-            {toastStatus === "success" && "🎉 🎉 Votre offre a été envoyée avec succès. Elle sera examinée par notre équipe avant publication."}
+            {toastStatus === "success" && "🎉 Votre offre a été envoyée avec succès. Elle sera examinée par notre équipe avant publication."}
             {toastStatus === "error" && "❌ Une erreur est survenue. Veuillez réessayer."}
           </span>
           {toastStatus == "error" && (

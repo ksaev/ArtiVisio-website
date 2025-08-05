@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import {usePathname} from "next/navigation";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -31,6 +32,11 @@ export default function Header() {
     { name: "Contact", href: "#contact" },
   ]
 
+  const pathname = usePathname();
+
+  const noLayoutPrefixes = ["/admin"];
+  const isLayoutHidden = noLayoutPrefixes.some(prefix => pathname.startsWith(prefix));
+
   return (
     <>
       <motion.div
@@ -54,7 +60,7 @@ export default function Header() {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <div className="w-10 h-10 bg-gradient-to-br from-amber-600 to-amber-800 rounded-lg flex items-center justify-center">
-                <Image src="/artivisoLogo.png" alt="Logo" width={30} height={30} loading="lazy" />
+                <span className="text-white font-bold text-xl">A</span>
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-amber-700 to-amber-900 bg-clip-text text-transparent">
                 Artivisio

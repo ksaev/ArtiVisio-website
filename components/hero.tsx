@@ -91,8 +91,7 @@ export default function Hero() {
               variant="outline"
               size="lg"
               className="border-2 border-amber-600 text-amber-700 hover:bg-amber-50 px-8 py-4 rounded-full font-semibold group bg-transparent"
-              onClick={handleWhatsApp}
-            >
+              >
               <Hammer className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               Voir la présentation
             </Button>

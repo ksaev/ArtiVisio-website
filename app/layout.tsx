@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast"
 import { ThemeProvider } from "@/components/theme-provider"
 import TeasingPopup from "@/components/teasingPopup"
 import OneSignalInit from "@/components/OneSignalInit"
-
+import LayoutWrapper from "@/components/layoutWrapper";
 
 
 const inter = Inter({
@@ -66,6 +66,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
   return (
     <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-[#3E2F1C] bg-white`}>

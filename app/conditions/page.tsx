@@ -18,7 +18,7 @@ export default function ConditionsPage() {
           <div>
             <h3 className="text-xl font-bold mb-1">1. Objet</h3>
             <p>
-              Le site <strong>ArtiPro</strong> propose des services de coaching professionnel et de mise en relation avec des opportunités d’emploi en Afrique de l’Ouest.
+              Le site <strong>ArtiVisio</strong> propose des services de coaching professionnel et de mise en relation avec des opportunités d’emploi en Afrique de l’Ouest.
             </p>
           </div>
 
@@ -55,7 +55,7 @@ export default function ConditionsPage() {
           <div>
             <h3 className="text-xl font-bold mb-1">6. Résiliation</h3>
             <p>
-              Vous pouvez demander la suppression de votre compte. En cas d’abus, ArtiPro se réserve le droit de restreindre l’accès.
+              Vous pouvez demander la suppression de votre compte. En cas d’abus, ArtiVisio se réserve le droit de restreindre l’accès.
             </p>
           </div>
 

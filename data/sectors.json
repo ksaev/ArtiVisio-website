@@ -1,0 +1,22 @@
+[
+  { "id": "all", "label": "Tous les secteurs" },
+  { "id": "tech", "label": "Technologie / Développement" },
+  { "id": "marketing", "label": "Marketing / Communication" },
+  { "id": "consulting", "label": "Conseil / Stratégie" },
+  { "id": "rh", "label": "Ressources Humaines / Recrutement" },
+  { "id": "commercial", "label": "Commercial / Vente" },
+  { "id": "finance", "label": "Finance / Comptabilité" },
+  { "id": "legal", "label": "Juridique / Droit" },
+  { "id": "education", "label": "Éducation / Formation" },
+  { "id": "logistics", "label": "Logistique / Transport" },
+  { "id": "health", "label": "Santé / Médical" },
+  { "id": "admin", "label": "Administratif / Support" },
+  { "id": "design", "label": "Design / Création" },
+  { "id": "engineering", "label": "Ingénierie / BTP" },
+  { "id": "public", "label": "Secteur Public / ONG" },
+  { "id": "agriculture", "label": "Agriculture / Agro-industrie" },
+  { "id": "tourism", "label": "Tourisme / Hôtellerie" },
+  { "id": "customer", "label": "Relation Client / Support" },
+  { "id": "data", "label": "Data / Intelligence Artificielle" },
+  { "id": "freelance", "label": "Freelance / Indépendant" }
+]
