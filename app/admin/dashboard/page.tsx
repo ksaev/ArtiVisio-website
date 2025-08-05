@@ -60,7 +60,7 @@ export default function AdminDashboard() {
   async function fetchDashboard() {
     try {
       setLoading(true);
-      const res = await fetch("/api/admin/login/dashboard");
+      const res = await fetch("/api/admin/login/offers-control");
       if (!res.ok) throw new Error("Erreur chargement offres");
       const data: DashboardData = await res.json();
       setDashboard(data);
@@ -154,7 +154,7 @@ export default function AdminDashboard() {
             onChange={e => setSearch(e.target.value)}
           />
           <button
-            onClick={() => window.location.href = "/admin/create-offer"}
+            onClick={() => window.location.href = "/admin/dashboard/create-offer"}
             className="flex items-center gap-2 bg-[#a65a2a] hover:bg-[#924e23] text-white px-5 py-2 rounded-lg font-semibold text-base transition-shadow shadow-md hover:shadow-lg"
             title="Créer une nouvelle offre"
           >
