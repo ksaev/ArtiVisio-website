@@ -102,7 +102,7 @@ export default function AdminDashboard() {
   async function handleDelete(id: number) {
     if (!confirm("Confirmer la suppression de cette offre ?")) return;
     try {
-      const res = await fetch(`/api/admin/login/dashboard?id=${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/control/authentification/offers-control?id=${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Erreur suppression");
       fetchDashboard();
       setSelectedExpiredIds(prev => {
@@ -125,7 +125,7 @@ export default function AdminDashboard() {
 
     try {
       for (const id of selectedExpiredIds) {
-        const res = await fetch(`/api/admin/login/dashboard?id=${id}`, { method: "DELETE" });
+        const res = await fetch(`/api/control/authentification/offers-control?id=${id}`, { method: "DELETE" });
         if (!res.ok) throw new Error("Erreur suppression");
       }
       fetchDashboard();

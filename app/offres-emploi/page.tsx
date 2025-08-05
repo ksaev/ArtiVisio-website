@@ -113,7 +113,7 @@ export default function OffresEmploiPage() {
   }
   async function trackEvent(offerId: number, eventType: "click" | "share") {
     try {
-      await fetch("/api/admin/login/event", {
+      await fetch("/api/control/authentification/event", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: offerId, type: eventType }),

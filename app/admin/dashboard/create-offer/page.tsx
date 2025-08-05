@@ -5,10 +5,8 @@ import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
 import { toast } from 'sonner';
 import ReCAPTCHA from 'react-google-recaptcha';
-
 import countries from '@/data/countries_full.json';
 import sectors from '@/data/sectors.json';
-
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -62,7 +60,7 @@ export default function CreateOfferForm() {
 
       const payload = { ...formData, recaptchaToken: token };
 
-      const res = await fetch('/api/admin/login/offres', {
+      const res = await fetch('/api/control/authentification/offres', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -71,13 +69,15 @@ export default function CreateOfferForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        toast.error(data.message || 'Erreur lors de la création de l\'offre');
+        toast.error('Erreur lors de la création de l\'offre, Vérifier le format de la date d\'expiration');
+        alert('Erreur lors de la création de l\'offre, Vérifier le format de la date d\'expiration');
         setLoading(false);
         return;
       }
 
       confetti({ particleCount: 150, spread: 100 });
-      toast.success('✅ Offre publiée avec succès');
+      toast.success('✅ Offre publiée avec succès');3
+      alert('✅ Offre publiée avec succès')
       router.push('/admin/dashboard');
     } catch (error) {
       toast.error('Erreur inattendue.');

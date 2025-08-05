@@ -57,7 +57,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ message: "Offre créée avec succès.", offer: newOffer }, { status: 201 });
   } catch (error) {
-    console.error("[API /admin/job] Erreur :", error);
+    console.error("[API /control/authentification/offres] Erreur :", error);
     return NextResponse.json({ error: "Erreur serveur interne." }, { status: 500 });
   }
 }
