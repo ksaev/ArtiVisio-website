@@ -98,7 +98,7 @@ export default function AdminLogin() {
     e.preventDefault();
     setToastStatus("loading")
     setShowToast(true)
-    const res = await fetch('/api/admin/login', {
+    const res = await fetch('/api/control/authentification', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });

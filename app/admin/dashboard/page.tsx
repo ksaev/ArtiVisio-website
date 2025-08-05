@@ -60,7 +60,7 @@ export default function AdminDashboard() {
   async function fetchDashboard() {
     try {
       setLoading(true);
-      const res = await fetch("/api/admin/login/offers-control");
+      const res = await fetch("/api/control/authentification/offers-control");
       if (!res.ok) throw new Error("Erreur chargement offres");
       const data: DashboardData = await res.json();
       setDashboard(data);
