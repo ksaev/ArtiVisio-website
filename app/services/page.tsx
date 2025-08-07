@@ -326,7 +326,7 @@ const points = [
             viewport={{ once: true }}
             className="text-2xl md:text-3xl font-bold text-center"
           >
-            Pourquoi digitaliser vos documents ?
+            Votre image professionnelle est-elle à la hauteur de vos ambitions ?
           </motion.h2>
         </div>
 
@@ -345,25 +345,29 @@ const points = [
             <Image
               src="/solution.webp"
               alt="Solutions digitales ArtiVisio"
-              width={300}
-              height={300}
+              width={200}
+              height={200}
               className="w-full max-w-sm sm:max-w-sm md:max-w-md object-contain"
             />
           </div>
-
 
           {/* Texte à gdroite */}
           <div className="flex-1 text-center md:text-left space-y-4">
             <h2 className="text-xl font-bold text-primary">
               Des documents qui parlent pour vous.
             </h2>
-            <p className="text-muted-foreground">
-              Chez ArtiVisio, chaque document que nous concevons est pensé comme un levier de crédibilité. Bien plus qu’un simple design, nos créations traduisent votre sérieux, votre rigueur et vos ambitions. Que ce soit pour un CV, un rapport, une présentation ou un support administratif, notre objectif est simple : vous faire remarquer pour les bonnes raisons, tout en vous faisant gagner en temps, en clarté et en impact.
+            <p className="text-start sm:text-start text-muted-foreground ">
+            <span className="font-bold justify-center">CV, rapports, présentations, lettres de motivation, portfolios, dossiers de candidature, supports administratifs ou commerciaux…</span>
+            <br/>
+            <p>Chez ArtiVisio, nous valorisons tous les documents qui portent votre image professionnelle. Chaque livrable est pensé pour convaincre, structurer votre message, et projeter une image de rigueur, de clarté et d’ambition.</p>
             </p>
           </div>
 
         </motion.div>
 
+        <div className="text-center">
+            <h2 className="text-2xl font-bold text-primary">Pourquoi nos clients ne reviennent jamais en arrière ?</h2>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
 
           {points.map((point, index) => {
@@ -458,13 +462,13 @@ const points = [
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Besoin d'un service personnalisé ?</h2>
-            <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
-              Nous créons des solutions sur mesure adaptées à vos besoins spécifiques et à votre budget.
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6"> Besoin d’un accompagnement stratégique ?</h2>
+            <p className="text-center sm:text-lg text-amber-100 mb-8 max-w-2xl mx-auto">
+              Nos programmes de coaching vous aident à franchir un cap : valoriser votre profil, réussir vos candidatures, clarifier vos projets ou structurer votre activité. Un accompagnement 100 % sur mesure, à votre rythme.
             </p>
             <Link href="/contact">
               <Button className="bg-white text-amber-700 hover:bg-gray-100 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                Demander un devis gratuit
+                Découvrir nos offres de coaching
               </Button>
             </Link>
           </motion.div>

@@ -41,26 +41,52 @@ export default function OffresEmploiPage() {
   const [selectedJob, setSelectedJob] = useState<JobOffer | null>(null)
 
   const [jobOffers, setJobOffers] = useState<JobOffer[]>([]);
+  const searchParams = useSearchParams()
+
 
 
   // Charger les offres depuis l'API au montage
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     async function fetchJobs() {
       try {
-        const res = await fetch("/api/jobs/get-offers");
+        const res = await fetch("/api/jobs/get-offers")
         if (res.ok) {
-          const data = await res.json();
-          setJobOffers(data);
+          const data = await res.json()
+          setJobOffers(data)
         } else {
-          console.error("Erreur lors du chargement des offres");
+          console.error("Erreur lors du chargement des offres")
         }
       } catch (err) {
-        console.error("Erreur réseau:", err);
+        console.error("Erreur réseau:", err)
+      } finally {
+        setLoading(false)
       }
     }
-    fetchJobs();
-  }, []);
+    fetchJobs()
+  }, [])
 
+  useEffect(() => {
+    const idParam = searchParams.get("id")
+    if (idParam && jobOffers.length > 0) {
+      const id = Number(idParam)
+      const job = jobOffers.find((j) => j.id === id)
+      if (job) {
+        setSelectedJob(job)
+      }
+    }
+  }, [searchParams, jobOffers])
+
+  const [origin, setOrigin] = useState("")
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setOrigin(window.location.origin)
+    }
+  }, [])
+
+  // Ensuite pour ton URL :
+  const shareUrl = `${origin}/offres-emploi?id=${selectedJob?.id}`
 
 
   const filteredJobs = jobOffers.filter((job) => {
@@ -72,19 +98,6 @@ export default function OffresEmploiPage() {
     const matchesCountry = selectedCountry === "all" || job.countryId === selectedCountry
     return matchesSearch && matchesSector && matchesCountry
   })
-
-  const searchParams = useSearchParams()
-
-  useEffect(() => {
-    const idParam = searchParams.get("id")
-    if (idParam) {
-      const id = Number(idParam)
-      const job = jobOffers.find((j) => j.id === id)
-      if (job) {
-        setSelectedJob(job)
-      }
-    }
-  }, [searchParams])
 
   const getCountryLabel = (id: string): string => {
     const found = countries.find((c) => c.id === id);
@@ -202,7 +215,7 @@ export default function OffresEmploiPage() {
           </motion.div>
         </div>
 
-        <div className="w-full flex flex-col items-center justify-center gap-4 py-8 px-2">
+        <div className="w-full flex flex-col items-center justify-center gap-4 py-2 px-2">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -210,7 +223,7 @@ export default function OffresEmploiPage() {
             transition={{ duration: 0.8 }}
           >
 
-          <p className="text-lg pb-6 text-center  text-gray-600 max-w-xl">
+          <p className="text-lg pb-6 text-center  text-gray-600 max-w-3xl">
             Vous avez repéré une offre mais vous hésitez sur votre CV, votre lettre ou votre profil ?
           </p>
           <a href="/coaching">
@@ -222,6 +235,28 @@ export default function OffresEmploiPage() {
           </a>
            </motion.div>
         </div>
+
+        <div className="w-full flex bg-amber-200/50 flex-col items-center justify-center gap-4 py-2 px-2">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+
+          <p className="text-lg pb-6 text-center  text-gray-600 max-w-3xl">
+            Publiez vos offres d'emploi et trouvez les meilleurs talents d'Afrique francophone.
+          </p>
+          <a href="/add-offres">
+          <Button
+            className="text-lg px-6 py-6 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300"
+          >
+            Publier une offre d'emploi
+          </Button>
+          </a>
+           </motion.div>
+        </div>
+
 
       </section>
 
@@ -349,6 +384,14 @@ export default function OffresEmploiPage() {
                 &times;
               </button>
 
+              <Link href="/services">
+                <button
+                  className=" top-4 sm:px-6 sm:absolute right-10 bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-700 transition-colors"
+                >
+                  Besoin d'aide pour postuler ?
+                </button>
+              </Link>
+
               {/* Titre & infos */}
               <h2 className="text-2xl font-bold text-amber-700 mb-2">
                 {selectedJob.title}
@@ -398,10 +441,10 @@ export default function OffresEmploiPage() {
                       navigator.share({
                         title: selectedJob.title,
                         text: selectedJob.description,
-                        url: window.location.href,
+                        url: shareUrl,
                       })
                     } else {
-                      navigator.clipboard.writeText(window.location.href)
+                      navigator.clipboard.writeText(shareUrl)
                       alert('Lien copié dans le presse-papiers !')
                     }
                   }}
