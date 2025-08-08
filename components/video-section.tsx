@@ -1,78 +1,193 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Play } from "lucide-react"
+import { motion, Variants } from "framer-motion";
+import {
+  Target,
+  BarChart3,
+  Palette,
+  Send,
+  Smartphone,
+  ShieldCheck,
+} from "lucide-react";
+
+const points = [
+  {
+    icon: Target,
+    title: "Audit stratégique personnalisé",
+    description:
+      "Analyse approfondie de vos besoins, objectifs et contraintes spécifiques.",
+  },
+  {
+    icon: BarChart3,
+    title: "Définition précise des livrables",
+    description:
+      "Planification rigoureuse des objectifs, échéances et priorités.",
+  },
+  {
+    icon: Palette,
+    title: "Design et structuration sur-mesure",
+    description:
+      "Respect strict de votre charte graphique, typographies et hiérarchie visuelle.",
+  },
+  {
+    icon: Send,
+    title: "Coaching expert en diffusion",
+    description:
+      "Conseils pointus sur le timing, les canaux et les modalités d’utilisation.",
+  },
+  {
+    icon: Smartphone,
+    title: "Optimisation multi-supports",
+    description:
+      "Adaptation parfaite à tous les formats : mobile, web, PDF haute qualité.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Livraison avec garantie qualité",
+    description:
+      "Remise rapide, suivi post-livraison et possibilité d’ajustements ciblés.",
+  },
+];
+
+// Variants pour container
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.25,
+      delayChildren: 0.6,
+    },
+  },
+};
+
+// Apparition depuis le bas
+const fadeUpVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+// Cartes avec hover flottant
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: (custom: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+      delay: custom * 0.15,
+    },
+  }),
+  hover: {
+    scale: 1.05,
+    y: -5,
+    boxShadow: "0 15px 25px rgba(217, 119, 6, 0.4)",
+    transition: { duration: 0.3, ease: "easeInOut" },
+  },
+};
+
+// Icônes avec effet flottant
+const iconFloatVariants: Variants = {
+  float: {
+    y: [0, -6, 0, 6, 0],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  },
+};
 
 export default function VideoSection() {
   return (
-    <section className="py-20 bg-gray-900/95 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-600/20 to-transparent"></div>
-      </div>
+    <section className="relative bg-black text-white py-24 px-6 sm:px-12 lg:px-28 overflow-hidden">
+      {/* Effet lumineux flottant en arrière-plan */}
+      <motion.div
+        className="absolute top-0 left-1/2 w-[600px] h-[600px] -translate-x-1/2 bg-amber-200/5 blur-3xl rounded-full opacity-20 z-0"
+        animate={{
+          scale: [1, 1.2, 1],
+          rotate: [0, 15, -15, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 10,
+          ease: "easeInOut",
+        }}
+      />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Cercles dynamiques supplémentaires */}
+      <motion.div
+        className="absolute bottom-[-150px] right-[-150px] w-[300px] h-[300px] bg-amber-300/5 blur-2xl rounded-full opacity-25 z-0"
+        animate={{
+          y: [0, -20, 0],
+          x: [0, 10, -10, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 12,
+          ease: "easeInOut",
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <motion.h2
+          className="text-4xl lg:text-5xl font-extrabold mb-6 text-center text-white tracking-tight"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUpVariants}
+        >
+          Notre approche stratégique
+        </motion.h2>
+
+        <motion.p
+          className="justify-center text-gray-300 mb-16 text-xl max-w-6xl leading-relaxed text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUpVariants}
+          transition={{ delay: 0.3 }}
+        >
+          Chez <strong>ArtiVisio</strong>, chaque livrable est le fruit d’une méthode éprouvée, alliant rigueur, design, adaptation multi-supports et accompagnement expert.
+        </motion.p>
+
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          className="grid gap-10 max-w-4xl mx-auto sm:grid-cols-1 md:grid-cols-2"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">Découvrez notre approche</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Plongez dans notre processus créatif et découvrez comment nous transformons vos idées en réalité
-          </p>
+          {points.map(({ icon: Icon, title, description }, idx) => (
+            <motion.div
+              key={idx}
+              className="flex items-start gap-5 cursor-default rounded-lg p-5 hover:bg-amber-100/5 transition-colors"
+              variants={itemVariants}
+              custom={idx}
+              whileHover="hover"
+              layout
+            >
+              <motion.div
+                className="text-amber-700 w-9 h-9 flex-shrink-0 mt-1"
+                variants={iconFloatVariants}
+                animate="float"
+              >
+                <Icon size={36} />
+              </motion.div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-1">{title}</h3>
+                <p className="text-gray-400 leading-relaxed">{description}</p>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Video 1 */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-amber-900/50 to-gray-800/50 group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <Play className="h-8 w-8 text-amber-700 ml-1" />
-                </div>
-              </div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <h3 className="text-white text-xl font-bold mb-2">Notre processus créatif</h3>
-                <p className="text-gray-300 text-sm">
-                  De l'idée initiale à la réalisation finale, découvrez notre méthode de travail collaborative
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Video 2 */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-gray-800/50 to-amber-900/50 group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <Play className="h-8 w-8 text-amber-700 ml-1" />
-                </div>
-              </div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <h3 className="text-white text-xl font-bold mb-2">Témoignages clients</h3>
-                <p className="text-gray-300 text-sm">
-                  Écoutez nos clients parler de leur expérience et des résultats obtenus
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
       </div>
     </section>
-  )
+  );
 }

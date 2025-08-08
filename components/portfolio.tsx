@@ -14,9 +14,9 @@ export default function Portfolio() {
       title: "Portfolio Designer UX/UI",
       client: "Marie Dubois",
       category: "Portfolio Web",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/p-presentation.png",
       description: "Portfolio interactif pour designer UX/UI avec galerie de projets et animations modernes",
-      link: "#",
+      link: "https://portfolio.artivisio.com",
     },
     {
       id: 2,
@@ -32,9 +32,9 @@ export default function Portfolio() {
       title: "Identité Visuelle Startup",
       client: "TechFlow",
       category: "Branding",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/carte-arti.png",
       description: "Création complète d'identité visuelle pour startup technologique",
-      link: "#",
+      link: "carte-visite.webp",
     },
     {
       id: 4,
@@ -120,9 +120,9 @@ export default function Portfolio() {
                   <Image
                     src={item.image || "/placeholder.svg"}
                     alt={item.title}
-                    width={400}
-                    height={300}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    width={200}
+                    height={100}
+                    className="w-full h-48 object-contain transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-4 left-4 right-4 flex gap-2">
@@ -134,6 +134,7 @@ export default function Portfolio() {
                         size="sm"
                         variant="outline"
                         className="bg-white/90 border-white/90 text-gray-800 hover:bg-white"
+                        onClick={() => window.open(item.link, "_blank")}
                       >
                         <ExternalLink className="h-4 w-4 mr-1" />
                         Visiter

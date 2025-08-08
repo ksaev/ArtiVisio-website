@@ -280,22 +280,28 @@ export default function OffresEmploiPage() {
                             <MapPin className="h-4 w-4 mr-1" />
                             {job.location}, {getCountryLabel(job.countryId)}
                           </div>
-                          <div className="flex items-center">
-                            <DollarSign className="h-4 w-4 mr-1" />
-                            {job.salary}
+                          <div className="flex items-center gap-4">
+                            <div className="flex items-center">
+                              <DollarSign className="h-4 w-4 mr-1" />
+                              {job.salary}
+                            </div>
+                            <div className="flex items-center">
+                              <Clock className="h-4 w-4 mr-1" />
+                              {job.type}
+                            </div>
                           </div>
-                          <div className="flex items-center">
-                            <Clock className="h-4 w-4 mr-1" />
-                            {job.type}
+
+                          <div className="flex items-center gap-4">
+                            <div className="flex items-center">
+                              <Timer className=" h-4 w-4 mr-1" />
+                              {job.posted}   
+                            </div>
+                            <div className="flex text-red-600 items-center">
+                              <TimerOff className=" h-4 w-4 mr-1" />
+                              {job.expire}
+                            </div>
                           </div>
-                          <div className="flex items-center">
-                            <Timer className=" h-4 w-4 mr-1" />
-                            {job.posted}   
-                          </div>
-                          <div className="flex text-red-600 items-center">
-                            <TimerOff className=" h-4 w-4 mr-1" />
-                            {job.expire}
-                          </div>
+
                         </div>
                       </div>
                       <div className="text-right">
@@ -391,21 +397,49 @@ export default function OffresEmploiPage() {
                   Besoin d'aide pour postuler ?
                 </button>
               </Link>
-
+          
               {/* Titre & infos */}
-              <h2 className="text-2xl font-bold text-amber-700 mb-2">
+              <h2 className="text-2xl font-bold text-amber-700 mb-2 ">
                 {selectedJob.title}
               </h2>
-              <p className="text-sm text-gray-600 font-medium mb-1">
-                {selectedJob.company} – {selectedJob.location}
-              </p>
-              <p className="text-sm flex items-center text-gray-600 font-medium mb-1">
-                 <DollarSign className="h-4 w-4 mr-1" />{selectedJob.salary}
-              </p>
-              <p className="flex items-center text-sm text-gray-600 font-medium mb-1">
-                 <Clock className="h-4 w-4 mr-1" />{selectedJob.type}
-              </p>
-              <p className="text-gray-700 mb-4">{selectedJob.description}</p>
+                <p className="flex items-center text-amber-700 font-medium mb-2 text-sm">
+                  <Building className="h-4 w-4 mr-2" />
+                  {selectedJob.company}
+                </p>
+                  <p className="flex items-center mb-2 text-sm">
+                    <MapPin className="h-4 w-4 mr-1" />
+                    {selectedJob.location}, {getCountryLabel(selectedJob.countryId)}
+                  </p>
+                  <div className="flex items-center gap-4 mb-2">
+                    <p className="flex items-center text-sm">
+                      <DollarSign className="h-4 w-4 mr-1" />
+                      {selectedJob.salary}
+                    </p>
+                    <p className="flex items-center text-sm">
+                      <Clock className="h-4 w-4 mr-1" />
+                      {selectedJob.type}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-4 mb-2 ">
+                    <p className="flex items-center text-sm">
+                      <Timer className=" h-4 w-4 mr-1" />
+                      {selectedJob.posted}   
+                    </p>
+                    <p className="flex text-red-600 items-center text-sm">
+                      <TimerOff className=" h-4 w-4 mr-1" />
+                      {selectedJob.expire}
+                    </p>
+                  </div>
+              
+              <h4 className="font-semibold text-gray-800 pt-2">
+                Description du poste :
+              </h4>
+              <div className="bg-amber-50/5 p-1 rounded-md">
+                <p className="text-sm text-gray-700 mb-2 space-y-1">
+                  {selectedJob.description}
+                </p>
+              </div>
 
               {/* Liste */}
               {selectedJob.requirements && (
