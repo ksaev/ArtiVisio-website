@@ -44,8 +44,8 @@ export async function POST(request: Request) {
         type: data.type,
         sector: data.sector,
         description: data.description,
-        requirements: data.requirements ?? "", // chaîne texte
-        posted: new Date(), // date actuelle
+        requirements: data.requirements ?? "", 
+        posted: new Date(), 
         expire: new Date(data.expire),
         mail: data.mail ?? "",
         countryId: data.countryId,

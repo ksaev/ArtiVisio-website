@@ -42,50 +42,69 @@ export default function CreateOfferForm() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (loading) return;
+  setLoading(true);
 
-    if (loading) return;
-
-    setLoading(true);
-
-    try {
-      const token = await recaptchaRef.current?.executeAsync();
-      recaptchaRef.current?.reset();
-
-      if (!token) {
-        toast.error('Validation CAPTCHA requise.');
-        setLoading(false);
-        return;
-      }
-
-      const payload = { ...formData, recaptchaToken: token };
-
-      const res = await fetch('/api/control/authentification/offres', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        toast.error('Erreur lors de la création de l\'offre, Vérifier le format de la date d\'expiration');
-        alert('Erreur lors de la création de l\'offre, Vérifier le format de la date d\'expiration');
-        setLoading(false);
-        return;
-      }
-
-      confetti({ particleCount: 150, spread: 100 });
-      toast.success('✅ Offre publiée avec succès');3
-      alert('✅ Offre publiée avec succès')
-      router.push('/admin/dashboard');
-    } catch (error) {
-      toast.error('Erreur inattendue.');
-    } finally {
+  try {
+    const token = await recaptchaRef.current?.executeAsync();
+    recaptchaRef.current?.reset();
+    if (!token) {
+      toast.error("Validation CAPTCHA requise.");
       setLoading(false);
+      return;
     }
-  };
+
+    const payload = { ...formData, recaptchaToken: token };
+
+    // 1️⃣ Envoi de l'offre et récupération de l'ID
+    const res = await fetch('/api/control/authentification/offres', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      toast.error(data.error || "Erreur lors de la création de l'offre.");
+      setLoading(false);
+      return;
+    }
+
+    const offerId = data.offer.id; // ← ID auto-incrémenté renvoyé par Prisma
+
+    // 2️⃣ Envoi de la notification avec l'ID réel
+    const payloadNotif = {
+      headings: { en: "Nouvelle opportunité d'emploi chez ArtiVisio" },
+      contents: { 
+        en: `Découvrez dès maintenant notre dernière offre : "${formData.title}". Rejoignez une équipe dynamique et faites avancer votre carrière. Postulez vite !` 
+      },
+      url: `https://dev.artivisio.com/offres-emploi?id=${offerId}`,
+      included_segments: ["All"],
+      big_picture: "https://dev.artivisio.com/assets/images/job-offer-default.webp",
+      small_picture: "https://dev.artivisio.com/assets/images/job-offer-default.webp",
+      // Pour garantir un bon rendu sur tous les devices
+      android_accent_color: "FF8C00", // Orange ArtiVisio en hex sans #
+    }; 
+
+    await fetch("/api/notifications", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payloadNotif),
+    });
+
+    confetti({ particleCount: 150, spread: 100 });
+    toast.success('✅ Offre publiée avec succès');
+    router.push('/admin/dashboard');
+  } catch (error) {
+    toast.error("Erreur inattendue.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
