@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { MapPin, Clock, DollarSign, Building, Search, Filter,Timer,TimerOff } from "lucide-react"
+import { Banknote,Coins,CreditCard,MapPin, Clock, DollarSign, Building, Search, Filter,Timer,TimerOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -298,7 +298,7 @@ export default function OffresEmploiPage() {
                           </div>
                           <div className="flex items-center gap-4">
                             <div className="flex items-center">
-                              <DollarSign className="h-4 w-4 mr-1" />
+                              <Banknote className="h-4 w-4 mr-1" />
                               {job.salary ? job.salary : "Négociable"}    
                             </div>
                             <div className="flex items-center">
@@ -429,7 +429,7 @@ export default function OffresEmploiPage() {
                   </p>
                   <div className="flex items-center gap-4 mb-2">
                     <p className="flex items-center text-sm">
-                      <DollarSign className="h-4 w-4 mr-1" />
+                      <Banknote className="h-4 w-4 mr-1" />
                         {selectedJob.salary ? selectedJob.salary : "Négociable"}
                     </p>
                     <p className="flex items-center text-sm">
