@@ -17,6 +17,7 @@ import sectors from "@/data/sectors.json"
 
 
   interface JobOffer {
+    link: string
     id: number
     title: string
     company: string
@@ -135,6 +136,7 @@ export default function OffresEmploiPage() {
       console.error("Erreur tracking event", err);
     }
   }
+
 
   return (
     <div className="min-h-screen">
@@ -270,24 +272,24 @@ export default function OffresEmploiPage() {
                   <CardHeader>
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                       <div>
-                        <CardTitle className="text-xl font-bold text-gray-800 mb-2">{job.title}</CardTitle>
+                        <CardTitle className="text-xl font-bold text-gray-800 mb-2">{job.title} <span className="text-red-800 font-bold"> ({new Date(job.expire) < new Date() ? "Expirée" : "Active"}) </span></CardTitle> 
                         <div className="flex items-center text-amber-700 font-medium mb-2">
                           <Building className="h-4 w-4 mr-2" />
-                          {job.company}
+                          {job.company} 
                         </div>
                         <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                           <div className="flex items-center">
                             <MapPin className="h-4 w-4 mr-1" />
-                            {job.location}, {getCountryLabel(job.countryId)}
+                            {job.location ? job.location : "Lieu non spécifié"}, {getCountryLabel(job.countryId)}
                           </div>
                           <div className="flex items-center gap-4">
                             <div className="flex items-center">
                               <DollarSign className="h-4 w-4 mr-1" />
-                              {job.salary}
+                              {job.salary ? job.salary : "Négociable"}    
                             </div>
                             <div className="flex items-center">
                               <Clock className="h-4 w-4 mr-1" />
-                              {job.type}
+                              {job.type ? job.type : "Non precisé"}
                             </div>
                           </div>
 
@@ -310,6 +312,8 @@ export default function OffresEmploiPage() {
                         </span>
                       </div>
                     </div>
+
+
                   </CardHeader>
                   <CardContent>
                     <div className="mb-6">
@@ -381,7 +385,7 @@ export default function OffresEmploiPage() {
         {/* ✅ MODALE */}
         {selectedJob && (
           <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center px-4">
-            <div className="bg-white rounded-2xl shadow-xl max-w-2xl w-full p-6 relative">
+            <div className="bg-white rounded-2xl shadow-xl max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto">
               {/* Fermer */}
               <button
                 onClick={() => setSelectedJob(null)}
@@ -399,8 +403,8 @@ export default function OffresEmploiPage() {
               </Link>
           
               {/* Titre & infos */}
-              <h2 className="text-2xl font-bold text-amber-700 mb-2 ">
-                {selectedJob.title}
+              <h2 className="text-2xl font-bold text-amber-700 mb-2 pt-8 ">
+                {selectedJob.title} <span className="text-black font-bold"> ({new Date(selectedJob.expire) < new Date() ? "Expirée" : "Active"}) </span>
               </h2>
                 <p className="flex items-center text-amber-700 font-medium mb-2 text-sm">
                   <Building className="h-4 w-4 mr-2" />
@@ -408,12 +412,12 @@ export default function OffresEmploiPage() {
                 </p>
                   <p className="flex items-center mb-2 text-sm">
                     <MapPin className="h-4 w-4 mr-1" />
-                    {selectedJob.location}, {getCountryLabel(selectedJob.countryId)}
+                    {selectedJob.location || "Lieu non spécifié"}, {getCountryLabel(selectedJob.countryId)}
                   </p>
                   <div className="flex items-center gap-4 mb-2">
                     <p className="flex items-center text-sm">
                       <DollarSign className="h-4 w-4 mr-1" />
-                      {selectedJob.salary}
+                        {selectedJob.salary ? selectedJob.salary : "Négociable"}
                     </p>
                     <p className="flex items-center text-sm">
                       <Clock className="h-4 w-4 mr-1" />
@@ -457,16 +461,47 @@ export default function OffresEmploiPage() {
 
               {/* Boutons */}
               <div  className="grid grid-cols-2 gap-4 w-full sm:flex-row justify-center">
-                    <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8"
-                    onClick={async () => {
-                      await trackEvent(selectedJob.id, "click")
-                    }}
-                    >
-                      <a className="w-full" href={`mailto:${selectedJob.mail}`}>
-                        <Send className="mr-2" style={{ width: "20px", height: "20px" }}/> 
+                  <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8">
+                    {selectedJob.mail ? (
+                      <a
+                        className="w-full flex items-center justify-center"
+                        href={`mailto:${selectedJob.mail}`}
+                        onClick={async (e) => {
+                          e.preventDefault();
+                          await trackEvent(selectedJob.id, "click");
+                          window.location.href = `mailto:${selectedJob.mail}`;
+                        }}
+                      >
+                        <Send className="mr-2" style={{ width: "20px", height: "20px" }} />
                         Postuler
-                       </a>
-                    </Button>
+                      </a>
+                    ) : selectedJob.link ? (
+                      <a
+                        className="w-full flex items-center justify-center"
+                        href={selectedJob.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={async (e) => {
+                          e.preventDefault();
+                          await trackEvent(selectedJob.id, "click");
+                          window.open(selectedJob.link, "_blank", "noopener");
+                        }}
+                      >
+                        <Send className="mr-2" style={{ width: "20px", height: "20px" }} />
+                        Postuler
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="w-full flex items-center justify-center opacity-50 cursor-not-allowed"
+                      >
+                        <Send className="mr-2" style={{ width: "20px", height: "20px" }} />
+                        Postuler
+                      </button>
+                    )}
+                  </Button>
+
+
                 <Button
                   className="border text-white border-amber-600 hover:bg-amber-500 rounded-full px-8"
                   onClick={async () => {

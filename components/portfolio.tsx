@@ -11,11 +11,11 @@ export default function Portfolio() {
   const portfolioItems = [
     {
       id: 1,
-      title: "Portfolio Designer UX/UI",
-      client: "Marie Dubois",
+      title: "Portfolio Digital Manager",
+      client: "SIEBE KOUASSI",
       category: "Portfolio Web",
       image: "/p-presentation.png",
-      description: "Portfolio interactif pour designer UX/UI avec galerie de projets et animations modernes",
+      description: "Portfolio interactif pour Digital Manager avec galerie de projets et animations modernes",
       link: "https://portfolio.artivisio.com",
     },
     {
@@ -23,9 +23,9 @@ export default function Portfolio() {
       title: "CV Développeur Full-Stack",
       client: "Thomas Martin",
       category: "CV Professionnel",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/CVP.webp",
       description: "CV moderne et technique avec section projets et compétences interactives",
-      link: "#",
+      link: "/CVP.webp",
     },
     {
       id: 3,
@@ -59,9 +59,9 @@ export default function Portfolio() {
       title: "CV Créatif Marketing",
       client: "Lucas Bernard",
       category: "CV Professionnel",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/CVpro.webp",
       description: "CV créatif pour professionnel du marketing avec infographies",
-      link: "#",
+      link: "/CVpro.webp",
     },
   ]
 
@@ -122,24 +122,29 @@ export default function Portfolio() {
                     alt={item.title}
                     width={200}
                     height={100}
-                    className="w-full h-48 object-contain transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-4 left-4 right-4 flex gap-2">
-                      <Button size="sm" className="bg-white/90 text-gray-800 hover:bg-white">
-                        <Eye className="h-4 w-4 mr-1" />
-                        Voir
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="bg-white/90 border-white/90 text-gray-800 hover:bg-white"
-                        onClick={() => window.open(item.link, "_blank")}
-                      >
-                        <ExternalLink className="h-4 w-4 mr-1" />
-                        Visiter
-                      </Button>
-                    </div>
+                  <div className="absolute bottom-4 left-4 right-4 flex gap-2">
+                    <a
+                      href={item.link}
+                      target="_self"
+                      className="inline-flex items-center px-3 py-1.5 bg-white/90 text-gray-800 hover:bg-white text-sm rounded"
+                    >
+                      <Eye className="h-4 w-4 mr-1" />
+                      Voir
+                    </a>
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-3 py-1.5 border border-white/90 bg-white/90 text-gray-800 hover:bg-white text-sm rounded"
+                    >
+                      <ExternalLink className="h-4 w-4 mr-1" />
+                      Visiter
+                    </a>
+                  </div>
+
                   </div>
                   <div className="absolute top-4 left-4">
                     <span className="bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-medium">

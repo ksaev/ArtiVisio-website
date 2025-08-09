@@ -24,13 +24,10 @@ export async function POST(request: Request) {
     const requiredFields = [
       "title",
       "company",
-      "location",
-      "mail",
       "description",
       "expire",
       "countryId",
       "sector",
-      "type",
     ];
     for (const field of requiredFields) {
       if (!data[field] || (typeof data[field] === "string" && data[field].trim() === "")) {
@@ -50,8 +47,9 @@ export async function POST(request: Request) {
         requirements: data.requirements ?? "", // chaîne texte
         posted: new Date(), // date actuelle
         expire: new Date(data.expire),
-        mail: data.mail,
+        mail: data.mail ?? "",
         countryId: data.countryId,
+        link: data.link ?? "",
       },
     });
 

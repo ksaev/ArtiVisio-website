@@ -18,6 +18,7 @@ export async function GET() {
         expire: true,
         countryId: true,
         mail: true,
+        link: true,
       },
       orderBy: { posted: "desc" },
     });
@@ -39,9 +40,9 @@ export async function GET() {
             throw new Error("Pas un tableau JSON");
           }
         } catch {
-          // Cas brut : split sur retour ligne ou slash ou virgule
+          // Cas brut : split sur retour ligne
           requirementsParsed = raw
-            .split(/[\n/,/]+/)
+            .split(/\n+/)
             .map((s) => s.trim())
             .filter(Boolean);
         }

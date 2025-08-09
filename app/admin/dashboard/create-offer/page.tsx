@@ -31,6 +31,7 @@ export default function CreateOfferForm() {
     mail: '',
     expire: '',
     countryId: '',
+    link:'',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -108,8 +109,8 @@ export default function CreateOfferForm() {
                 <Input name="company" required onChange={handleChange} value={formData.company} placeholder="Nom de l'entreprise" className="bg-white" />
               </div>
               <div>
-                <Label className="text-lg font-medium pb-2">Ville / Lieu *</Label>
-                <Input name="location" required onChange={handleChange} value={formData.location} placeholder="Abidjan, Dakar..." className="bg-white" />
+                <Label className="text-lg font-medium pb-2">Ville / Lieu </Label>
+                <Input name="location" onChange={handleChange} value={formData.location} placeholder="Abidjan, Dakar..." className="bg-white" />
               </div>
               <div>
                 <Label className="text-lg font-medium pb-2">Pays *</Label>
@@ -127,8 +128,8 @@ export default function CreateOfferForm() {
                 </Select>
               </div>
               <div>
-                <Label className="text-lg font-medium pb-2">Salaire *</Label>
-                <Input name="salary" required onChange={handleChange} value={formData.salary} placeholder="Ex: 500 000 FCFA / mois" className="bg-white" />
+                <Label className="text-lg font-medium pb-2">Salaire </Label>
+                <Input name="salary" placeholder='Négociable' onChange={handleChange} value={formData.salary} className="bg-white" />
               </div>
               <div>
                 <Label className="text-lg font-medium pb-2">Type de contrat *</Label>
@@ -137,12 +138,14 @@ export default function CreateOfferForm() {
                     <SelectValue placeholder="Choisir un type" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="CDDI">CDD/CDI</SelectItem>
                     <SelectItem value="CDI">CDI</SelectItem>
                     <SelectItem value="CDD">CDD</SelectItem>
                     <SelectItem value="Freelance">Freelance</SelectItem>
                     <SelectItem value="Stage">Stage</SelectItem>
                     <SelectItem value="Consultant">Consultant</SelectItem>
                     <SelectItem value="Volontariat">Volontariat</SelectItem>
+                    <SelectItem value="Non precisé">Non precisé</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -165,9 +168,14 @@ export default function CreateOfferForm() {
                 <Label className="text-lg font-medium pb-2">Date d'expiration *</Label>
                 <Input type="date" name="expire" required onChange={handleChange} value={formData.expire} className="bg-white" />
               </div>
-              <div className="md:col-span-2">
-                <Label className="text-lg font-medium pb-2">Email de réception des candidatures *</Label>
-                <Input type="email" name="mail" required onChange={handleChange} value={formData.mail} placeholder="email@exemple.com" className="bg-white" />
+
+              <div>
+                <Label className="text-lg font-medium pb-2">Email de réception des candidatures </Label>
+                <Input type="email" name="mail"  onChange={handleChange} value={formData.mail} placeholder="email@exemple.com" className="bg-white" />
+              </div>
+              <div>
+                <Label className="text-lg font-medium pb-2">Lien de réception des candidatures </Label>
+                <Input type="text" name="link" onChange={handleChange} value={formData.link} placeholder="https://offredemploi.com" className="bg-white" />
               </div>
             </div>
 
