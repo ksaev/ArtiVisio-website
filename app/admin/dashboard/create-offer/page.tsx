@@ -193,14 +193,14 @@ export default function CreateOfferForm() {
             </div>
 
             <div>
-              <Label className="text-lg font-medium pb-2">Compétences & Exigences *</Label>
+              <Label className="text-lg font-medium pb-2">Compétences & Exigences * (4 retour à la ligne maximum) </Label>
               <Textarea
                 name="requirements"
                 required
                 onChange={handleChange}
                 value={formData.requirements}
                 rows={7}
-                placeholder="Ex : maîtrise de React / expérience pédagogique / rigueur..."
+                placeholder={`Ex : maîtrise de React \n expérience pédagogique \n rigueur \n travail en équipe \n communication ...`}
                 className="bg-white"
               />
             </div>

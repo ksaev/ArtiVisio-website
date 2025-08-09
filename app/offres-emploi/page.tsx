@@ -104,6 +104,10 @@ export default function OffresEmploiPage() {
     const found = countries.find((c) => c.id === id);
     return found?.label || "Pays inconnu";
   };
+  const getSectorLabel = (id: string): string => {
+    const found = sectors.find((c) => c.id === id);
+    return found?.label || "Secteur inconnu";
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -136,7 +140,17 @@ export default function OffresEmploiPage() {
       console.error("Erreur tracking event", err);
     }
   }
+  
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // éviter les problèmes d'heure
 
+  // Ajoute cette fonction pour tester expiration par job
+  function isJobExpired(job: JobOffer): boolean {
+    const [day, month, year] = job.expire.split("/");
+    const expireDate = new Date(`${year}-${month}-${day}`);
+    expireDate.setHours(0, 0, 0, 0);
+    return expireDate < today;
+  }
 
   return (
     <div className="min-h-screen">
@@ -272,7 +286,7 @@ export default function OffresEmploiPage() {
                   <CardHeader>
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                       <div>
-                        <CardTitle className="text-xl font-bold text-gray-800 mb-2">{job.title} <span className="text-red-800 font-bold"> ({new Date(job.expire) < new Date() ? "Expirée" : "Active"}) </span></CardTitle> 
+                        <CardTitle className="text-xl font-bold text-gray-800 mb-2">{job.title} <span className="text-red-800 font-bold"> ({isJobExpired(job) ? "Expirée" : "Active"}) </span></CardTitle> 
                         <div className="flex items-center text-amber-700 font-medium mb-2">
                           <Building className="h-4 w-4 mr-2" />
                           {job.company} 
@@ -308,11 +322,10 @@ export default function OffresEmploiPage() {
                       </div>
                       <div className="text-right">
                         <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium capitalize">
-                          {job.sector}
+                          {getSectorLabel(job.sector)}
                         </span>
                       </div>
                     </div>
-
 
                   </CardHeader>
                   <CardContent>
@@ -404,7 +417,7 @@ export default function OffresEmploiPage() {
           
               {/* Titre & infos */}
               <h2 className="text-2xl font-bold text-amber-700 mb-2 pt-8 ">
-                {selectedJob.title} <span className="text-black font-bold"> ({new Date(selectedJob.expire) < new Date() ? "Expirée" : "Active"}) </span>
+                {selectedJob.title} <span className="text-black font-bold"> ({isJobExpired(selectedJob) ? "Expirée" : "Active"}) </span>
               </h2>
                 <p className="flex items-center text-amber-700 font-medium mb-2 text-sm">
                   <Building className="h-4 w-4 mr-2" />

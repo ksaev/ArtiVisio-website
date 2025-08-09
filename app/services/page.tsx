@@ -359,8 +359,7 @@ const points = [
             <p className="text-start sm:text-start text-muted-foreground ">
             <span className="font-bold justify-center">CV, rapports, présentations, lettres de motivation, portfolios, dossiers de candidature, supports administratifs ou commerciaux…</span>
             <br/>
-            <p>Chez ArtiVisio, nous valorisons tous les documents qui portent votre image professionnelle. Chaque livrable est pensé pour convaincre, structurer votre message, et projeter une image de rigueur, de clarté et d’ambition.</p>
-            </p>
+            Chez ArtiVisio, nous valorisons tous les documents qui portent votre image professionnelle. Chaque livrable est pensé pour convaincre, structurer votre message, et projeter une image de rigueur, de clarté et d’ambition.</p>
           </div>
 
         </motion.div>

@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import {usePathname} from "next/navigation";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -31,11 +30,6 @@ export default function Header() {
     { name: "À propos", href: "#about" },
     { name: "Contact", href: "#contact" },
   ]
-
-  const pathname = usePathname();
-
-  const noLayoutPrefixes = ["/admin"];
-  const isLayoutHidden = noLayoutPrefixes.some(prefix => pathname.startsWith(prefix));
 
   return (
     <>
