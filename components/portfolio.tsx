@@ -20,8 +20,8 @@ export default function Portfolio() {
     },
     {
       id: 2,
-      title: "CV Développeur Full-Stack",
-      client: "Thomas Martin",
+      title: "CV Commercial",
+      client: "FRANCK OLIVIER",
       category: "CV Professionnel",
       image: "/CVP.webp",
       description: "CV moderne et technique avec section projets et compétences interactives",
@@ -29,13 +29,14 @@ export default function Portfolio() {
     },
     {
       id: 3,
-      title: "Identité Visuelle Startup",
-      client: "TechFlow",
-      category: "Branding",
+      title: "Carte Connectée - ArtiVisio",
+      client: "ArtiVisio",
+      category: "Branding & Innovation",
       image: "/carte-arti.png",
-      description: "Création complète d'identité visuelle pour startup technologique",
-      link: "carte-visite.webp",
-    },
+      description: "Carte de visite premium avec QR Code intégré, reliant instantanément vers le profil ou les services ArtiVisio.",
+      link: "carte-visite.webp"
+    }
+    ,
     {
       id: 4,
       title: "Landing Page Consultant",

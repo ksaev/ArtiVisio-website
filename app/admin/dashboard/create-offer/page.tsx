@@ -77,7 +77,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     // 2️⃣ Envoi de la notification avec l'ID réel
     const payloadNotif = {
-      headings: { en: "Nouvelle opportunité d'emploi chez ArtiVisio" },
+      headings: { en: `Nouvelle opportunité d'emploi chez ${formData.company}` },
       contents: { 
         en: `Découvrez dès maintenant notre dernière offre : "${formData.title}". Rejoignez une équipe dynamique et faites avancer votre carrière. Postulez vite !` 
       },
