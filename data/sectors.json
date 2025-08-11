@@ -1,4 +1,5 @@
 [
+  { "id": "all", "label": "Tous les secteurs" },
   { "id": "administration", "label": "Administratif / Support" },
   { "id": "agriculture", "label": "Agriculture / Agro" },
   { "id": "arts", "label": "Arts / Culture" },
