@@ -32,7 +32,7 @@ export default function Portfolio() {
       title: "Carte Connectée - ArtiVisio",
       client: "ArtiVisio",
       category: "Branding & Innovation",
-      image: "/carte-arti.png",
+      image: "/carte-arti.webp",
       description: "Carte de visite premium avec QR Code intégré, reliant instantanément vers le profil ou les services ArtiVisio.",
       link: "carte-visite.webp"
     }

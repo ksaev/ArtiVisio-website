@@ -22,8 +22,8 @@ const floatVariant: Variants = {
 };
 
 const stats = [
-  { icon: Users, label: "Professionnels accompagnés", value: "200+" },
-  { icon: Globe, label: "Pays couverts", value: "3" },
+  { icon: Users, label: "Professionnels accompagnés", value: "250+" },
+  { icon: Globe, label: "Pays couverts", value: "5+" },
   { icon: Star, label: "Taux de satisfaction", value: "95%" },
   { icon: Target, label: "Offres publiées", value: "500+" },
 ];
@@ -60,7 +60,7 @@ export default function AboutSectionWithLogo() {
           aria-label="Logo ArtiVisio"
         >
           <motion.div
-            className="w-full h-full relative"
+            className="w-full h-full relative "
             variants={floatVariant}
             animate="float"
           >
@@ -70,6 +70,7 @@ export default function AboutSectionWithLogo() {
               fill
               style={{ objectFit: "contain" }}
               priority
+              className="transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] hover:scale-105 hover:rotate-1 hover:drop-shadow-[0_8px_15px_rgba(0,0,0,0.15)] hover:brightness-110 hover:saturate-110 cursor-pointer"
             />
           </motion.div>
         </motion.div>

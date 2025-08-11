@@ -157,22 +157,6 @@ export default function FormulaireOffre() {
 
       if (!res.ok) throw new Error("Erreur serveur")
 
-      // Envoyer notification OneSignal
-      const payload = {
-        headings: { en: "Nouvelle offre d'emploi disponible" },
-        contents: { en: "Une nouvelle offre vient d’être publiée." },
-        url: "http://localhost:3000/offres-emploi?id=1", 
-        included_segments: ["All"]
-      };
-
-      await fetch("/api/notifications", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json", 
-        },
-        body: JSON.stringify(payload),
-      });
-
       const data = await res.json()
       setForm({
         titre: "",
