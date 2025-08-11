@@ -70,7 +70,7 @@ export default function AboutSectionWithLogo() {
               fill
               style={{ objectFit: "contain" }}
               priority
-              className="transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] hover:scale-105 hover:rotate-1 hover:drop-shadow-[0_8px_15px_rgba(0,0,0,0.15)] hover:brightness-110 hover:saturate-110 cursor-pointer"
+              className="transition-all duration-700 ease-\[cubic-bezier\(0.19\,1\,0.22\,1\)\] hover:scale-110 hover:rotate-6 hover:drop-shadow-[0_8px_15px_rgba(0,0,0,0.15)] hover:brightness-110 hover:saturate-110 cursor-pointer"
             />
           </motion.div>
         </motion.div>

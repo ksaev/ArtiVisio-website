@@ -434,7 +434,7 @@ export default function OffresEmploiPage() {
                     </p>
                     <p className="flex items-center text-sm">
                       <Clock className="h-4 w-4 mr-1" />
-                      {selectedJob.type}
+                        {selectedJob.type ? selectedJob.type : "Non precisé"}
                     </p>
                   </div>
 
