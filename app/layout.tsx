@@ -36,17 +36,17 @@ export const metadata: Metadata = {
     "Emploi jeunes diplômés",
     "Image professionnelle Afrique"
   ],
-  authors: [{ name: "Artivisio", url: "https://artivisio.com" }],
+  authors: [{ name: "Artivisio", url: "https://devartivisio.com" }],
   openGraph: {
     title: "Artivisio – Construisez votre image pro en Afrique",
     description: "Découvrez nos services pour optimiser votre présence pro en ligne : CV, portfolios, coaching, branding et plus.",
-    url: "https://artivisio.com",
+    url: "https://dev.artivisio.com",
     siteName: "Artivisio",
     locale: "fr_FR",
     type: "website",
     images: [
       {
-        url: "https://artivisio.com/og-image.jpg",
+        url: "https://dev.artivisio.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Artivisio - image pro Afrique"
