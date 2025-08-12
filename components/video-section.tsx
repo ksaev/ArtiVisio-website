@@ -166,7 +166,7 @@ export default function VideoSection() {
           {points.map(({ icon: Icon, title, description }, idx) => (
             <motion.div
               key={idx}
-              className="flex items-start gap-5 cursor-default rounded-lg p-5 hover:bg-amber-100/5 transition-colors"
+              className="flex items-start border border-amber-100/20 gap-5 cursor-default rounded-lg p-5 hover:bg-amber-500/5 transition-colors"
               variants={itemVariants}
               custom={idx}
               whileHover="hover"
@@ -179,11 +179,10 @@ export default function VideoSection() {
               >
                 <Icon size={36} />
               </motion.div>
-
-              <div>
-                <h3 className="text-xl font-semibold mb-1">{title}</h3>
-                <p className="text-gray-400 leading-relaxed">{description}</p>
-              </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-1">{title}</h3>
+                  <p className="text-gray-400 leading-relaxed">{description}</p>
+                </div>
             </motion.div>
           ))}
         </motion.div>

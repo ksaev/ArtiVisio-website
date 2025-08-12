@@ -11,6 +11,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import TeasingPopup from "@/components/teasingPopup"
 import OneSignalInit from "@/components/OneSignalInit"
 import LayoutWrapper from "@/components/layoutWrapper";
+import SeoHead from "@/components/seoHead"
 
 
 const inter = Inter({
@@ -70,11 +71,19 @@ export default function RootLayout({
   return (
     <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-[#3E2F1C] bg-white`}>
-       
-      <OneSignalInit />
 
-       <Toaster
-        position="top-center"
+        <SeoHead
+          title="Artivisio – Emploi, Coaching et Visibilité pour les Talents en Afrique"
+          description="CV modernes, portfolios interactifs, coaching et branding personnel. Accompagnement digital pour l'Afrique francophone. Tarifs accessibles en FCFA."
+          url="https://www.artivisio.com"
+          image="https://www.artivisio.com/og-image.jpg"
+          type="website"
+        />
+        
+        <OneSignalInit />
+
+        <Toaster
+          position="top-center"
         toastOptions={{
           duration: 5000,
           style: {
