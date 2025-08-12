@@ -12,6 +12,8 @@ import TeasingPopup from "@/components/teasingPopup"
 import OneSignalInit from "@/components/OneSignalInit"
 import LayoutWrapper from "@/components/layoutWrapper";
 import SeoHead from "@/components/seoHead"
+import  JsonLd  from   "@/components/JsonLd"
+
 
 
 const inter = Inter({
@@ -24,22 +26,26 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 })
 
+
 export const metadata: Metadata = {
-  title: "Artivisio – Emploi, Coaching et Visibilité pour les Talents en Afrique",
-  description: "CV modernes, portfolios interactifs, coaching et branding personnel. Accompagnement digital pour l'Afrique francophone. Tarifs accessibles en FCFA.",
+  title: "Artivisio - Offres d’Emploi, Coaching & Branding pour Talents Africains",
+  description:
+    "Découvrez les meilleures offres d'emploi en Afrique francophone, bénéficiez de coaching personnalisé, créez un CV et portfolio professionnels, et boostez votre visibilité digitale avec Artivisio. Tarifs accessibles en FCFA.",
   keywords: [
+    "offres d'emploi Afrique",
+    "emploi jeunes diplômés Afrique",
+    "coaching carrière Afrique",
     "CV professionnels Afrique",
-    "Coaching LinkedIn",
-    "Portfolio en ligne",
-    "Branding personnel",
-    "Services digitaux Afrique",
-    "Emploi jeunes diplômés",
-    "Image professionnelle Afrique"
+    "portfolio en ligne Afrique",
+    "branding personnel digital",
+    "coaching LinkedIn Afrique",
+    "services digitaux Afrique francophone",
   ],
-  authors: [{ name: "Artivisio", url: "https://devartivisio.com" }],
+  authors: [{ name: "Artivisio", url: "https://dev.artivisio.com" }],
   openGraph: {
-    title: "Artivisio – Construisez votre image pro en Afrique",
-    description: "Découvrez nos services pour optimiser votre présence pro en ligne : CV, portfolios, coaching, branding et plus.",
+    title: "Artivisio – Offres d’Emploi, Coaching & Branding pour Talents Africains",
+    description:
+      "Trouvez des offres d’emploi, coaching expert, création de CV et portfolios professionnels. Accompagnement digital complet pour booster votre carrière en Afrique francophone.",
     url: "https://dev.artivisio.com",
     siteName: "Artivisio",
     locale: "fr_FR",
@@ -49,17 +55,88 @@ export const metadata: Metadata = {
         url: "https://dev.artivisio.com/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Artivisio - image pro Afrique"
-      }
-    ]
+        alt: "Artivisio - Offres d'emploi et coaching en Afrique",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Artivisio – Construisez votre image pro en Afrique",
-    description: "Découvrez nos services pour optimiser votre présence pro en ligne : CV, portfolios, coaching, branding et plus.",
-    creator: "@artivisio"
-  }
+    title: "Artivisio – Offres d’Emploi, Coaching & Branding en Afrique",
+    description:
+      "Trouvez les meilleures offres d’emploi, coaching personnalisé, CV et portfolios professionnels adaptés au marché africain francophone.",
+    creator: "@artivisio",
+    images: ["https://dev.artivisio.com/og-image.jpg"],
+  },
+  metadataBase: new URL("https://dev.artivisio.com"),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "fr-FR": "/",
+      "en-US": "/en",
+    },
+  },
 }
+
+const jsonLdSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Artivisio",
+      "url": "https://dev.artivisio.com",
+      "logo": "https://dev.artivisio.com/logo.png",
+      "sameAs": [
+        "https://www.facebook.com/artivisio",
+        "https://twitter.com/artivisio",
+        "https://linkedin.com/company/artivisio",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://dev.artivisio.com",
+      "name": "Artivisio",
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Artivisio",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dev.artivisio.com/logo.png",
+        },
+      },
+    },
+    {
+      "@type": "JobPosting",
+      "title": "Offres d'emploi en Afrique francophone",
+      "description":
+        "Découvrez les meilleures offres d'emploi adaptées au marché africain francophone, avec coaching et accompagnement personnalisés.",
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "Artivisio",
+        "value": "JOB2025",
+      },
+      "datePosted": new Date().toISOString(),
+      "validThrough": new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // +30 jours
+      "employmentType": "FULL_TIME",
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Artivisio",
+        "sameAs": "https://dev.artivisio.com",
+        "logo": "https://dev.artivisio.com/logo.png",
+      },
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Abidjan",
+          "addressRegion": "CI",
+          "addressCountry": "CI",
+        },
+      },
+    },
+  ],
+}
+
 
 
 export default function RootLayout({
@@ -70,8 +147,8 @@ export default function RootLayout({
 
   return (
     <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-[#3E2F1C] bg-white`}>
 
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-[#3E2F1C] bg-white`}>
         
         <OneSignalInit />
 
@@ -120,6 +197,8 @@ export default function RootLayout({
           image="https://dev.artivisio.com/og-image.jpg"
           type="website"
         />
+
+        <JsonLd json={jsonLdSchema} />
 
         <TeasingPopup />
 
