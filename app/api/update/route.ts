@@ -16,4 +16,3 @@ async function createAdmin(email: string, password: string) {
   }
 }
 
-createAdmin('admin@artivisio.com', 'Arti225');
