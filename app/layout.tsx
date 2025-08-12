@@ -72,13 +72,6 @@ export default function RootLayout({
     <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-[#3E2F1C] bg-white`}>
 
-        <SeoHead
-          title="Artivisio – Emploi, Coaching et Visibilité pour les Talents en Afrique"
-          description="CV modernes, portfolios interactifs, coaching et branding personnel. Accompagnement digital pour l'Afrique francophone. Tarifs accessibles en FCFA."
-          url="https://www.artivisio.com"
-          image="https://www.artivisio.com/og-image.jpg"
-          type="website"
-        />
         
         <OneSignalInit />
 
@@ -119,6 +112,14 @@ export default function RootLayout({
       />
 
         <LanguageProvider>
+
+        <SeoHead
+          title="Artivisio – Emploi, Coaching et Visibilité pour les Talents en Afrique"
+          description="CV modernes, portfolios interactifs, coaching et branding personnel. Accompagnement digital pour l'Afrique francophone. Tarifs accessibles en FCFA."
+          url="https://dev.artivisio.com"
+          image="https://dev.artivisio.com/og-image.jpg"
+          type="website"
+        />
 
         <TeasingPopup />
 
