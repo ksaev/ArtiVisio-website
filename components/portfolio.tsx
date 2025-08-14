@@ -62,7 +62,7 @@ export default function Portfolio() {
       category: "Présentation Web",
       image: "/images/presentation/slide.png",
       description: "Diaporama fluide avec animations, graphiques et contact, conçu pour capter l’attention et convertir.",
-      link: "https://artivisio.com/presentation/slide/artivisio",
+      link: "https://dev.artivisio.com/presentation/slide/artivisio",
     }
 
   ];
