@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast"
 import { ThemeProvider } from "@/components/theme-provider"
 import TeasingPopup from "@/components/teasingPopup"
 import OneSignalInit from "@/components/OneSignalInit"
-import LayoutWrapper from "@/components/layoutWrapper";
+import LayoutWrapper from "@/components/layout/layoutWrapper";
 import SeoHead from "@/components/seoHead"
 import  JsonLd  from   "@/components/JsonLd"
 
@@ -202,7 +202,6 @@ export default function RootLayout({
 
         <TeasingPopup />
 
-
       <ThemeProvider
             attribute="class"
             defaultTheme="light"
@@ -210,9 +209,7 @@ export default function RootLayout({
             disableTransitionOnChange
       >
           <div className="min-h-screen bg-gradient-to-br from-amber-50 via-stone-50 to-amber-100">
-            <Header />
-            <main className="pt-20">{children}</main>
-            <Footer />
+            <LayoutWrapper><main>{children}</main></LayoutWrapper>
           </div>
 
      </ThemeProvider>

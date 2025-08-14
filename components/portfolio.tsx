@@ -8,15 +8,16 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function Portfolio() {
+
   const portfolioItems = [
     {
       id: 1,
-      title: "Portfolio Digital Manager",
-      client: "SIEBE KOUASSI",
+      title: "Full-stack Developer & UI/UX",
+      client: "Alex Martin",
       category: "Portfolio Web",
-      image: "/p-presentation.png",
-      description: "Portfolio interactif pour Digital Manager avec galerie de projets et animations modernes",
-      link: "https://portfolio.artivisio.com",
+      image: "/projet-freelance.png",
+      description: "Portfolio immersif et interactif valorisant l’expertise digitale avec animations fluides et design premium.",
+      link: "https://alex-martin.artivisio.com",
     },
     {
       id: 2,
@@ -24,7 +25,7 @@ export default function Portfolio() {
       client: "Franck Olivier",
       category: "CV Professionnel",
       image: "/CVP.webp",
-      description: "CV moderne et technique avec section projets et compétences interactives",
+      description: "CV moderne et percutant avec présentation claire des projets et compétences interactives.",
       link: "/CVP.webp",
     },
     {
@@ -33,38 +34,40 @@ export default function Portfolio() {
       client: "ArtiVisio",
       category: "Branding & Innovation",
       image: "/carte-arti.webp",
-      description: "Carte de visite premium avec QR Code intégré, reliant instantanément vers le profil ou les services ArtiVisio.",
-      link: "carte-visite.webp"
-    }
-    ,
+      description: "Carte de visite premium avec QR Code intégré offrant un accès instantané aux services ArtiVisio.",
+      link: "carte-visite.webp",
+    },
     {
       id: 4,
-      title: "CV moderne version anglaise",
+      title: "CV Moderne Anglais",
       client: "Samira Benali",
       category: "CV Professionnel",
       image: "/CV-F.webp",
-      description: "CV en anglais moderne et professionnel",
+      description: "CV élégant en anglais pensé pour l’impact international et une présentation professionnelle soignée.",
       link: "/CV-F.webp",
     },
     {
       id: 5,
-      title: "Portfolio de Samira Benali",
+      title: "Experte RH & Capital Humain  ",
       client: "Samira Benali",
       category: "Portfolio Web",
       image: "/portfolioFemmeBlanc.webp",
-      description: "Galerie photo immersive avec système de filtres et lightbox",
+      description: "Portfolio clair et raffiné mettant en valeur l’expérience et la crédibilité en recrutement.",
       link: "https://samira-benali.artivisio.com/",
     },
     {
       id: 6,
-      title: "CV Créatif Marketing",
-      client: "Lucas Bernard",
-      category: "CV Professionnel",
-      image: "/CVpro.webp",
-      description: "CV créatif pour professionnel du marketing avec infographies",
-      link: "/CVpro.webp",
-    },
-  ]
+      title: "Présentation Interactive & Dynamique",
+      client: "ArtiVisio",
+      category: "Présentation Web",
+      image: "/images/presentation/slide.png",
+      description: "Diaporama fluide avec animations, graphiques et contact, conçu pour capter l’attention et convertir.",
+      link: "https://artivisio.com/presentation/slide/artivisio",
+    }
+
+  ];
+
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
