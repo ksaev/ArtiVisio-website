@@ -189,7 +189,7 @@ export default function FormulaireOffre() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-amber-50/50 to-stone-50/50 min-h-screen py-8 px-6 sm:px-10 lg:px-24 text-gray-800">
+    <div className="pt-40 bg-gradient-to-br from-amber-50/50 to-stone-50/50 min-h-screen py-8 px-6 sm:px-10 lg:px-24 text-gray-800">
      
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50">

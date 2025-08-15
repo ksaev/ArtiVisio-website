@@ -59,7 +59,7 @@ export default function BlogPage() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-white min-h-screen py-16 px-6 sm:px-10 lg:px-24 text-gray-800">
+    <section className="bg-white min-h-screen py-16 px-6 sm:px-10 lg:px-24 text-gray-800 pt-40">
       <div className="max-w-6xl mx-auto space-y-12">
         <header className="text-center">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-primary mb-4">

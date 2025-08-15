@@ -64,10 +64,10 @@ export default function Hero() {
   ]
 
   return (
-   <div className="min-h-screen">
+   <div className="min-h-screen pt-20">
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-start overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-start overflow-hidden "
     >
       {/* Background */}
       <div className="absolute inset-0 opacity-5">

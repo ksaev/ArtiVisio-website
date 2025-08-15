@@ -7,7 +7,7 @@ export default function CookiesPage() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-white min-h-screen py-16 px-6 sm:px-10 lg:px-24 text-gray-800">
+    <section className="bg-white min-h-screen py-16 px-6 sm:px-10 lg:px-24 text-gray-800 pt-20">
       <div className="max-w-4xl mx-auto space-y-10">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-primary mb-6 text-center">
           {t("cookies.title")}

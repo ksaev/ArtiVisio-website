@@ -14,7 +14,7 @@ export default function FAQPage() {
   const { t } = useLanguage();
 
   return (
-    <section className="min-h-screen bg-white py-16 px-4 sm:px-8 lg:px-24 text-gray-800">
+    <section className="min-h-screen bg-white py-16 px-4 sm:px-8 lg:px-24 text-gray-800 pt-20">
       <div className="max-w-5xl mx-auto space-y-12">
         <header className="text-center">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-primary mb-6">
