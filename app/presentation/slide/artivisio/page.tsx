@@ -232,14 +232,14 @@ export default function ArtiVisioUltraPro() {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          className={`absolute inset-0 pt-2 flex flex-col md:flex-row items-center justify-center p-6 sm:p-8 lg:p-12 ${slides[currentSlide].bgColor}`}
+          className={`relative inset-0 pt-2 flex flex-col md:flex-row items-center justify-center p-6 sm:p-8 lg:p-12 ${slides[currentSlide].bgColor}`}
         >
           {/* Texte */}
           <motion.div
             initial={{ opacity:0, y:80 }}
             animate={{ opacity:1, y:0 }}
             transition={{ delay:0.3, duration:0.6 }}
-            className="py-6 md:w-1/2 max-w-lg text-center md:text-left space-y-6 mx-auto"
+            className="pt-6 md:pt-12 pb-6 md:w-1/2 max-w-lg text-center md:text-left space-y-6 mx-auto"
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg">{slides[currentSlide].title}</h1>
             <p className="text-xl sm:text-2xl md:text-3xl tracking-wide drop-shadow-md">{slides[currentSlide].subtitle}</p>
