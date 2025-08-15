@@ -4,9 +4,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bar } from "react-chartjs-2";
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import { FaWhatsapp, FaLinkedin, FaFacebook } from "react-icons/fa";
-import { Mail, Phone, MapPin } from "lucide-react";
 import Confetti from "react-confetti";
 import {
   Chart as ChartJS,
@@ -21,6 +18,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { FaWhatsapp, FaLinkedin, FaFacebook } from "react-icons/fa";
+import { Mail } from "lucide-react";
 
 ChartJS.register(
   CategoryScale,
@@ -48,9 +47,6 @@ type Slide = {
 // Contact et réseaux
 const contactMethods = [
   { icon: Mail, title: "Email", value: "contact@artivisio.com", description: "Réponse sous 24h" },
-  { icon: FaWhatsapp, title: "WhatsApp", value: "+225 07 08 97 67 37", description: "Réponse immédiate" },
-  { icon: Phone, title: "Téléphone", value: "+225 01 53 26 51 47", description: "Lun-Ven 9h-18h" },
-  { icon: MapPin, title: "Localisation", value: "Abidjan, Côte d'Ivoire", description: "Afrique de l'Ouest" },
 ];
 
 const socialLinks = [
@@ -59,13 +55,14 @@ const socialLinks = [
   { icon: FaFacebook, href: "https://www.facebook.com/profile.php?id=61552513933160", label: "Facebook", color: "hover:text-blue-600" },
 ];
 
+// Slides complètes
 const slides: Slide[] = [
   {
     id: 1,
     title: "Bienvenue chez ArtiVisio",
     subtitle: "Impact digital, design et innovation pour vos projets",
-    bgColor: "bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700",
-    img: "/illustration-welcome.png",
+    bgColor: "bg-gradient-to-r from-amber-700 via-amber-500 to-amber-400",
+    img: "/images/presentation/artivisioLogo.webp",
     description: [
       "ArtiVisio accompagne entreprises et particuliers dans la transformation digitale et le branding.",
       "Services : CV interactifs, portfolios, mini-apps web, branding, coaching et formations certifiées."
@@ -128,7 +125,7 @@ const slides: Slide[] = [
     title: "Accompagnement Bureautique",
     subtitle: "Rapports, présentations et documents professionnels",
     bgColor: "bg-gradient-to-r from-teal-400 to-cyan-500",
-    img: "/illustration-bureau.png",
+    img: "/images/presentation/bureautique.webp",
     description: ["Aide à la structuration de rapports, mémoires, présentations et documents administratifs.","Idéal pour étudiants, jeunes actifs et porteurs de projets."]
   },
   {
@@ -163,10 +160,10 @@ const slides: Slide[] = [
 export default function ArtiVisioUltraPro() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
-  const slideRef = useRef<HTMLDivElement>(null);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+  const [showControls, setShowControls] = useState(false);
 
-  // Swipe tactile
+  const slideRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -180,25 +177,35 @@ export default function ArtiVisioUltraPro() {
     if (touchStartX.current - touchEndX.current < -50) prevSlide();
   };
 
-  const exportPDF = async () => {
-    if (!slideRef.current) return;
-    const canvas = await html2canvas(slideRef.current, { scale: 2 });
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF("landscape", "pt", [canvas.width, canvas.height]);
-    pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
-    pdf.save(`ArtiVisio_Slide_${currentSlide + 1}.pdf`);
+  const exportPDF = () => {
+    const link = document.createElement("a");
+    link.href = "/documents/presentation/Presentation_ArtiVisio_Complete.pdf"; 
+    link.download = "Presentation_ArtiVisio_Complete.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
+  useEffect(() => setWindowSize({ width: window.innerWidth, height: window.innerHeight }), []);
+
+  useEffect(() => setShowConfetti(currentSlide === slides.length - 1), [currentSlide]);
+
   useEffect(() => {
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight") nextSlide();
+      if (event.key === "ArrowLeft") prevSlide();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  useEffect(() => {
-    setShowConfetti(currentSlide === slides.length - 1);
-  }, [currentSlide]);
+  const handleScreenClick = () => {
+    setShowControls(true);
+    setTimeout(() => setShowControls(false), 3000);
+  };
 
   return (
-    <div className="w-full h-screen relative overflow-hidden text-white font-sans">
+    <div className={` min-h-screen relative overflow-auto text-white font-sans ${slides[currentSlide].bgColor}`} onClick={handleScreenClick}>
       {showConfetti && (
         <>
           <Confetti width={windowSize.width} height={windowSize.height} numberOfPieces={200} />
@@ -208,9 +215,8 @@ export default function ArtiVisioUltraPro() {
             transition={{ duration:1 }}
             className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
           >
-            <h1 className="text-6xl font-extrabold drop-shadow-lg">Merci !</h1>
-            <p className="text-2xl mt-2 drop-shadow-md">Nous espérons vous revoir bientôt pour vos prochains projets.</p>
-            <p className="text-xl mt-2 drop-shadow-sm">Revenez pour vos futurs projets et contactez-nous pour en savoir plus !</p>
+            <h1 className="text-6xl font-extrabold drop-shadow-lg text-center">Merci !</h1>
+            <p className="text-2xl mt-2 drop-shadow-md text-center">Nous espérons vous revoir bientôt pour vos prochains projets.</p>
           </motion.div>
         </>
       )}
@@ -226,20 +232,19 @@ export default function ArtiVisioUltraPro() {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          className={`absolute inset-0 flex flex-col md:flex-row items-center justify-center p-8 ${slides[currentSlide].bgColor}`}
+          className={`absolute inset-0 pt-2 flex flex-col md:flex-row items-center justify-center p-6 sm:p-8 lg:p-12 ${slides[currentSlide].bgColor}`}
         >
           {/* Texte */}
           <motion.div
             initial={{ opacity:0, y:80 }}
             animate={{ opacity:1, y:0 }}
             transition={{ delay:0.3, duration:0.6 }}
-            className="md:w-1/2 m-16 text-center md:text-left space-y-4"
+            className="py-6 md:w-1/2 max-w-lg text-center md:text-left space-y-6 mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg">{slides[currentSlide].title}</h1>
-            <p className="text-2xl md:text-3xl tracking-wide drop-shadow-md">{slides[currentSlide].subtitle}</p>
-
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight drop-shadow-lg">{slides[currentSlide].title}</h1>
+            <p className="text-xl sm:text-2xl md:text-3xl tracking-wide drop-shadow-md">{slides[currentSlide].subtitle}</p>
             {slides[currentSlide].description && (
-              <ul className="space-y-2 text-lg md:text-xl">
+              <ul className="space-y-3 text-base sm:text-lg md:text-xl text-start">
                 {slides[currentSlide].description.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2">
                     <span className="mt-1">•</span>
@@ -248,7 +253,6 @@ export default function ArtiVisioUltraPro() {
                 ))}
               </ul>
             )}
-
             <div className="flex flex-wrap gap-4 justify-center md:justify-start mt-6">
               <motion.button whileHover={{ scale:1.05 }} whileTap={{ scale:0.95 }} onClick={exportPDF} className="px-6 py-3 bg-blue-700 rounded-lg shadow-lg hover:bg-blue-800">Télécharger PDF</motion.button>
             </div>
@@ -259,18 +263,18 @@ export default function ArtiVisioUltraPro() {
             initial={{ opacity:0, y:100, scale:0.95 }}
             animate={{ opacity:1, y:0, scale:1 }}
             transition={{ delay:0.5, duration:0.7 }}
-            className="md:w-1/2 mt-6 md:mt-0 flex justify-center relative"
+            className="md:w-1/2 mt-8 md:mt-0 flex justify-center relative sm:max-w-sm md:max-w-md lg:max-w-lg "
           >
             {currentSlide === 8 ? (
-              <motion.div className="w-full max-w-xl space-y-4">
-                <h2 className="text-3xl font-bold text-center md:text-left">Contactez-nous</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <motion.div className="w-full space-y-4">
+                <h2 className="text-2xl sm:text-3xl font-bold text-center md:text-left">Contactez-nous</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {contactMethods.map((contact, idx) => {
                     const Icon = contact.icon;
                     return (
-                      <motion.div key={idx} whileHover={{ scale: 1.05, y: -2 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="flex items-start space-x-2 p-3 rounded-lg shadow-lg bg-white/10 hover:bg-white/20 transition-colors">
+                      <motion.div key={idx} whileHover={{ scale: 1.05 }} className="flex items-start space-x-3 p-3 rounded-lg shadow-lg bg-white/10 hover:bg-white/20 transition-colors">
                         <Icon className="w-5 h-5 mt-1 text-white" />
-                        <div className="text-sm md:text-base">
+                        <div className="text-sm sm:text-base">
                           <p className="font-semibold">{contact.title}</p>
                           <p>{contact.value}</p>
                           <p className="text-gray-200">{contact.description}</p>
@@ -279,42 +283,46 @@ export default function ArtiVisioUltraPro() {
                     );
                   })}
                 </div>
-                <motion.div className="flex justify-center sm:justify-start space-x-4 mt-2">
+                <div className="flex justify-center sm:justify-start space-x-4 mt-2">
                   {socialLinks.map((social, idx) => {
                     const Icon = social.icon;
                     return (
-                      <motion.a key={idx} href={social.href} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.2, rotate: 10 }} whileTap={{ scale: 0.95 }} className={`text-white text-2xl transition-colors ${social.color}`} aria-label={social.label}>
+                      <motion.a key={idx} href={social.href} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.2 }} className={`text-white text-2xl ${social.color}`}>
                         <Icon />
                       </motion.a>
                     );
                   })}
-                </motion.div>
+                </div>
               </motion.div>
             ) : slides[currentSlide].chartData ? (
-              <motion.div whileHover={{ scale:1.05, rotate:1 }} className="w-80 md:w-96 h-80 md:h-96 bg-white/10 rounded-xl p-4 backdrop-blur-sm shadow-2xl">
+              <motion.div whileHover={{ scale:1.05 }} className="w-full max-w-xs sm:max-w-sm md:max-w-md bg-white/10 rounded-xl p-4 backdrop-blur-sm shadow-2xl">
                 <Bar
                   data={slides[currentSlide].chartData}
                   options={{
                     responsive: true,
-                    plugins: { legend: { labels: { color:"#fff", font:{ size:16 } } }, tooltip: { enabled:true } },
-                    scales: { x:{ ticks:{ color:"#fff", font:{ size:14 } } }, y:{ ticks:{ color:"#fff", font:{ size:14 } } } }
+                    plugins: { legend: { labels: { color:"#fff" } }, tooltip: { enabled:true } },
+                    scales: { x:{ ticks:{ color:"#fff" } }, y:{ ticks:{ color:"#fff" } } }
                   }}
                 />
               </motion.div>
             ) : slides[currentSlide].img ? (
-              <motion.img src={slides[currentSlide].img} alt="Illustration" className="w-80 md:w-96 h-80 md:h-96 object-contain rounded-2xl shadow-2xl" whileHover={{ scale:1.05, rotate:1 }} />
+              <motion.img src={slides[currentSlide].img} alt="Illustration" className="w-full max-w-xs sm:max-w-sm md:max-w-md object-contain rounded-2xl shadow-2xl" whileHover={{ scale:1.05 }} />
             ) : null}
           </motion.div>
         </motion.div>
       </AnimatePresence>
 
-      {/* Flèches */}
-      <motion.button whileHover={{ scale:1.1 }} whileTap={{ scale:0.95 }} onClick={prevSlide} className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white text-black px-5 py-3 rounded-lg shadow-lg opacity-80 hover:opacity-100">◀</motion.button>
-      <motion.button whileHover={{ scale:1.1 }} whileTap={{ scale:0.95 }} onClick={nextSlide} className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white text-black px-5 py-3 rounded-lg shadow-lg opacity-80 hover:opacity-100">▶</motion.button>
+      {/* Flèches conditionnelles */}
+      {showControls && (
+        <>
+          <motion.button whileHover={{ scale:1.1 }} whileTap={{ scale:0.95 }} onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white text-black px-4 py-2 rounded-lg shadow-lg opacity-80 hover:opacity-100">◀</motion.button>
+          <motion.button whileHover={{ scale:1.1 }} whileTap={{ scale:0.95 }} onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white text-black px-4 py-2 rounded-lg shadow-lg opacity-80 hover:opacity-100">▶</motion.button>
+        </>
+      )}
 
       {/* Progression */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-2/3 h-2 bg-white/30 rounded-full overflow-hidden">
-        <motion.div key={currentSlide} initial={{ width:0 }} animate={{ width:`${((currentSlide+1)/slides.length)*100}%` }} transition={{ duration:0.7, ease:"easeInOut" }} className="h-full bg-white rounded-full" />
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-3/4 h-2 bg-white/30 rounded-full overflow-hidden">
+        <motion.div key={currentSlide} initial={{ width:0 }} animate={{ width:`${((currentSlide+1)/slides.length)*100}%` }} transition={{ duration:0.7 }} className="h-full bg-white rounded-full" />
       </div>
 
       {/* Overlay subtil */}
