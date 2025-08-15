@@ -263,10 +263,10 @@ export default function ArtiVisioUltraPro() {
             initial={{ opacity:0, y:100, scale:0.95 }}
             animate={{ opacity:1, y:0, scale:1 }}
             transition={{ delay:0.5, duration:0.7 }}
-            className="md:w-1/2 mt-8 md:mt-0 flex justify-center relative sm:max-w-sm md:max-w-md lg:max-w-lg "
+            className="md:w-1/2 mt-4 md:mt-0 flex justify-center relative sm:max-w-sm md:max-w-md lg:max-w-lg "
           >
-            {currentSlide === 8 ? (
-              <motion.div className="w-full space-y-4">
+            {currentSlide === 7 ? (
+              <motion.div className="w-full space-y-2">
                 <h2 className="text-2xl sm:text-3xl font-bold text-center md:text-left">Contactez-nous</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {contactMethods.map((contact, idx) => {
