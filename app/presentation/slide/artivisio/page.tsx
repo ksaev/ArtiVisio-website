@@ -167,15 +167,40 @@ export default function ArtiVisioUltraPro() {
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
+const touchStartY = useRef(0);
+const touchEndY = useRef(0);
+
+
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
-  const handleTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
-  const handleTouchMove = (e: React.TouchEvent) => { touchEndX.current = e.touches[0].clientX; };
-  const handleTouchEnd = () => {
-    if (touchStartX.current - touchEndX.current > 50) nextSlide();
-    if (touchStartX.current - touchEndX.current < -50) prevSlide();
-  };
+
+const handleTouchStart = (e: React.TouchEvent) => {
+  touchStartX.current = e.touches[0].clientX;
+  touchStartY.current = e.touches[0].clientY;
+};
+
+const handleTouchMove = (e: React.TouchEvent) => {
+  touchEndX.current = e.touches[0].clientX;
+  touchEndY.current = e.touches[0].clientY;
+};
+
+const handleTouchEnd = () => {
+  const deltaX = touchEndX.current - touchStartX.current;
+  const deltaY = touchEndY.current - touchStartY.current;
+
+  // Seulement si déplacement horizontal assez fort
+  if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {
+    if (deltaX > 0) {
+      // swipe right
+      prevSlide();
+    } else {
+      // swipe left
+      nextSlide();
+    }
+  }
+};
+
 
   const exportPDF = () => {
     const link = document.createElement("a");
