@@ -12,95 +12,119 @@ export default function PortfoliosPage() {
   const { t } = useLanguage()
   const [activeFilter, setActiveFilter] = useState("all")
 
+
   const portfolioItems = [
     {
       id: 1,
-      title: "Portfolio Designer UX/UI",
-      client: "Marie Dubois",
+      title: "Full-stack Developer & UI/UX",
+      client: "Alex Martin",
       category: "portfolio",
-      image: "/placeholder.svg?height=300&width=400",
-      description: "Portfolio interactif pour designer UX/UI avec galerie de projets et animations modernes",
-      link: "#",
-      tags: ["Design", "UX/UI", "Portfolio"],
+      image: "/projet-freelance.png",
+      description: "Portfolio immersif et interactif valorisant l’expertise digitale avec animations fluides et design premium.",
+      link: "https://alex-martin.artivisio.com",
+      tags: ["Website", "Consulting", "Landing"],
+
     },
     {
       id: 2,
-      title: "CV Développeur Full-Stack",
-      client: "Thomas Martin",
+      title: "CV Commercial",
+      client: "Franck Olivier",
       category: "cv",
-      image: "/placeholder.svg?height=300&width=400",
-      description: "CV moderne et technique avec section projets et compétences interactives",
-      link: "#",
-      tags: ["Développement", "CV", "Tech"],
+      image: "/CVP.webp",
+      description: "CV moderne et percutant avec présentation claire des projets et compétences interactives.",
+      link: "/CVP.webp",
+      tags: ["Website", "Consulting", "Landing"],
+
     },
     {
       id: 3,
-      title: "Identité Visuelle Startup",
-      client: "TechFlow",
+      title: "Carte Connectée - ArtiVisio",
+      client: "ArtiVisio",
       category: "branding",
-      image: "/placeholder.svg?height=300&width=400",
-      description: "Création complète d'identité visuelle pour startup technologique",
-      link: "#",
-      tags: ["Branding", "Logo", "Startup"],
+      image: "/carte-arti.webp",
+      description: "Carte de visite premium avec QR Code intégré offrant un accès instantané aux services ArtiVisio.",
+      link: "carte-visite.webp",
+      tags: ["Website", "Consulting", "Landing"],
+
     },
     {
       id: 4,
-      title: "Landing Page Consultant",
-      client: "Pierre Rousseau",
-      category: "website",
-      image: "/placeholder.svg?height=300&width=400",
-      description: "Page de présentation professionnelle pour consultant en stratégie",
-      link: "#",
+      title: "CV Moderne Anglais",
+      client: "Samira Benali",
+      category: "cv",
+      image: "/CV-F.webp",
+      description: "CV élégant en anglais pensé pour l’impact international et une présentation professionnelle soignée.",
+      link: "/CV-F.webp",
       tags: ["Website", "Consulting", "Landing"],
+
     },
     {
       id: 5,
-      title: "Portfolio Photographe",
-      client: "Sophie Laurent",
-      category: "portfolio",
-      image: "/placeholder.svg?height=300&width=400",
-      description: "Galerie photo immersive avec système de filtres et lightbox",
-      link: "#",
-      tags: ["Photographie", "Galerie", "Portfolio"],
+      title: "CV Moderne ",
+      client: "Malick Sow",
+      category: "cv",
+      image: "/CVPro.webp",
+      description: "CV élégant en anglais pensé pour l’impact international et une présentation professionnelle soignée.",
+      link: "/CVPro.webp",
+      tags: ["Website", "Consulting", "Landing"],
+
     },
     {
       id: 6,
-      title: "CV Créatif Marketing",
-      client: "Lucas Bernard",
-      category: "cv",
-      image: "/placeholder.svg?height=300&width=400",
-      description: "CV créatif pour professionnel du marketing avec infographies",
-      link: "#",
-      tags: ["Marketing", "CV", "Créatif"],
+      title: "Lettre de motivation Moderne ",
+      client: "Jean François",
+      category: "LM",
+      image: "/images/realisations/LmPro.jpg",
+      description: "Lettre de motivation pour une présentation professionnelle soignée et impactante",
+      link: "/documents/realisations/Lettre_de_Motivation_jean_francois__.pdf",
+      tags: ["Website", "Consulting", "Landing"],
+
     },
     {
       id: 7,
-      title: "Site E-commerce",
-      client: "Boutique Afrique",
-      category: "website",
-      image: "/placeholder.svg?height=300&width=400",
-      description: "Site e-commerce complet pour produits artisanaux africains",
-      link: "#",
-      tags: ["E-commerce", "Afrique", "Artisanat"],
+      title: "Experte RH & Capital Humain  ",
+      client: "Samira Benali",
+      category: "portfolio",
+      image: "/portfolioFemmeBlanc.webp",
+      description: "Portfolio clair et raffiné mettant en valeur l’expérience et la crédibilité en recrutement.",
+      link: "https://samira-benali.artivisio.com/",
+      tags: ["Website", "Consulting", "Landing"],
+
     },
     {
       id: 8,
-      title: "Branding Restaurant",
-      client: "Saveurs d'Abidjan",
-      category: "branding",
-      image: "/placeholder.svg?height=300&width=400",
-      description: "Identité visuelle complète pour restaurant traditionnel",
-      link: "#",
-      tags: ["Restaurant", "Branding", "Tradition"],
+      title: "Présentation Interactive & Dynamique",
+      client: "ArtiVisio",
+      category: "presentation",
+      image: "/images/presentation/slide.png",
+      description: "Diaporama fluide avec animations, graphiques et contact, conçu pour capter l’attention et convertir.",
+      link: "https://dev.artivisio.com/presentation/slide/artivisio",
+      tags: ["Website", "Consulting", "Landing"],
+
     },
-  ]
+
+    {
+      id: 9,
+      title: "CV Professionnel Moderne ",
+      client: "Henri Felix",
+      category: "cv",
+      image: "images/realisations/CV_HENRI_FELIX.jpg",
+      description: "CV élégant en anglais pensé pour l’impact international et une présentation professionnelle soignée.",
+      link: "images/realisations/CV_HENRI_FELIX.jpg",
+      tags: ["Website", "Consulting", "Landing"],
+
+    },
+
+  ];
+
 
   const filters = [
     { id: "all", label: "Tous les projets" },
     { id: "cv", label: "CV" },
+    { id: "LM", label: "Lettre de Motivation" },
     { id: "portfolio", label: "Portfolios" },
     { id: "branding", label: "Branding" },
-    { id: "website", label: "Sites Web" },
+    { id: "presentation", label: "Présentation" },
   ]
 
   const filteredItems =
@@ -144,7 +168,7 @@ export default function PortfoliosPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Découvrez nos créations qui ont aidé nos clients à se démarquer professionnellement en Afrique
+              Découvrez quelques-unes de nos créations qui ont aidé nos clients à se démarquer professionnellement en Afrique
             </p>
           </motion.div>
         </div>
@@ -201,18 +225,25 @@ export default function PortfoliosPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 right-4 flex gap-2">
-                        <Button size="sm" className="bg-white/90 text-gray-800 hover:bg-white">
-                          <Eye className="h-4 w-4 mr-1" />
-                          Voir
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="bg-white/90 border-white/90 text-gray-800 hover:bg-white"
-                        >
-                          <ExternalLink className="h-4 w-4 mr-1" />
-                          Visiter
-                        </Button>
+                          <div className="absolute bottom-4 left-4 right-4 flex gap-2">
+                            <a
+                              href={item.link}
+                              target="_self"
+                              className="inline-flex items-center px-3 py-1.5 bg-white/90 text-gray-800 hover:bg-white text-sm rounded"
+                            >
+                              <Eye className="h-4 w-4 mr-1" />
+                              Voir
+                            </a>
+                            <a
+                              href={item.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center px-3 py-1.5 bg-white/90 text-gray-800 hover:bg-white text-sm rounded"
+                            >
+                              <ExternalLink className="h-4 w-4 mr-1" />
+                              Visiter
+                            </a>
+                          </div>
                       </div>
                     </div>
                     <div className="absolute top-4 left-4">
