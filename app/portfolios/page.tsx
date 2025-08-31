@@ -41,9 +41,9 @@ export default function PortfoliosPage() {
       title: "CV Moderne ",
       client: "Malick Sow",
       category: "cv",
-      image: "/CVP.webp",
+      image: "/CVpro.webp",
       description: "CV élégant en anglais pensé pour l’impact international et une présentation professionnelle soignée.",
-      link: "/CVP.webp",
+      link: "/CVpro.webp",
       tags: ["Website", "Consulting", "Landing"],
 
     },
