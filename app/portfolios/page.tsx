@@ -38,15 +38,16 @@ export default function PortfoliosPage() {
     },
     {
       id: 3,
-      title: "Carte Connectée - ArtiVisio",
-      client: "ArtiVisio",
-      category: "branding",
-      image: "/carte-arti.webp",
-      description: "Carte de visite premium avec QR Code intégré offrant un accès instantané aux services ArtiVisio.",
-      link: "carte-visite.webp",
+      title: "CV Moderne ",
+      client: "Malick Sow",
+      category: "cv",
+      image: "/CVPro.webp",
+      description: "CV élégant en anglais pensé pour l’impact international et une présentation professionnelle soignée.",
+      link: "/CVPro.webp",
       tags: ["Website", "Consulting", "Landing"],
 
     },
+
     {
       id: 4,
       title: "CV Moderne Anglais",
@@ -58,17 +59,19 @@ export default function PortfoliosPage() {
       tags: ["Website", "Consulting", "Landing"],
 
     },
+
     {
       id: 5,
-      title: "CV Moderne ",
-      client: "Malick Sow",
-      category: "cv",
-      image: "/CVPro.webp",
-      description: "CV élégant en anglais pensé pour l’impact international et une présentation professionnelle soignée.",
-      link: "/CVPro.webp",
+      title: "Carte Connectée - ArtiVisio",
+      client: "ArtiVisio",
+      category: "branding",
+      image: "/carte-arti.webp",
+      description: "Carte de visite premium avec QR Code intégré offrant un accès instantané aux services ArtiVisio.",
+      link: "carte-visite.webp",
       tags: ["Website", "Consulting", "Landing"],
 
     },
+
     {
       id: 6,
       title: "Lettre de motivation Moderne ",
