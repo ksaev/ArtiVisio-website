@@ -19,8 +19,8 @@ const translations = {
     // Navigation
     "nav.home": "Accueil",
     "nav.services": "Services",
-    "nav.creation": "Créations",
     "nav.coaching": "Coaching",
+    "nav.creation": "Créations",
     "nav.jobs": "Offres d'emploi",
     "nav.contact": "Contact",
     "nav.start": "Rejoignez-nous",
@@ -350,8 +350,8 @@ const translations = {
     // Navigation
     "nav.home": "Home",
     "nav.services": "Services",
-    "nav.creation": "Creations",
     "nav.coaching": "Coaching",
+    "nav.creation": "Creations",
     "nav.jobs": "Jobs",
     "nav.contact": "Contact",
     "nav.start": "Join Us",

@@ -28,8 +28,19 @@ export default function Portfolio() {
       description: "CV moderne et percutant avec présentation claire des projets et compétences interactives.",
       link: "/CVP.webp",
     },
+
     {
       id: 3,
+      title: "Lettre de motivation Moderne ",
+      client: "Jean François",
+      category: "Lettre de motivation",
+      image: "/images/realisations/LmPro.jpg",
+      description: "Lettre de motivation pour une présentation professionnelle soignée et impactante",
+      link: "/documents/realisations/Lettre_de_Motivation_jean_francois__.pdf",
+    },
+
+    {
+      id: 4,
       title: "Carte Connectée - ArtiVisio",
       client: "ArtiVisio",
       category: "Branding & Innovation",
@@ -37,15 +48,7 @@ export default function Portfolio() {
       description: "Carte de visite premium avec QR Code intégré offrant un accès instantané aux services ArtiVisio.",
       link: "carte-visite.webp",
     },
-    {
-      id: 4,
-      title: "CV Moderne Anglais",
-      client: "Samira Benali",
-      category: "CV Professionnel",
-      image: "/CV-F.webp",
-      description: "CV élégant en anglais pensé pour l’impact international et une présentation professionnelle soignée.",
-      link: "/CV-F.webp",
-    },
+
     {
       id: 5,
       title: "Experte RH & Capital Humain  ",

@@ -81,7 +81,6 @@ export default function PortfoliosPage() {
       description: "Lettre de motivation pour une présentation professionnelle soignée et impactante",
       link: "/documents/realisations/Lettre_de_Motivation_jean_francois__.pdf",
       tags: ["Website", "Consulting", "Landing"],
-
     },
     {
       id: 7,
@@ -171,7 +170,7 @@ export default function PortfoliosPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Découvrez quelques-unes de nos créations qui ont aidé nos clients à se démarquer professionnellement en Afrique
+              Découvrez quelques-unes de nos créations qui ont aidé nos clients à se démarquer professionnellement.
             </p>
           </motion.div>
         </div>
