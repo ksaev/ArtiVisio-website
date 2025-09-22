@@ -8,8 +8,8 @@ export default function LinkedInOptimization() {
   const { t } = useLanguage();
 
   return (
-    <Container className="bg-white py-16 px-6 md:px-12 lg:px-24 max-w-5xl mx-auto rounded-md shadow-md ">
-      <Title className="mb-6">{t("blog.optimisationLinkedIn.title")}</Title>
+    <Container className="bg-white py-24 px-6 md:px-12 lg:px-24 max-w-5xl mx-auto rounded-md shadow-md ">
+      <Title className="mb-6 pt-2">{t("blog.optimisationLinkedIn.title")}</Title>
       <Paragraph className="mb-8 text-gray-700">{t("blog.optimisationLinkedIn.intro")}</Paragraph>
 
       <Section className="mb-8">

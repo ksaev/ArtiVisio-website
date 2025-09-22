@@ -8,8 +8,8 @@ export default function InspiringPortfolios() {
   const { t } = useLanguage();
 
   return (
-    <Container className="bg-white py-16 px-6 md:px-12 lg:px-24 max-w-5xl mx-auto rounded-md shadow-md pt-40">
-      <Title className="mb-6">{t("blog.portfoliosInspirants.title")}</Title>
+    <Container className=" py-24 px-6 md:px-12 lg:px-24 max-w-5xl mx-auto rounded-md shadow-md pt-40">
+      <Title className="mb-6 pt-2">{t("blog.portfoliosInspirants.title")}</Title>
       <Paragraph className="mb-8 text-gray-700">{t("blog.portfoliosInspirants.intro")}</Paragraph>
 
       <Section className="mb-8">

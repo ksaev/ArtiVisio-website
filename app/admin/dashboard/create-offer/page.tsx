@@ -107,7 +107,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-4xl mx-auto px-6 py-12 pt-20">
       <Card className="shadow-xl bg-[#FAF6F1] border border-[#8B5E3C] rounded-2xl">
         <CardContent className="p-8 space-y-6">
           <h1 className="text-4xl text-center font-bold text-[#8B5E3C] mb-2">

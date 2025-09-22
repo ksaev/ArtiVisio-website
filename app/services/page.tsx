@@ -338,18 +338,21 @@ const points = [
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
             viewport={{ once: true }}
-            className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center gap-8"
-          >
-          {/* Image à gauche */}
-          <div className="flex-1 flex justify-center">
+            className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center "
+                  >
+        {/* Image VIP Premium */}
+        <div className="relative mb-6 sm:flex-1 flex justify-center mr-6">
+          <div className="relative border border-amber-500/40 bg-gradient-to-br from-white/70 via-amber-50/60 to-amber-100/40 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden p-4 hover:scale-[1.02] transition-transform duration-500">
             <Image
-              src="/solution.webp"
+              src="/ScanSolution.webp"
               alt="Solutions digitales ArtiVisio"
-              width={200}
-              height={200}
-              className="w-full max-w-sm sm:max-w-sm md:max-w-md object-contain"
+              width={320}
+              height={320}
+              className="rounded-xl object-contain"
             />
           </div>
+        </div>
+
 
           {/* Texte à gdroite */}
           <div className="flex-1 text-center md:text-left space-y-4">
@@ -357,16 +360,33 @@ const points = [
               Des documents qui parlent pour vous.
             </h2>
             <p className="text-start sm:text-start text-muted-foreground ">
-            <span className="font-bold justify-center">CV, rapports, présentations, lettres de motivation, portfolios, dossiers de candidature, supports administratifs ou commerciaux…</span>
+            <span className="font-bold justify-center text-amber-600">CV, rapports, présentations, lettres de motivation, portfolios, dossiers de candidature, supports administratifs ou commerciaux…</span>
             <br/>
             Chez ArtiVisio, nous valorisons tous les documents qui portent votre image professionnelle. Chaque livrable est pensé pour convaincre, structurer votre message, et projeter une image de rigueur, de clarté et d’ambition.</p>
           </div>
 
         </motion.div>
 
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center justify-center"
+          >
+
         <div className="text-center">
             <h2 className="text-2xl font-bold text-primary">Pourquoi nos clients ne reviennent jamais en arrière ?</h2>
         </div>
+        </motion.div>
+
+         <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center justify-center"
+          >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
 
           {points.map((point, index) => {
@@ -388,8 +408,8 @@ const points = [
               </div>
             )
           })}
-
         </div>
+        </motion.div>
       </Container>
     </section>      
 
