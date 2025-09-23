@@ -7,61 +7,63 @@ import Image from "next/image"
 
 export default function Testimonials() {
   const testimonials = [
-    {
-      id: 1,
-      name: "Marie Dubois",
-      role: "Designer UX/UI",
-      company: "TechCorp",
-      avatar: "/placeholder.svg?height=80&width=80",
-      rating: 5,
-      text: "Artivisio a transformé ma présence professionnelle. Mon nouveau portfolio m'a permis de décrocher le poste de mes rêves en moins d'un mois !",
-    },
-    {
-      id: 2,
-      name: "Thomas Martin",
-      role: "Développeur Full-Stack",
-      company: "StartupXYZ",
-      avatar: "/placeholder.svg?height=80&width=80",
-      rating: 5,
-      text: "Le CV créé par l'équipe est exceptionnel. Design moderne, contenu optimisé, j'ai reçu 3 fois plus de réponses à mes candidatures.",
-    },
-    {
-      id: 3,
-      name: "Sophie Laurent",
-      role: "Photographe",
-      company: "Freelance",
-      avatar: "/placeholder.svg?height=80&width=80",
-      rating: 5,
-      text: "Mon portfolio photo est magnifique ! Les clients sont impressionnés par la qualité et l'expérience utilisateur. Mes ventes ont augmenté de 40%.",
-    },
-    {
-      id: 4,
-      name: "Pierre Rousseau",
-      role: "Consultant Stratégie",
-      company: "Conseil & Co",
-      avatar: "/placeholder.svg?height=80&width=80",
-      rating: 5,
-      text: "Service professionnel et résultats au-delà de mes attentes. Ma landing page génère maintenant 5 nouveaux prospects par semaine.",
-    },
-    {
-      id: 5,
-      name: "Lucas Bernard",
-      role: "Marketing Manager",
-      company: "GrowthCorp",
-      avatar: "/placeholder.svg?height=80&width=80",
-      rating: 5,
-      text: "L'équipe Artivisio comprend parfaitement les enjeux du marketing moderne. Mon identité visuelle est parfaitement alignée avec ma stratégie.",
-    },
-    {
-      id: 6,
-      name: "Emma Moreau",
-      role: "Chef de Projet",
-      company: "InnovTech",
-      avatar: "/placeholder.svg?height=80&width=80",
-      rating: 5,
-      text: "Accompagnement personnalisé et expertise technique remarquable. Je recommande vivement Artivisio pour tous vos projets professionnels.",
-    },
-  ]
+  {
+    id: 1,
+    name: "AHIRI JEANNE",
+    role: "Comptable",
+    company: "Cabinet ABUNDANCE CONSULTING",
+    avatar: "/images/temoignages/temoignage1.jpg", // vrai portrait si possible
+    rating: 5,
+    text: "Grâce au CV professionnel réalisé par Artivisio, j’ai pu décrocher un poste stable en cabinet. Mon profil est désormais clair et structuré.",
+  },
+  {
+    id: 2,
+    name: "KOUADIO SERGE",
+    role: "Développeur Web",
+    company: "Freelance – Abidjan",
+    avatar: "", // pas de photo
+    rating: 5,
+    text: "L’accompagnement m’a permis de créer un portfolio interactif qui impressionne mes clients. J’ai pu doubler mes contrats en trois mois.",
+  },
+  {
+    id: 3,
+    name: "DIANE FÉLICITÉ",
+    role: "Assistante Logistique Débutante",
+    company: "Abidjan, Côte d’Ivoire",
+    avatar: "/images/temoignages/temoignage2.jpg", 
+    rating: 5,
+    text: "Après l’accompagnement complet d’Artivisio, j’ai pu structurer mon profil et décrocher en un temps record plusieurs entretiens. Leur soutien m’a donné confiance et a mis en valeur mes compétences en logistique.",
+  },
+  {
+    id: 4,
+    name: "MARIAM OUEDRAOGO",
+    role: "Entrepreneure",
+    company: "Ouaga Digital Services",
+    avatar: "", // pas de photo
+    rating: 5,
+    text: "Artivisio m’a aidée à lancer une landing page claire et efficace. Aujourd’hui, j’attire de nouveaux clients chaque semaine sans publicité coûteuse.",
+  },
+  {
+    id: 5,
+    name: "N'da Franck Olivier",
+    role: "Technicien laboratoire ",
+    company: "clinique polymed",
+    avatar: "/images/temoignages/temoignage4.jpg", 
+    rating: 5,
+    text: "Grâce à l'accompagnement d'Artivisio, j'ai restructuré mon CV et décroché un entretien en moins d'un mois.",
+  },
+  {
+    id: 6,
+    name: "KOUASSI AYA DIANE",
+    role: "Commerciale BtoB",
+    company: "Entreprise d’équipements pétroliers, Abidjan",
+    avatar: "/images/temoignages/temoignage3.jpg", 
+    rating: 5,
+    text: "Artivisio m’a aidée à structurer mon profil et à valoriser mes compétences. Je gère désormais mes clients et mes devis avec plus d’efficacité."
+  }
+  ,
+];
+
 
   const containerVariants = {
     hidden: { opacity: 0 },

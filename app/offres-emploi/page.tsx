@@ -261,7 +261,7 @@ export default function OffresEmploiPage() {
           >
 
           <p className="text-lg pb-6 text-center  text-gray-600 max-w-3xl">
-            Publiez vos offres d'emploi et trouvez les meilleurs talents d'Afrique francophone.
+            Publiez vos offres d'emploi et trouvez les meilleurs talents au monde.
           </p>
           <a href="/add-offres">
           <Button
@@ -385,7 +385,7 @@ export default function OffresEmploiPage() {
           >
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">Vous recrutez ?</h2>
             <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
-              Publiez vos offres d'emploi et trouvez les meilleurs talents d'Afrique francophone
+              Publiez vos offres d'emploi et trouvez les meilleurs talents au monde.
             </p>
             <Link href="/add-offres">
             <Button className="bg-white text-amber-700 hover:bg-gray-100 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">

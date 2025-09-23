@@ -95,24 +95,35 @@ useEffect(() => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
-
   const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email) return toast.error("Veuillez entrer votre adresse e-mail.")
+      e.preventDefault();
+      if (!email) return toast.error("Veuillez entrer votre adresse e-mail.");
 
-    const loadingToast = toast.loading("Envoi en cours...")
+      const loadingToast = toast.loading("Envoi en cours...");
 
-    try {
-      toast.success(`🎉 Merci pour votre inscription, ${email} !`, {
-        id: loadingToast,
-      })
-      setEmail("")
-    } catch (err) {
-      toast.error("Une erreur est survenue. Veuillez réessayer.", {
-        id: loadingToast,
-      })
-    }
-  }
+      try {
+        // Appel à l'API POST
+        const res = await fetch("/api/newsletter", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error || "Erreur serveur");
+
+        toast.success(`🎉 Merci pour votre inscription, ${email} !`, {
+          id: loadingToast,
+        });
+        setEmail("");
+      } catch (err: any) {
+        toast.error(err.message || "Une erreur est survenue. Veuillez réessayer.", {
+          id: loadingToast,
+        });
+      }
+    };
+
 
   return (
     <footer className="bg-gray-900 text-white">

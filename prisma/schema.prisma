@@ -33,3 +33,11 @@ model JobOffer {
   shareCount   Int?     @default(0)
   link         String
 }
+
+model Newsletter {
+
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())  
+
+}

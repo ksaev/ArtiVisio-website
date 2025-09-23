@@ -207,7 +207,7 @@ export default function CoachingPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Développez votre présence professionnelle et accélérez votre carrière en Afrique francophone
+              Développez votre présence professionnelle et accélérez votre carrière en Afrique et à l’international.
             </p>
           </motion.div>
         </div>
