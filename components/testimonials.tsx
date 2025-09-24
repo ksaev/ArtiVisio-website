@@ -18,12 +18,12 @@ export default function Testimonials() {
   },
   {
     id: 2,
-    name: "KOUADIO SERGE",
-    role: "Développeur Web",
-    company: "Freelance – Abidjan",
-    avatar: "", // pas de photo
+    name: "ROMARIC MANGOUA",
+    role: "Commercial B to B solution IT & cybersecurité",
+    company: "Infinity Africa Technology",
+    avatar: "/images/temoignages/temoignage5.jpg", // vrai portrait si possible
     rating: 5,
-    text: "L’accompagnement m’a permis de créer un portfolio interactif qui impressionne mes clients. J’ai pu doubler mes contrats en trois mois.",
+    text: "Je tiens à vous remercier pour votre accompagnement. Grâce à ArtiVisio, j’ai pu décrocher mon emploi actuel. J’ai beaucoup apprécié la clarté de vos offres et la qualité de nos échanges. Votre soutien a été déterminant.",
   },
   {
     id: 3,
@@ -75,16 +75,16 @@ export default function Testimonials() {
     },
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
+    const itemVariants = {
+      hidden: { opacity: 0, y: 30 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+        },
       },
-    },
-  }
+    }
 
   return (
     <section className="py-20 bg-white/50" id="testimonials">
