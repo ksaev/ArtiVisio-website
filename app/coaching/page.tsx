@@ -116,15 +116,26 @@ export default function CoachingPage() {
   ]
 
   const testimonials = [
-    {
-      name: "Marie-Claire Kouassi",
-      role: "Chef de Projet IT",
-      company: "Orange CI",
-      content:
-        "Grâce au coaching, j'ai obtenu une promotion en 6 mois et augmenté mon salaire de 35%. L'accompagnement était parfaitement adapté à mes besoins.",
-      rating: 5,
-      image: "/placeholder.svg?height=60&width=60",
-    },
+
+  {
+    name: "AHIRI JEANNE",
+    role: "Comptable",
+    company: "Cabinet ABUNDANCE CONSULTING",
+    image: "/images/temoignages/temoignage1.jpg", 
+    rating: 5,
+    
+    content: "Ce coaching m’a appris à mieux valoriser mon profil. Avec les conseils pratiques pour mon CV et mes entretiens, j’ai rapidement trouvé un nouvel emploi. Un vrai accélérateur de carrière !",
+  },
+  {
+    name: "ROMARIC MANGOUA",
+    role: "Commercial B to B solution IT & cybersecurité",
+    company: "Infinity Africa Technology",
+    image: "/images/temoignages/temoignage5.jpg",
+    rating: 5,
+    content: "Merci pour votre accompagnement. Grâce à ArtiVisio, j’ai décroché mon emploi actuel. J’ai apprécié la clarté des offres et la qualité des échanges. Votre soutien a été déterminant.",
+  },
+
+
     {
       name: "Seydou Traoré",
       role: "Consultant Indépendant",
@@ -134,15 +145,7 @@ export default function CoachingPage() {
       rating: 5,
       image: "/placeholder.svg?height=60&width=60",
     },
-    {
-      name: "Aïcha Diallo",
-      role: "Directrice Marketing",
-      company: "Ecobank",
-      content:
-        "La préparation aux entretiens a été décisive. J'ai décroché le poste de mes rêves dès le premier entretien grâce aux techniques apprises.",
-      rating: 5,
-      image: "/placeholder.svg?height=60&width=60",
-    },
+
   ]
 
   const faqs = [

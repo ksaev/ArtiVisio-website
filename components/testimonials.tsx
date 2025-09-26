@@ -12,7 +12,7 @@ export default function Testimonials() {
     name: "AHIRI JEANNE",
     role: "Comptable",
     company: "Cabinet ABUNDANCE CONSULTING",
-    avatar: "/images/temoignages/temoignage1.jpg", // vrai portrait si possible
+    avatar: "/images/temoignages/temoignage1.jpg", 
     rating: 5,
     text: "Grâce au CV professionnel réalisé par Artivisio, j’ai pu décrocher un poste stable en cabinet. Mon profil est désormais clair et structuré.",
   },
@@ -21,9 +21,9 @@ export default function Testimonials() {
     name: "ROMARIC MANGOUA",
     role: "Commercial B to B solution IT & cybersecurité",
     company: "Infinity Africa Technology",
-    avatar: "/images/temoignages/temoignage5.jpg", // vrai portrait si possible
+    avatar: "/images/temoignages/temoignage5.jpg", 
     rating: 5,
-    text: "Je tiens à vous remercier pour votre accompagnement. Grâce à ArtiVisio, j’ai pu décrocher mon emploi actuel. J’ai beaucoup apprécié la clarté de vos offres et la qualité de nos échanges. Votre soutien a été déterminant.",
+    text: "Merci pour votre accompagnement. Grâce à ArtiVisio, j’ai décroché mon emploi actuel. J’ai apprécié la clarté des offres et la qualité des échanges. Votre soutien a été déterminant.",
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ export default function Testimonials() {
   },
   {
     id: 5,
-    name: "N'da Franck Olivier",
+    name: "N'DA FRANCK OLIVIER",
     role: "Technicien laboratoire ",
     company: "clinique polymed",
     avatar: "/images/temoignages/temoignage4.jpg", 

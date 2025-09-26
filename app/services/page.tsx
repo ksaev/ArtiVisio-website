@@ -331,90 +331,109 @@ const points = [
         </div>
 
 
-    <section className="bg-muted/40 py-12 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
-      <Container className="space-y-12 max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center "
-                  >
-        {/* Image VIP Premium */}
-        <div className="relative mb-6 sm:flex-1 flex justify-center mr-6">
-          <div className="relative border border-amber-500/40 bg-gradient-to-br from-white/70 via-amber-50/60 to-amber-100/40 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden p-4 hover:scale-[1.02] transition-transform duration-500">
-            <Image
-              src="/ScanSolution.webp"
-              alt="Solutions digitales ArtiVisio"
-              width={320}
-              height={320}
-              className="rounded-xl object-contain"
-            />
+    <section className="bg-muted/40 py-16 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
+      <Container className="space-y-16 max-w-6xl">
+        {/* Bloc image + texte */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center gap-10"
+        >
+          {/* Image gauche */}
+          <div className="relative flex justify-center sm:flex-1">
+            <div className="relative before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-tr before:from-amber-200/40 before:to-amber-50/20 rounded-2xl p-4 bg-white/70 backdrop-blur-xl shadow-lg shadow-amber-100/50 hover:rotate-1 hover:-translate-y-1 hover:scale-[1.02] transition-all duration-500">
+              <Image
+                src="/ScanSolution.webp"
+                alt="Solutions digitales ArtiVisio"
+                width={340}
+                height={340}
+                className="rounded-xl object-contain relative z-10"
+              />
+            </div>
           </div>
-        </div>
 
-
-          {/* Texte à gdroite */}
-          <div className="flex-1 text-center md:text-left space-y-4">
-            <h2 className="text-xl font-bold text-primary">
+          {/* Texte droite */}
+          <div className="flex-1 text-center md:text-left space-y-6">
+            <h2 className="text-2xl font-extrabold tracking-tight text-primary">
               Des documents qui parlent pour vous.
             </h2>
-            <p className="text-start sm:text-start text-muted-foreground ">
-            <span className="font-bold justify-center text-amber-600">CV, rapports, présentations, lettres de motivation, portfolios, dossiers de candidature, supports administratifs ou commerciaux…</span>
-            <br/>
-            Chez ArtiVisio, nous valorisons tous les documents qui portent votre image professionnelle. Chaque livrable est pensé pour convaincre, structurer votre message, et projeter une image de rigueur, de clarté et d’ambition.</p>
-          </div>
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              <span className="bg-amber-100 text-amber-700 px-1 rounded font-semibold">
+                CV, rapports, présentations, lettres de motivation, portfolios,
+                dossiers de candidature, supports administratifs ou commerciaux…
+              </span>
+              <br />
+              Chez <span className="font-bold text-primary">ArtiVisio</span>, nous
+              valorisons tous les documents qui portent votre image professionnelle.
+              Chaque livrable est pensé pour convaincre, structurer votre message et
+              projeter une image de rigueur, de clarté et d’ambition.
+            </p>
 
-        </motion.div>
-
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center justify-center"
-          >
-
-        <div className="text-center">
-            <h2 className="text-2xl font-bold text-primary">Pourquoi nos clients ne reviennent jamais en arrière ?</h2>
-        </div>
-        </motion.div>
-
-         <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-6xl px-4 py-8 flex flex-col md:flex-row items-center justify-center"
-          >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
-
-          {points.map((point, index) => {
-            const Icon = point.icon
-            return (
-              <div
-                key={index}
-                className="group p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col gap-3"
+            {/* CTA */}
+            
+            <div className="pt-4">
+              <a
+                href="#tarifs" // ancre vers ta section tarifs
+                className="inline-block bg-amber-100 hover:bg-amber-200 text-amber-700 font-semibold px-6 py-3 rounded-lg shadow-sm transition-all duration-300"
               >
-                <div className="flex items-center gap-3">
-                  <Icon className="h-6 w-6 text-amber-600 group-hover:text-primary transition-colors" />
-                  <h3 className="text-lg sm:text-lg font-semibold group-hover:text-primary transition-colors">
-                    {point.title}
-                  </h3>
+                Voir nos offres professionnelles
+              </a>
+            </div>
+
+          </div>
+        </motion.div>
+
+        {/* Bloc titre central */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-3xl text-center px-4"
+        >
+          <h2 className="text-3xl font-extrabold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">
+            Pourquoi nos clients ne reviennent jamais en arrière ?
+          </h2>
+        </motion.div>
+
+        {/* Bloc points */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-6xl px-4"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {points.map((point, index) => {
+              const Icon = point.icon
+              return (
+                <div
+                  key={index}
+                  className="group p-8 rounded-2xl bg-gradient-to-br from-white to-amber-50/30 shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col gap-4"
+                >
+                  <div className="flex items-center gap-3">
+                    <Icon className="h-7 w-7 text-amber-600 group-hover:text-primary transition-colors" />
+                    <h3 className="text-lg font-semibold relative group-hover:text-primary transition-colors">
+                      {point.title}
+                      <span className="block w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
+                    </h3>
+                  </div>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    {point.description}
+                  </p>
                 </div>
-                <p className="mt-2 text-base text-muted-foreground">
-                  {point.description}
-                </p>
-              </div>
-            )
-          })}
-        </div>
+              )
+            })}
+          </div>
         </motion.div>
       </Container>
-    </section>      
-
+    </section>
+   
       {/* Bloc 1 : Services classiques */}
-      <section className="py-20 ">
+      <section id="tarifs" className="py-20 ">
          <motion.div
             className="text-center text-white"
             initial={{ opacity: 0, y: 30 }}
