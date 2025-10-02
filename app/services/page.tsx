@@ -393,7 +393,7 @@ const points = [
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center px-4"
         >
-          <h2 className="text-3xl font-extrabold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">
+          <h2 className="text-2xl font-extrabold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent">
             Pourquoi nos clients ne reviennent jamais en arrière ?
           </h2>
         </motion.div>

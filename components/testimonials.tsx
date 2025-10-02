@@ -14,7 +14,7 @@ export default function Testimonials() {
     company: "Cabinet ABUNDANCE CONSULTING",
     avatar: "/images/temoignages/temoignage1.jpg", 
     rating: 5,
-    text: "Grâce au CV professionnel réalisé par Artivisio, j’ai pu décrocher un poste stable en cabinet. Mon profil est désormais clair et structuré.",
+    text: "Leur approche en personal branding m’a permis de mieux mettre en avant mes compétences sur LinkedIn. J’ai gagné en visibilité et renforcé mon image professionnelle.",
   },
   {
     id: 2,
@@ -27,24 +27,35 @@ export default function Testimonials() {
   },
   {
     id: 3,
-    name: "DIANE FÉLICITÉ",
-    role: "Assistante Logistique Débutante",
-    company: "Abidjan, Côte d’Ivoire",
-    avatar: "/images/temoignages/temoignage2.jpg", 
+    name: "LAURETTE BLIN",
+    role: "Conseiller client",
+    company: "7 days group",
+    avatar: "/images/temoignages/temoignage6.jpg", 
     rating: 5,
-    text: "Après l’accompagnement complet d’Artivisio, j’ai pu structurer mon profil et décrocher en un temps record plusieurs entretiens. Leur soutien m’a donné confiance et a mis en valeur mes compétences en logistique.",
+    text: "Au-delà des services, j’ai surtout apprécié le réseau et les conseils pratiques. ArtiVisio m’a ouvert des perspectives nouvelles et m’a aidé à franchir un cap dans ma vie pro.",
   },
+
   {
     id: 4,
-    name: "MARIAM OUEDRAOGO",
-    role: "Entrepreneure",
-    company: "Ouaga Digital Services",
-    avatar: "", // pas de photo
+    name: "KOUASSI LAMBERT MEDARD",
+    role: "Assistant comptable",
+    company: "KS Côte d’Ivoire",
+    avatar: "/images/temoignages/temoignage7.jpg", 
     rating: 5,
-    text: "Artivisio m’a aidée à lancer une landing page claire et efficace. Aujourd’hui, j’attire de nouveaux clients chaque semaine sans publicité coûteuse.",
+    text: "Grâce à ArtiVisio, mon CV et mon portfolio ont pris une dimension beaucoup plus professionnelle. Résultat : j’ai rapidement obtenu des entretiens et de nouvelles opportunités.",
   },
   {
     id: 5,
+    name: "KOUASSI AYA DIANE",
+    role: "Commerciale BtoB",
+    company: "Entreprise d’équipements pétroliers, Abidjan",
+    avatar: "/images/temoignages/temoignage3.jpg", 
+    rating: 5,
+    text: "L’accompagnement d’ArtiVisio m’a aidé à clarifier mes objectifs et à mieux structurer mon parcours professionnel. Aujourd’hui, je me sens confiant et armé pour évoluer dans ma carrière."
+  }
+  ,
+  {
+    id: 6,
     name: "N'DA FRANCK OLIVIER",
     role: "Technicien laboratoire ",
     company: "clinique polymed",
@@ -52,16 +63,7 @@ export default function Testimonials() {
     rating: 5,
     text: "Grâce à l'accompagnement d'Artivisio, j'ai restructuré mon CV et décroché un entretien en moins d'un mois.",
   },
-  {
-    id: 6,
-    name: "KOUASSI AYA DIANE",
-    role: "Commerciale BtoB",
-    company: "Entreprise d’équipements pétroliers, Abidjan",
-    avatar: "/images/temoignages/temoignage3.jpg", 
-    rating: 5,
-    text: "Artivisio m’a aidée à structurer mon profil et à valoriser mes compétences. Je gère désormais mes clients et mes devis avec plus d’efficacité."
-  }
-  ,
+
 ];
 
 
