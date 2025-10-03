@@ -89,7 +89,7 @@ export default function Testimonials() {
     }
 
   return (
-    <section className="py-20 bg-white/50" id="testimonials">
+    <section className="py-20 bg-white/50" id="temoignages">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"

@@ -105,7 +105,7 @@ const iconFloatVariants: Variants = {
 
 export default function VideoSection() {
   return (
-    <section className="relative bg-black text-white py-24 px-6 sm:px-12 lg:px-28 overflow-hidden">
+    <section id="approche" className="relative bg-black text-white py-24 px-6 sm:px-12 lg:px-28 overflow-hidden">
       {/* Effet lumineux flottant en arrière-plan */}
       <motion.div
         className="absolute top-0 left-1/2 w-[600px] h-[600px] -translate-x-1/2 bg-amber-200/5 blur-3xl rounded-full opacity-20 z-0"

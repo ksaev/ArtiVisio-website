@@ -1,43 +1,79 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { Menu, X, Globe, Moon, Sun, User, Users } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useLanguage } from "@/contexts/language-context"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import Image from "next/image"
-import SeoHead from "@/components/seoHead"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "react-hot-toast"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Menu, X, Globe, Moon, Sun, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/language-context";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+import SeoHead from "@/components/seoHead";
 import { useTheme } from "next-themes";
 
-
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { language, setLanguage, t } = useLanguage()
-  const pathname = usePathname()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHomeDropdownOpen, setIsHomeDropdownOpen] = useState(false);
+
+  const { language, setLanguage, t } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
   const { theme, setTheme } = useTheme();
 
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const homeSections = [
+    { id: "services", name: "Nos Services" },
+    { id: "realisations", name: "Nos Réalisations" },
+    { id: "approche", name: "Notre approche stratégique" },
+    { id: "temoignages", name: "Témoignages Clients" },
+    { id: "contact", name: "Contactez-nous" },
+  ];
 
   const navItems = [
-    { name: t("nav.home"), href: "/" },
     { name: t("nav.services"), href: "/services" },
     { name: t("nav.coaching"), href: "/coaching" },
     { name: t("nav.creation"), href: "/portfolios" },
     { name: t("nav.jobs"), href: "/offres-emploi" },
     { name: t("nav.contact"), href: "/contact" },
-  ]
+  ];
+
+  const handleScroll = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => setIsMobileMenuOpen(false), 300);
+    }
+  };
+
+  const handleHomeClick = () => {
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setIsHomeDropdownOpen(false);
+      setIsMobileMenuOpen(false);
+    } else {
+      setIsHomeDropdownOpen(false);
+      setIsMobileMenuOpen(false);
+      router.push("/");
+      setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 200);
+    }
+  };
+
+  const handleHomeSectionClick = (id: string) => {
+    if (pathname === "/") {
+      handleScroll(id);
+    } else {
+      setIsHomeDropdownOpen(false);
+      setIsMobileMenuOpen(false);
+      router.push("/");
+      setTimeout(() => handleScroll(id), 200);
+    }
+  };
+
+  useEffect(() => {
+    const handleScrollEvent = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScrollEvent);
+    return () => window.removeEventListener("scroll", handleScrollEvent);
+  }, []);
 
   return (
     <>
@@ -63,12 +99,19 @@ export default function Header() {
             {/* Logo */}
             <Link href="/">
               <motion.div
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                onClick={handleHomeClick}
               >
-              <div className="w-10 h-10 bg-[#fdf8f4] border border-[#d6bfae] rounded-lg flex items-center justify-center shadow-md shadow-[#bfa07a]/20 transition-transform duration-200 hover:scale-105">
-                  <Image src="/arti.webp" alt="Logo" width={100} height={100} loading="lazy" />
+                <div className="w-10 h-10 bg-[#fdf8f4] border border-[#d6bfae] rounded-lg flex items-center justify-center shadow-md shadow-[#bfa07a]/20 transition-transform duration-200 hover:scale-105">
+                  <Image
+                    src="/arti.webp"
+                    alt="Logo"
+                    width={100}
+                    height={100}
+                    loading="lazy"
+                  />
                 </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-amber-700 to-amber-900 bg-clip-text text-transparent">
                   ArtiVisio
@@ -78,6 +121,45 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
+              <div
+                className="relative"
+                onMouseEnter={() => setIsHomeDropdownOpen(true)}
+                onMouseLeave={() => setIsHomeDropdownOpen(false)}
+              >
+                <button
+                  className="font-medium text-gray-700 hover:text-amber-700 flex items-center"
+                  onClick={handleHomeClick}
+                >
+                  {t("nav.home")}
+                  <svg
+                    className="ml-1 w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                {isHomeDropdownOpen && (
+                  <div className="absolute mt-0 w-56 bg-white shadow-lg rounded-md z-50">
+                    {homeSections.map((section) => (
+                      <div
+                        key={section.id}
+                        onClick={() => handleHomeSectionClick(section.id)}
+                        className="cursor-pointer px-4 py-2 hover:bg-amber-50 text-gray-700 text-sm"
+                      >
+                        {section.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
@@ -96,7 +178,9 @@ export default function Header() {
                     {item.name}
                     <span
                       className={`absolute -bottom-1 left-0 h-0.5 bg-amber-600 transition-all duration-300 ${
-                        pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
+                        pathname === item.href
+                          ? "w-full"
+                          : "w-0 group-hover:w-full"
                       }`}
                     ></span>
                   </Link>
@@ -104,18 +188,16 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Language Switcher & CTA */}
+            {/* Actions Desktop */}
             <div className="hidden lg:flex items-center space-x-4">
-                
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="w-full justify-start"
-                >
-                  <Sun className="h-4 w-4 mr-2 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-4 w-4 ml-2 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-4 w-4 ml-2 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              </Button>
 
               <Button
                 variant="ghost"
@@ -132,9 +214,13 @@ export default function Header() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                <a href="https://chat.whatsapp.com/CwvOp480ovNBnCzKMJ20QG" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-6 py-2 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300">
-                    <Users className="h-8 w-8"/>
+                <a
+                  href="https://chat.whatsapp.com/CwvOp480ovNBnCzKMJ20QG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-6 py-2 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2">
+                    <Users className="h-5 w-5" />
                     {t("nav.start")}
                   </Button>
                 </a>
@@ -159,6 +245,30 @@ export default function Header() {
               exit={{ opacity: 0, height: 0 }}
             >
               <div className="px-4 py-6 space-y-4">
+                {/* Mobile Home Dropdown */}
+                <div>
+                  <button
+                    onClick={handleHomeClick}
+                    className="w-full flex justify-between items-center font-semibold text-gray-800 py-2"
+                  >
+                    {t("nav.home")}
+                    <span className="ml-2">{isHomeDropdownOpen ? "▲" : "▼"}</span>
+                  </button>
+                  {isHomeDropdownOpen && (
+                    <div className="pl-4 mt-2 space-y-1">
+                      {homeSections.map((section) => (
+                        <div
+                          key={section.id}
+                          onClick={() => handleHomeSectionClick(section.id)}
+                          className="cursor-pointer px-2 py-1 text-sm hover:text-amber-700"
+                        >
+                          {section.name}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
@@ -173,26 +283,32 @@ export default function Header() {
                     {item.name}
                   </Link>
                 ))}
+
+                {/* Langue & CTA */}
                 <div className="flex items-center justify-between pt-4 border-t border-amber-200">
                   <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="w-full justify-start"
-                >
-                  <Sun className="h-4 w-4 mr-2 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-4 w-4 ml-2 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                </Button>
+                    variant="ghost"
+                    size="icon"
+                    onClick={() =>
+                      setTheme(theme === "dark" ? "light" : "dark")
+                    }
+                  >
+                    <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <Moon className="absolute h-4 w-4 ml-2 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  </Button>
 
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
+                    onClick={() =>
+                      setLanguage(language === "fr" ? "en" : "fr")
+                    }
                     className="text-gray-700 hover:text-amber-700"
                   >
                     <Globe className="h-4 w-4 mr-1" />
                     {language.toUpperCase()}
                   </Button>
+
                   <Link href="/contact">
                     <Button
                       className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white py-2 rounded-full font-medium"
@@ -208,5 +324,5 @@ export default function Header() {
         </div>
       </motion.header>
     </>
-  )
+  );
 }
