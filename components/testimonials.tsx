@@ -46,10 +46,10 @@ export default function Testimonials() {
   },
   {
     id: 5,
-    name: "KOUASSI AYA DIANE",
-    role: "Commerciale BtoB",
-    company: "Entreprise d’équipements pétroliers, Abidjan",
-    avatar: "/images/temoignages/temoignage3.jpg", 
+    name: "GNAHORE ZEBRO ELVIRE",
+    role: "Stagiaire",
+    company: "MINEDDTE/ PNCC",
+    avatar: "/images/temoignages/temoignage8.jpg", 
     rating: 5,
     text: "L’accompagnement d’ArtiVisio m’a aidé à clarifier mes objectifs et à mieux structurer mon parcours professionnel. Aujourd’hui, je me sens confiant et armé pour évoluer dans ma carrière."
   }
