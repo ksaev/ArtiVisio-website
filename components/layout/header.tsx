@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, Globe, Moon, Sun, Users } from "lucide-react";
+import { Menu, X, Globe, Moon, Sun, Users, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/language-context";
 import Link from "next/link";
@@ -37,6 +37,7 @@ export default function Header() {
     { name: t("nav.contact"), href: "/contact" },
   ];
 
+  // 🔹 Scroll smooth vers une section
   const handleScroll = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
@@ -45,28 +46,27 @@ export default function Header() {
     }
   };
 
+  // 🔹 Clique sur "Accueil"
   const handleHomeClick = () => {
     if (pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
-      setIsHomeDropdownOpen(false);
-      setIsMobileMenuOpen(false);
     } else {
-      setIsHomeDropdownOpen(false);
-      setIsMobileMenuOpen(false);
       router.push("/");
-      setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 200);
+      setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 300);
     }
+    setIsMobileMenuOpen(false);
+    setIsHomeDropdownOpen(false);
   };
 
+  // 🔹 Clique sur une section du menu Accueil
   const handleHomeSectionClick = (id: string) => {
     if (pathname === "/") {
       handleScroll(id);
     } else {
-      setIsHomeDropdownOpen(false);
-      setIsMobileMenuOpen(false);
       router.push("/");
-      setTimeout(() => handleScroll(id), 200);
+      setTimeout(() => handleScroll(id), 300);
     }
+    setIsHomeDropdownOpen(false);
   };
 
   useEffect(() => {
@@ -96,7 +96,7 @@ export default function Header() {
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
+            {/* 🔸 Logo */}
             <Link href="/">
               <motion.div
                 className="flex items-center space-x-2 cursor-pointer"
@@ -105,13 +105,7 @@ export default function Header() {
                 onClick={handleHomeClick}
               >
                 <div className="w-10 h-10 bg-[#fdf8f4] border border-[#d6bfae] rounded-lg flex items-center justify-center shadow-md shadow-[#bfa07a]/20 transition-transform duration-200 hover:scale-105">
-                  <Image
-                    src="/arti.webp"
-                    alt="Logo"
-                    width={100}
-                    height={100}
-                    loading="lazy"
-                  />
+                  <Image src="/arti.webp" alt="Logo" width={100} height={100} loading="lazy" />
                 </div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-amber-700 to-amber-900 bg-clip-text text-transparent">
                   ArtiVisio
@@ -119,8 +113,9 @@ export default function Header() {
               </motion.div>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* 🔸 Menu Desktop */}
             <nav className="hidden lg:flex items-center space-x-8">
+              {/* Accueil avec dropdown */}
               <div
                 className="relative"
                 onMouseEnter={() => setIsHomeDropdownOpen(true)}
@@ -131,19 +126,7 @@ export default function Header() {
                   onClick={handleHomeClick}
                 >
                   {t("nav.home")}
-                  <svg
-                    className="ml-1 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
+                  <ChevronDown className="ml-1 w-4 h-4" />
                 </button>
                 {isHomeDropdownOpen && (
                   <div className="absolute mt-0 w-56 bg-white shadow-lg rounded-md z-50">
@@ -160,6 +143,7 @@ export default function Header() {
                 )}
               </div>
 
+              {/* Autres liens */}
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
@@ -178,9 +162,7 @@ export default function Header() {
                     {item.name}
                     <span
                       className={`absolute -bottom-1 left-0 h-0.5 bg-amber-600 transition-all duration-300 ${
-                        pathname === item.href
-                          ? "w-full"
-                          : "w-0 group-hover:w-full"
+                        pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
                       }`}
                     ></span>
                   </Link>
@@ -188,13 +170,9 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Actions Desktop */}
+            {/* 🔸 Actions Desktop */}
             <div className="hidden lg:flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              >
+              <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
                 <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-4 w-4 ml-2 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               </Button>
@@ -214,11 +192,7 @@ export default function Header() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                <a
-                  href="https://chat.whatsapp.com/CwvOp480ovNBnCzKMJ20QG"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://chat.whatsapp.com/CwvOp480ovNBnCzKMJ20QG" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-6 py-2 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2">
                     <Users className="h-5 w-5" />
                     {t("nav.start")}
@@ -227,7 +201,7 @@ export default function Header() {
               </motion.div>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* 🔸 Bouton Mobile */}
             <button
               className="lg:hidden p-2 rounded-md text-gray-700 hover:text-amber-700 hover:bg-amber-50 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -236,7 +210,7 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Mobile Menu */}
+          {/* 🔸 Menu Mobile */}
           {isMobileMenuOpen && (
             <motion.div
               className="lg:hidden bg-white/95 backdrop-blur-md border-t border-amber-200/50"
@@ -245,30 +219,37 @@ export default function Header() {
               exit={{ opacity: 0, height: 0 }}
             >
               <div className="px-4 py-6 space-y-4">
-                {/* Mobile Home Dropdown */}
-                <div>
+                {/* Accueil avec flèche séparée */}
+                <div className="flex items-center justify-between">
                   <button
                     onClick={handleHomeClick}
-                    className="w-full flex justify-between items-center font-semibold text-gray-800 py-2"
+                    className="font-semibold text-gray-800"
                   >
                     {t("nav.home")}
-                    <span className="ml-2">{isHomeDropdownOpen ? "▲" : "▼"}</span>
                   </button>
-                  {isHomeDropdownOpen && (
-                    <div className="pl-4 mt-2 space-y-1">
-                      {homeSections.map((section) => (
-                        <div
-                          key={section.id}
-                          onClick={() => handleHomeSectionClick(section.id)}
-                          className="cursor-pointer px-2 py-1 text-sm hover:text-amber-700"
-                        >
-                          {section.name}
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  <button
+                    onClick={() => setIsHomeDropdownOpen(!isHomeDropdownOpen)}
+                    className="text-gray-700 hover:text-amber-700"
+                  >
+                    {isHomeDropdownOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                  </button>
                 </div>
 
+                {isHomeDropdownOpen && (
+                  <div className="pl-4 mt-2 space-y-1">
+                    {homeSections.map((section) => (
+                      <div
+                        key={section.id}
+                        onClick={() => handleHomeSectionClick(section.id)}
+                        className="cursor-pointer px-2 py-1 text-sm hover:text-amber-700"
+                      >
+                        {section.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Autres nav */}
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
@@ -286,13 +267,7 @@ export default function Header() {
 
                 {/* Langue & CTA */}
                 <div className="flex items-center justify-between pt-4 border-t border-amber-200">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() =>
-                      setTheme(theme === "dark" ? "light" : "dark")
-                    }
-                  >
+                  <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
                     <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                     <Moon className="absolute h-4 w-4 ml-2 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                   </Button>
@@ -300,9 +275,7 @@ export default function Header() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() =>
-                      setLanguage(language === "fr" ? "en" : "fr")
-                    }
+                    onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
                     className="text-gray-700 hover:text-amber-700"
                   >
                     <Globe className="h-4 w-4 mr-1" />
