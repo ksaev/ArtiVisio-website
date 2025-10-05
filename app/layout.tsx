@@ -41,18 +41,18 @@ export const metadata: Metadata = {
     "coaching LinkedIn Afrique",
     "services digitaux Afrique francophone",
   ],
-  authors: [{ name: "Artivisio", url: "https://dev.artivisio.com" }],
+  authors: [{ name: "Artivisio", url: "https://artivisio.com" }],
   openGraph: {
     title: "Artivisio – Offres d’Emploi, Coaching & Branding pour Talents Africains",
     description:
       "Trouvez des offres d’emploi, coaching expert, création de CV et portfolios professionnels. Accompagnement digital complet pour booster votre carrière en Afrique francophone.",
-    url: "https://dev.artivisio.com",
+    url: "https://artivisio.com",
     siteName: "Artivisio",
     locale: "fr_FR",
     type: "website",
     images: [
       {
-        url: "https://dev.artivisio.com/og-image.jpg",
+        url: "https://artivisio.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Artivisio - Offres d'emploi et coaching en Afrique",
@@ -65,9 +65,9 @@ export const metadata: Metadata = {
     description:
       "Trouvez les meilleures offres d’emploi, coaching personnalisé, CV et portfolios professionnels adaptés au marché africain francophone.",
     creator: "@artivisio",
-    images: ["https://dev.artivisio.com/og-image.jpg"],
+    images: ["https://artivisio.com/og-image.jpg"],
   },
-  metadataBase: new URL("https://dev.artivisio.com"),
+  metadataBase: new URL("https://artivisio.com"),
   alternates: {
     canonical: "/",
     languages: {
@@ -83,8 +83,8 @@ const jsonLdSchema = {
     {
       "@type": "Organization",
       "name": "Artivisio",
-      "url": "https://dev.artivisio.com",
-      "logo": "https://dev.artivisio.com/logo.png",
+      "url": "https://artivisio.com",
+      "logo": "https://artivisio.com/logo.png",
       "sameAs": [
         "https://www.facebook.com/artivisio",
         "https://twitter.com/artivisio",
@@ -93,7 +93,7 @@ const jsonLdSchema = {
     },
     {
       "@type": "WebSite",
-      "url": "https://dev.artivisio.com",
+      "url": "https://artivisio.com",
       "name": "Artivisio",
       "inLanguage": "fr-FR",
       "publisher": {
@@ -101,7 +101,7 @@ const jsonLdSchema = {
         "name": "Artivisio",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://dev.artivisio.com/logo.png",
+          "url": "https://artivisio.com/logo.png",
         },
       },
     },
@@ -121,8 +121,8 @@ const jsonLdSchema = {
       "hiringOrganization": {
         "@type": "Organization",
         "name": "Artivisio",
-        "sameAs": "https://dev.artivisio.com",
-        "logo": "https://dev.artivisio.com/logo.png",
+        "sameAs": "https://artivisio.com",
+        "logo": "https://artivisio.com/logo.png",
       },
       "jobLocation": {
         "@type": "Place",
@@ -193,8 +193,8 @@ export default function RootLayout({
         <SeoHead
           title="Artivisio – Emploi, Coaching et Visibilité pour les Talents en Afrique"
           description="CV modernes, portfolios interactifs, coaching et branding personnel. Accompagnement digital pour l'Afrique francophone. Tarifs accessibles en FCFA."
-          url="https://dev.artivisio.com"
-          image="https://dev.artivisio.com/og-image.jpg"
+          url="https://artivisio.com"
+          image="https://artivisio.com/og-image.jpg"
           type="website"
         />
 
