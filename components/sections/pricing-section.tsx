@@ -40,17 +40,22 @@ export default function AboutSectionWithLogo() {
       >
         {/* Texte large */}
         <motion.div className="lg:w-1/2 space-y-6" variants={fadeInUp}>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
-          ArtiVisio : accélérateur de talents africains
-        </h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
+            ArtiVisio – Propulseur de talents africains et internationaux
+          </h2>
 
-        <p className="text-lg text-gray-700 max-w-3xl leading-relaxed">
-          Depuis 2023, nous accompagnons les talents d’Afrique de l’Ouest en combinant expertise RH et solutions digitales pour maximiser leur visibilité et accéder aux meilleures opportunités d’emploi, de mission freelance ou de collaboration.
-        </p>
+          <p className="text-lg text-gray-700 max-w-3xl leading-relaxed text-justify">
+            Depuis 2023, <strong>ArtiVisio accompagne les talents du monde entier</strong> en combinant expertise <strong>RH</strong>, solutions digitales et accompagnement personnalisé pour maximiser leur visibilité, valoriser leurs compétences et accéder aux meilleures <strong>opportunités professionnelles</strong>, qu’il s’agisse d’<strong>emploi</strong>, de <strong>missions freelance</strong> ou de <strong>collaborations stratégiques</strong>.
+          </p>
 
-        <p className="text-base text-gray-600 max-w-2xl leading-relaxed">
-          Plateforme 100% orientée résultats, ArtiVisio propose un écosystème complet : coaching stratégique, CV design, outils numériques et offres ciblées pour propulser votre carrière.
-        </p>
+          <p className="text-base text-gray-600 max-w-2xl leading-relaxed text-justify">
+            Notre plateforme propose un <strong>écosystème complet pour booster votre carrière</strong>. Elle offre des <strong>offres d’emploi ciblées</strong> et opportunités freelance, un <strong>coaching stratégique</strong> pour développer compétences et performance, des <strong>CV et portfolios design</strong>, du <strong>branding personnel</strong>, ainsi que des <strong>outils numériques et formations</strong> pour maximiser votre visibilité et vos résultats.
+          </p>
+
+          <p className="text-base text-gray-600 max-w-2xl leading-relaxed text-justify">
+            Avec <strong>ArtiVisio</strong>, développez vos compétences, valorisez votre profil et <strong>propulsez votre carrière partout dans le monde</strong>.
+          </p>
+
         </motion.div>
 
         {/* Logo ArtiVisio animé */}
