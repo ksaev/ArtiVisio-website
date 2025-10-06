@@ -47,6 +47,7 @@ const translations = {
     "services.landing.desc": "Mini sites web pour votre présence professionnelle",
     "services.hosting.title": "Hébergement & Support",
     "services.hosting.desc": "Solutions techniques complètes avec maintenance",
+    
 
     // Pricing
     "pricing.starter": "Starter",

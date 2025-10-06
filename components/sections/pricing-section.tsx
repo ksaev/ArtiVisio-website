@@ -45,7 +45,7 @@ export default function AboutSectionWithLogo() {
           </h2>
 
           <p className="text-lg text-gray-700 max-w-3xl leading-relaxed text-justify">
-            Depuis 2023, <strong>ArtiVisio accompagne les talents du monde entier</strong> en combinant expertise <strong>RH</strong>, solutions digitales et accompagnement personnalisé pour maximiser leur visibilité, valoriser leurs compétences et accéder aux meilleures <strong>opportunités professionnelles</strong>, qu’il s’agisse d’<strong>emploi</strong>, de <strong>missions freelance</strong> ou de <strong>collaborations stratégiques</strong>.
+            Depuis 2023, <strong>ArtiVisio accompagne les talents du monde entier</strong> en combinant expertise <strong>Ressources Humaines</strong>, solutions digitales et accompagnement personnalisé pour maximiser leur visibilité, valoriser leurs compétences et accéder aux meilleures <strong>opportunités professionnelles</strong>, qu’il s’agisse d’<strong>emploi</strong>, de <strong>missions freelance</strong> ou de <strong>collaborations stratégiques</strong>.
           </p>
 
           <p className="text-base text-gray-600 max-w-2xl leading-relaxed text-justify">
