@@ -298,24 +298,85 @@ const points = [
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-amber-50/50 to-stone-50/50 pt-40">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
+      <section
+        aria-labelledby="hero-services"
+        className="relative w-full min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-stone-100 via-amber-50/10 to-stone-200 overflow-hidden"
+      >
+        <h1 id="hero-services" className="sr-only">
+          Services professionnels ArtiVisio : CV, Portfolio, Web et Branding
+        </h1>
+
+        {/* Image d’arrière-plan optimisée */}
+        <div className="absolute inset-0">
+          <Image
+            src="/pages/services.jpg"
+            alt="Nos services professionnels ArtiVisio – CV, portfolio, branding, web"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center brightness-[0.9] contrast-[1.05] saturate-[1.05]"
+          />
+          {/* Overlay équilibré pour cohérence visuelle */}
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950/75 via-stone-800/40 to-transparent backdrop-brightness-[0.9]" />
+        </div>
+
+        {/* Contenu principal animé */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.1, ease: "easeOut" }}
+          className="relative z-10 text-center px-6 sm:px-8 md:px-12 py-20 sm:py-28 max-w-6xl mx-auto"
+        >
+          <motion.h2
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.45)]"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-amber-700 to-amber-900 bg-clip-text text-transparent">
-                Nos Services
-              </span>
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Votre réussite ne doit pas attendre. Nos solutions sont conçues pour propulser votre carrière en Afrique et à l’international.
-            </p>
+            Donnez de la valeur à votre image professionnelle
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.9 }}
+            className="mt-6 text-base sm:text-lg md:text-xl text-gray-200 max-w-6xl mx-auto leading-relaxed"
+          >
+            CV percutants, lettres de motivation convaincantes, portfolios élégants,
+            pages web soignées… <br className="hidden sm:block" />
+            <span className="text-amber-300 font-semibold">
+              ArtiVisio structure vos ambitions, valorise votre profil et révèle votre
+              potentiel professionnel.
+            </span>
+          </motion.p>
+
+          {/* CTA double aligné */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="mt-10 flex flex-wrap justify-center gap-4"
+          >
+            <a
+              href="#services"
+              className="inline-block bg-amber-600 hover:bg-amber-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-500 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-amber-500/30 transition-all duration-300"
+            >
+              Explorer nos services
+            </a>
+
+            <a
+              href="https://wa.me/22508976737?text=Bonjour,+je+souhaite+un+accompagnement+personnalisé+pour+mes+services+ArtiVisio."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block border border-amber-500 text-amber-200 hover:bg-amber-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 font-semibold px-8 py-3 rounded-xl transition-all duration-300"
+            >
+              Parler à un conseiller
+            </a>
           </motion.div>
-        </div>
+        </motion.div>
+
+        {/* Dégradé bas élégant pour transition fluide */}
+        <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-stone-100 via-amber-50/30 to-transparent pointer-events-none" />
       </section>
 
         <div className="text-center mb-0 p-8 bg-white/50 w-full px-4 sm:px-6 lg:px-8">
@@ -360,7 +421,7 @@ const points = [
               Des documents qui parlent pour vous.
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              <span className="bg-amber-100 text-amber-700 px-1 rounded font-semibold">
+              <span className="text-amber-500 font-bold">
                 CV, rapports, présentations, lettres de motivation, portfolios,
                 dossiers de candidature, supports administratifs ou commerciaux…
               </span>
@@ -370,18 +431,6 @@ const points = [
               Chaque livrable est pensé pour convaincre, structurer votre message et
               projeter une image de rigueur, de clarté et d’ambition.
             </p>
-
-            {/* CTA */}
-            
-            <div className="pt-4">
-              <a
-                href="#tarifs" // ancre vers ta section tarifs
-                className="inline-block bg-amber-100 hover:bg-amber-200 text-amber-700 font-semibold px-6 py-3 rounded-lg shadow-sm transition-all duration-300"
-              >
-                Voir nos offres professionnelles
-              </a>
-            </div>
-
           </div>
         </motion.div>
 

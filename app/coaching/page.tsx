@@ -154,22 +154,62 @@ export default function CoachingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-amber-50/20 to-stone-50">
       {/* HERO */}
-      <section className="pt-36 pb-20 text-center relative overflow-hidden">
-        <motion.div
+    <section className="relative w-full min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-stone-100 via-amber-50/30 to-stone-200 overflow-hidden">
+      {/* Image d’arrière-plan */}
+      <div className="absolute inset-0">
+        <Image
+          src="/pages/coaching.jpg"
+          alt="Coaching Professionnel sur Mesure – ArtiVisio"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center brightness-[0.85] contrast-[1.1] saturate-[1.05]"
+        />
+        {/* Overlay chaud et transparent pour cohérence visuelle */}
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-stone-800/40 to-transparent"></div>
+      </div>
+
+      {/* Contenu central */}
+      <div className="relative z-10 px-6 sm:px-8 text-center max-w-4xl mx-auto space-y-8">
+        <motion.h1
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="relative z-10"
+          transition={{ duration: 0.8 }}
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight bg-gradient-to-r from-amber-400 via-amber-500 to-amber-700 bg-clip-text text-transparent drop-shadow-[0_3px_10px_rgba(0,0,0,0.4)]"
         >
-          <h1 className="text-4xl lg:text-6xl font-extrabold mb-4 bg-gradient-to-r from-amber-700 to-amber-900 bg-clip-text text-transparent">
-            Coaching Professionnel sur Mesure
-          </h1>
-          <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
-            Accélérez votre évolution professionnelle avec des programmes adaptés à votre niveau d’ambition —
-            <strong> Standard, Premium ou VIP</strong>.
-          </p>
+          Coaching Professionnel sur Mesure
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="text-lg sm:text-xl text-gray-100 leading-relaxed"
+        >
+          <strong>Accélérez votre évolution professionnelle</strong> grâce à un
+          accompagnement structuré, personnalisé et adapté à votre niveau
+          d’ambition — <strong>Standard, Premium ou VIP</strong>.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="flex justify-center"
+        >
+          <a
+            href="#programmes"
+            className="inline-block px-8 py-3 rounded-xl font-semibold text-white bg-amber-600 hover:bg-amber-700 shadow-lg hover:shadow-amber-400/30 transition-all duration-300 hover:scale-[1.02]"
+          >
+            Découvrir les Programmes
+          </a>
         </motion.div>
-      </section>
+      </div>
+
+      {/* Dégradé bas pour liaison visuelle avec la section suivante */}
+      <div className="absolute bottom-0 left-0 w-full h-28 bg-gradient-to-t from-stone-100/95 to-transparent pointer-events-none"></div>
+    </section>
+
 
       {/* SERVICES */}
       <section className="py-16">
@@ -179,7 +219,7 @@ export default function CoachingPage() {
               Nos Programmes
             </Badge>
             <h2 className="text-3xl font-bold mb-3">Un accompagnement structuré et progressif</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-3xl mx-auto">
               Chaque offre est conçue pour générer des résultats concrets. Selon vos objectifs, choisissez votre
               niveau — <strong>Standard</strong> pour débuter, <strong>Premium</strong> pour performer, ou
               <strong> VIP</strong> pour une transformation complète.
@@ -305,30 +345,49 @@ export default function CoachingPage() {
           <div className="max-w-3xl mx-auto grid gap-4">
             {[
               {
-                q: "Combien de temps dure un programme ?",
-                a: "Entre 2 et 10 séances selon vos objectifs. Chaque parcours est ajusté à votre rythme.",
+                q: "Combien de temps dure un programme ArtiVisio ?",
+                a: "Nos programmes durent en moyenne entre 2 et 10 séances selon vos objectifs. Chaque accompagnement est 100% personnalisé, ajusté à votre rythme, votre disponibilité et votre niveau d’avancement. Vous progressez efficacement sans pression inutile.",
               },
               {
                 q: "Puis-je suivre le coaching à distance ?",
-                a: "Oui. Tous nos programmes sont disponibles en ligne, avec possibilité de présentiel.",
+                a: "Oui, absolument. Tous nos programmes sont disponibles en ligne, avec un suivi interactif (visioconférences, exercices pratiques, support WhatsApp et e-mail). Pour ceux qui le souhaitent, des sessions en présentiel peuvent aussi être organisées.",
               },
               {
-                q: "Offrez-vous des réductions étudiantes ?",
-                a: "Oui, -30% pour les étudiants et formules groupées avantageuses.",
+                q: "Offrez-vous des tarifs réduits pour les étudiants ou jeunes actifs ?",
+                a: "Oui. Nous offrons jusqu’à -30% pour les étudiants et jeunes diplômés, ainsi que des formules groupées plus accessibles pour les binômes, clubs ou associations étudiantes. Notre objectif : rendre l’excellence accessible à tous.",
               },
               {
-                q: "Comment choisir le bon programme ?",
-                a: "Nous proposons un diagnostic gratuit de 30 minutes pour vous orienter.",
+                q: "Comment choisir le programme le plus adapté à mon profil ?",
+                a: "Un diagnostic gratuit de 30 minutes est offert à chaque nouveau participant. Cet échange permet d’évaluer vos besoins, votre parcours et de recommander le programme le plus pertinent pour maximiser vos résultats.",
               },
               {
-                q: "Y a-t-il un suivi après la fin du coaching ?",
-                a: "Oui, un mois de suivi VIP offert pour consolider vos acquis.",
+                q: "Les attestations délivrées sont-elles officielles ?",
+                a: "Oui. Chaque programme donne lieu à une attestation officielle ArtiVisio, reconnue par nos partenaires académiques et professionnels. Elle valorise votre parcours dans vos candidatures, CV et profils LinkedIn.",
               },
               {
-                q: "Les attestations sont-elles reconnues ?",
-                a: "Oui, chaque programme donne lieu à une attestation officielle ArtiVisio.",
+                q: "Que contient concrètement un programme ArtiVisio ?",
+                a: "Chaque programme inclut un accompagnement stratégique, des séances interactives, des outils concrets (guides, modèles, fiches pratiques), un suivi personnalisé, et un accès VIP d’un mois à nos ressources exclusives en ligne.",
               },
-            ].map((item, i) => (
+              {
+                q: "Puis-je combiner plusieurs programmes (ex : communication + CV) ?",
+                a: "Oui. C’est même recommandé pour un impact global. ArtiVisio propose des parcours combinés sur mesure : par exemple, “Coaching Communication + Personal Branding”, ou “CV Pro + Simulation d’entretien”.",
+              },
+              {
+                q: "Les coachings sont-ils adaptés aux professionnels expérimentés ?",
+                a: "Oui. Nos programmes sont conçus aussi bien pour les étudiants que pour les cadres, freelances ou dirigeants. Les contenus et exercices sont adaptés à chaque niveau, avec un accompagnement hautement stratégique pour les profils avancés.",
+              },
+              {
+                q: "Comment se déroule la première séance ?",
+                a: "La première séance est une immersion : nous définissons vos objectifs, analysons vos besoins et fixons votre plan d’action. Vous repartez déjà avec des leviers concrets à mettre en place dès le jour même.",
+              },
+              {
+                q: "Quelles sont les garanties ArtiVisio ?",
+                a: "Nous garantissons un accompagnement humain, professionnel et orienté résultats. Vous bénéficiez d’un suivi continu, d’une assistance dédiée et d’un engagement de satisfaction totale sur chaque parcours suivi.",
+              },
+            ]
+
+
+            .map((item, i) => (
               <Card key={i} className="hover:shadow-md">
                 <CardHeader>
                   <CardTitle className="text-base">{item.q}</CardTitle>
