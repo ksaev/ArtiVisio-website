@@ -300,6 +300,35 @@ export default function Header() {
                   </div>
                 )}
 
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={handleServicesClick}
+                    className="font-semibold text-gray-800"
+                  >
+                    {t("nav.services")}
+                  </button>
+                  <button
+                    onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
+                    className="text-gray-700 hover:text-amber-700"
+                  >
+                    {isServicesDropdownOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                  </button>
+                </div>
+
+                {isServicesDropdownOpen && (
+                  <div className="pl-4 mt-2 space-y-1">
+                    {servicesSections.map((section) => (
+                      <div
+                        key={section.id}
+                        onClick={() => handleServicesSectionClick(section.id)}    
+                        className="cursor-pointer px-2 py-1 text-sm hover:text-amber-700"
+                      >
+                        {section.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {/* Autres nav */}
                 {navItems.map((item) => (
                   <Link
