@@ -392,7 +392,7 @@ const points = [
         </div>
 
 
-    <section className="bg-muted/40 py-16 bg-gradient-to-br from-amber-50/50 to-stone-50/50">
+    <section id="services" className="bg-amber-50/50 py-16 ">
       <Container className="space-y-16 max-w-6xl">
         {/* Bloc image + texte */}
         <motion.div
@@ -421,12 +421,12 @@ const points = [
               Des documents qui parlent pour vous.
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              <span className="text-amber-500 font-bold">
+              <span className="text-black font-bold">
                 CV, rapports, présentations, lettres de motivation, portfolios,
                 dossiers de candidature, supports administratifs ou commerciaux…
               </span>
               <br />
-              Chez <span className="font-bold text-primary">ArtiVisio</span>, nous
+              Chez <span className="text-amber-500 font-bold">ArtiVisio</span>, nous
               valorisons tous les documents qui portent votre image professionnelle.
               Chaque livrable est pensé pour convaincre, structurer votre message et
               projeter une image de rigueur, de clarté et d’ambition.
@@ -461,7 +461,7 @@ const points = [
               return (
                 <div
                   key={index}
-                  className="group p-8 rounded-2xl bg-gradient-to-br from-white to-amber-50/30 shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col gap-4"
+                  className="group p-8 rounded-2xl bg-gradient-to-br from-white to-amber-50/40 shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col gap-4"
                 >
                   <div className="flex items-center gap-3">
                     <Icon className="h-7 w-7 text-amber-600 group-hover:text-primary transition-colors" />
@@ -482,7 +482,7 @@ const points = [
     </section>
    
       {/* Bloc 1 : Services classiques */}
-      <section id="tarifs" className="py-20 ">
+      <section id="presence" className="py-20 ">
          <motion.div
             className="text-center text-white"
             initial={{ opacity: 0, y: 30 }}
@@ -510,7 +510,7 @@ const points = [
       </section>
 
       {/* Bloc 2 : Accompagnement bureautique */}
-      <section className="py-20 bg-amber-50/50">
+      <section id="bureautique" className="py-20 bg-amber-50/50">
           <motion.div
             className="text-center text-white"
             initial={{ opacity: 0, y: 30 }}

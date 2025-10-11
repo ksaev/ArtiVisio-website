@@ -15,6 +15,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHomeDropdownOpen, setIsHomeDropdownOpen] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
 
   const { language, setLanguage, t } = useLanguage();
   const pathname = usePathname();
@@ -29,15 +30,18 @@ export default function Header() {
     { id: "contact", name: "Contactez-nous" },
   ];
 
+  const servicesSections = [
+    { id: "presence", name: "Présence professionnelle" },
+    { id: "bureautique", name: "Accompagnement Bureautique" },
+  ];
+
   const navItems = [
-    { name: t("nav.services"), href: "/services" },
     { name: t("nav.coaching"), href: "/coaching" },
     { name: t("nav.creation"), href: "/portfolios" },
     { name: t("nav.jobs"), href: "/offres-emploi" },
     { name: t("nav.contact"), href: "/contact" },
   ];
 
-  // 🔹 Scroll smooth vers une section
   const handleScroll = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
@@ -46,7 +50,6 @@ export default function Header() {
     }
   };
 
-  // 🔹 Clique sur "Accueil"
   const handleHomeClick = () => {
     if (pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -58,7 +61,17 @@ export default function Header() {
     setIsHomeDropdownOpen(false);
   };
 
-  // 🔹 Clique sur une section du menu Accueil
+  const handleServicesClick = () => {
+    if (pathname === "/services") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/services");
+      setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 300);
+    }
+    setIsMobileMenuOpen(false);
+    setIsServicesDropdownOpen(false);
+  };
+
   const handleHomeSectionClick = (id: string) => {
     if (pathname === "/") {
       handleScroll(id);
@@ -67,6 +80,16 @@ export default function Header() {
       setTimeout(() => handleScroll(id), 300);
     }
     setIsHomeDropdownOpen(false);
+  };
+
+  const handleServicesSectionClick = (id: string) => {
+    if (pathname === "/services") {
+      handleScroll(id);
+    } else {
+      router.push("/services");
+      setTimeout(() => handleScroll(id), 300);
+    }
+    setIsServicesDropdownOpen(false);
   };
 
   useEffect(() => {
@@ -134,6 +157,34 @@ export default function Header() {
                       <div
                         key={section.id}
                         onClick={() => handleHomeSectionClick(section.id)}
+                        className="cursor-pointer px-4 py-2 hover:bg-amber-50 text-gray-700 text-sm"
+                      >
+                        {section.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Services avec dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                onMouseLeave={() => setIsServicesDropdownOpen(false)}
+              >
+                <button
+                  className="font-medium text-gray-700 hover:text-amber-700 flex items-center"
+                  onClick={handleServicesClick}
+                >
+                  {t("nav.services")}
+                  <ChevronDown className="ml-1 w-4 h-4" />
+                </button>
+                {isServicesDropdownOpen && (
+                  <div className="absolute mt-0 w-56 bg-white shadow-lg rounded-md z-50">
+                    {servicesSections.map((section) => (
+                      <div
+                        key={section.id}
+                        onClick={() => handleServicesSectionClick(section.id)}
                         className="cursor-pointer px-4 py-2 hover:bg-amber-50 text-gray-700 text-sm"
                       >
                         {section.name}

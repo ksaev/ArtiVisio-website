@@ -86,7 +86,6 @@ export default function OffresEmploiPage() {
     }
   }, [])
 
-  // Ensuite pour ton URL :
   const shareUrl = `${origin}/offres-emploi?id=${selectedJob?.id}`
 
 
@@ -144,7 +143,7 @@ export default function OffresEmploiPage() {
   const today = new Date();
   today.setHours(0, 0, 0, 0); // éviter les problèmes d'heure
 
-  // Ajoute cette fonction pour tester expiration par job
+  // Fonction pour tester expiration par job
   function isJobExpired(job: JobOffer): boolean {
     const [day, month, year] = job.expire.split("/");
     const expireDate = new Date(`${year}-${month}-${day}`);
@@ -453,10 +452,12 @@ export default function OffresEmploiPage() {
                 Description du poste :
               </h4>
               <div className="bg-amber-50/5 p-1 rounded-md">
-                <p className="text-sm text-gray-700 mb-2 space-y-1">
-                  {selectedJob.description}
-                </p>
-              </div>
+                  <ol className="list-disc list-inside text-sm text-gray-700 mb-6 space-y-1">
+                    {selectedJob.description.split("\n").map((line, i) => (
+                      <ol key={i}>{line}</ol>
+                    ))}
+                  </ol>
+                </div>
 
               {/* Liste */}
               {selectedJob.requirements && (

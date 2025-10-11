@@ -175,7 +175,7 @@ export default function CoachingPage() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight bg-gradient-to-r from-amber-400 via-amber-500 to-amber-700 bg-clip-text text-transparent drop-shadow-[0_3px_10px_rgba(0,0,0,0.4)]"
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight bg-gradient-to-r from-amber-700 via-amber-300 to-amber-200 bg-clip-text text-transparent drop-shadow-[0_3px_10px_rgba(0,0,0,0.4)]"
         >
           Coaching Professionnel sur Mesure
         </motion.h1>
@@ -212,7 +212,7 @@ export default function CoachingPage() {
 
 
       {/* SERVICES */}
-      <section className="py-16">
+      <section id="programmes" className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10">
             <Badge variant="outline" className="mb-4">
