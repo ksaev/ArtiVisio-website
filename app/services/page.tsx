@@ -309,7 +309,7 @@ const points = [
         {/* Image d’arrière-plan optimisée */}
         <div className="absolute inset-0">
           <Image
-            src="/pages/services.jpg"
+            src="/images/services/services_home.jpg"
             alt="Nos services professionnels ArtiVisio – CV, portfolio, branding, web"
             fill
             priority
@@ -406,7 +406,7 @@ const points = [
           <div className="relative flex justify-center sm:flex-1">
             <div className="relative before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-tr before:from-amber-200/40 before:to-amber-50/20 rounded-2xl p-4 bg-white/70 backdrop-blur-xl shadow-lg shadow-amber-100/50 hover:rotate-1 hover:-translate-y-1 hover:scale-[1.02] transition-all duration-500">
               <Image
-                src="/ScanSolution.webp"
+                src="/images/services/iluustration.jpg"
                 alt="Solutions digitales ArtiVisio"
                 width={340}
                 height={340}

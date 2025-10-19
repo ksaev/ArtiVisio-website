@@ -158,7 +158,7 @@ export default function CoachingPage() {
       {/* Image d’arrière-plan */}
       <div className="absolute inset-0">
         <Image
-          src="/pages/coaching.jpg"
+          src="/images/coaching/coaching.jpg"
           alt="Coaching Professionnel sur Mesure – ArtiVisio"
           fill
           priority
