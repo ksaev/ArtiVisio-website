@@ -11,6 +11,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import TeasingPopup from "@/components/teasingPopup"
 import OneSignalInit from "@/components/OneSignalInit"
 import LayoutWrapper from "@/components/layout/layoutWrapper";
+import { Analytics } from "@vercel/analytics/next";
 import SeoHead from "@/components/seoHead"
 import  JsonLd  from   "@/components/JsonLd"
 
@@ -150,6 +151,8 @@ export default function RootLayout({
 
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-[#3E2F1C] bg-white`}>
         
+        <Analytics />
+
         <OneSignalInit />
 
         <Toaster

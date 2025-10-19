@@ -274,7 +274,7 @@ export default function Header() {
                 <div className="flex items-center justify-between">
                   <button
                     onClick={handleHomeClick}
-                    className="font-semibold text-gray-800"
+                    className="font-semibold text-gray-700"
                   >
                     {t("nav.home")}
                   </button>
@@ -303,7 +303,7 @@ export default function Header() {
                 <div className="flex items-center justify-between">
                   <button
                     onClick={handleServicesClick}
-                    className="font-semibold text-gray-800"
+                    className="font-semibold text-gray-700"
                   >
                     {t("nav.services")}
                   </button>
