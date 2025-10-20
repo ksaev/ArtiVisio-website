@@ -140,7 +140,7 @@ export default function AdminDashboard() {
   if (!dashboard) return null;
 
   return (
-    <div className="p-10 bg-[#f9f5ef] min-h-screen font-sans text-[#5a3e2b] max-w-[1300px] mx-auto select-none pt-40">
+    <div className="p-4 bg-[#f9f5ef] min-h-screen font-sans text-[#5a3e2b] max-w-[1300px] mx-auto select-none pt-10">
       {/* Header */}
       <header className="flex flex-col sm:flex-row sm:items-center justify-between mb-10 gap-6">
         <h1 className="text-4xl font-extrabold tracking-wide">Dashboard Offres d'Emploi</h1>

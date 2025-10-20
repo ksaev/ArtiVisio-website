@@ -394,151 +394,181 @@ export default function OffresEmploiPage() {
           </motion.div>
         </div>
 
-        {/* ✅ MODALE */}
-        {selectedJob && (
-          <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center px-4">
-            <div className="bg-white rounded-2xl shadow-xl max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto">
-              {/* Fermer */}
-              <button
-                onClick={() => setSelectedJob(null)}
-                className="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-2xl"
-              >
-                &times;
-              </button>
+       {selectedJob && (
+  <div
+    className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center px-4"
+    onClick={() => setSelectedJob(null)} // ✅ Ferme en cliquant sur le fond
+  >
+    <div
+      className="bg-white rounded-2xl shadow-xl max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto"
+      onClick={(e) => e.stopPropagation()} // ❌ Empêche la fermeture si clic à l'intérieur
+    >
+      {/* Bouton Fermer */}
+      <button
+        onClick={() => setSelectedJob(null)}
+        className="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-2xl"
+      >
+        &times;
+      </button>
 
-              <Link href="/services">
-                <button
-                  className=" top-4 sm:px-6 sm:absolute right-10 bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-700 transition-colors"
-                >
-                  Besoin d'aide pour postuler ?
-                </button>
-              </Link>
-          
-              {/* Titre & infos */}
-              <h2 className="text-2xl font-bold text-amber-700 mb-2 pt-8 ">
-                {selectedJob.title} <span className="text-black font-bold"> ({isJobExpired(selectedJob) ? "Expirée" : "Active"}) </span>
-              </h2>
-                <p className="flex items-center text-amber-700 font-medium mb-2 text-sm">
-                  <Building className="h-4 w-4 mr-2" />
-                  {selectedJob.company}
-                </p>
-                  <p className="flex items-center mb-2 text-sm">
-                    <MapPin className="h-4 w-4 mr-1" />
-                    {selectedJob.location || "Lieu non spécifié"}, {getCountryLabel(selectedJob.countryId)}
-                  </p>
-                  <div className="flex items-center gap-4 mb-2">
-                    <p className="flex items-center text-sm">
-                      <Banknote className="h-4 w-4 mr-1" />
-                        {selectedJob.salary ? selectedJob.salary : "Négociable"}
-                    </p>
-                    <p className="flex items-center text-sm">
-                      <Clock className="h-4 w-4 mr-1" />
-                        {selectedJob.type ? selectedJob.type : "Non precisé"}
-                    </p>
-                  </div>
+      {/* Bouton Assistance */}
+      <Link href="/services">
+        <button className="top-4 sm:px-6 sm:absolute right-10 bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-amber-700 transition-colors">
+          Besoin d'aide pour postuler ?
+        </button>
+      </Link>
 
-                  <div className="flex items-center gap-4 mb-2 ">
-                    <p className="flex items-center text-sm">
-                      <Timer className=" h-4 w-4 mr-1" />
-                      {selectedJob.posted}   
-                    </p>
-                    <p className="flex text-red-600 items-center text-sm">
-                      <TimerOff className=" h-4 w-4 mr-1" />
-                      {selectedJob.expire}
-                    </p>
-                  </div>
-              
-              <h4 className="font-semibold text-gray-800 pt-2">
-                Description du poste :
-              </h4>
-              <div className="bg-amber-50/5 p-1 rounded-md">
-                  <ol className="list-disc list-inside text-sm text-gray-700 mb-6 space-y-1">
-                    {selectedJob.description.split("\n").map((line, i) => (
-                      <ol key={i}>{line}</ol>
-                    ))}
-                  </ol>
-                </div>
+      {/* --- Contenu principal --- */}
+      <h2 className="text-2xl font-bold text-amber-700 mb-2 pt-8">
+        {selectedJob.title}{" "}
+        <span className="text-black font-bold">
+          ({isJobExpired(selectedJob) ? "Expirée" : "Active"})
+        </span>
+      </h2>
 
-              {/* Liste */}
-              {selectedJob.requirements && (
-                <>
-                  <h4 className="font-semibold text-gray-800 mb-2">
-                    Exigences :
-                  </h4>
-                  <ul className="list-disc list-inside text-sm text-gray-700 mb-6 space-y-1">
-                    {selectedJob.requirements.map((req, i) => (
-                      <li key={i}>{req}</li>
-                    ))}
-                  </ul>
-                </>
-              )}
+      <p className="flex items-center text-amber-700 font-medium mb-2 text-sm">
+        <Building className="h-4 w-4 mr-2" />
+        {selectedJob.company}
+      </p>
 
-              {/* Boutons */}
-              <div  className="grid grid-cols-2 gap-4 w-full sm:flex-row justify-center">
-                  <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8">
-                    {selectedJob.mail ? (
-                      <a
-                        className="w-full flex items-center justify-center"
-                        href={`mailto:${selectedJob.mail}`}
-                        onClick={async (e) => {
-                          e.preventDefault();
-                          await trackEvent(selectedJob.id, "click");
-                          window.location.href = `mailto:${selectedJob.mail}`;
-                        }}
-                      >
-                        <Send className="mr-2" style={{ width: "20px", height: "20px" }} />
-                        Postuler
-                      </a>
-                    ) : selectedJob.link ? (
-                      <a
-                        className="w-full flex items-center justify-center"
-                        href={selectedJob.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={async (e) => {
-                          e.preventDefault();
-                          await trackEvent(selectedJob.id, "click");
-                          window.open(selectedJob.link, "_blank", "noopener");
-                        }}
-                      >
-                        <Send className="mr-2" style={{ width: "20px", height: "20px" }} />
-                        Postuler
-                      </a>
-                    ) : (
-                      <button
-                        disabled
-                        className="w-full flex items-center justify-center opacity-50 cursor-not-allowed"
-                      >
-                        <Send className="mr-2" style={{ width: "20px", height: "20px" }} />
-                        Postuler
-                      </button>
-                    )}
-                  </Button>
+      <p className="flex items-center mb-2 text-sm">
+        <MapPin className="h-4 w-4 mr-1" />
+        {selectedJob.location || "Lieu non spécifié"},{" "}
+        {getCountryLabel(selectedJob.countryId)}
+      </p>
 
+      <div className="flex items-center gap-4 mb-2">
+        <p className="flex items-center text-sm">
+          <Banknote className="h-4 w-4 mr-1" />
+          {selectedJob.salary ? selectedJob.salary : "Négociable"}
+        </p>
+        <p className="flex items-center text-sm">
+          <Clock className="h-4 w-4 mr-1" />
+          {selectedJob.type ? selectedJob.type : "Non précisé"}
+        </p>
+      </div>
 
-                <Button
-                  className="border text-white border-amber-600 hover:bg-amber-500 rounded-full px-8"
-                  onClick={async () => {
-                    await trackEvent(selectedJob.id, "share")
-                    if (navigator.share) {
-                      navigator.share({
-                        title: selectedJob.title,
-                        text: selectedJob.description,
-                        url: shareUrl,
-                      })
-                    } else {
-                      navigator.clipboard.writeText(shareUrl)
-                      alert('Lien copié dans le presse-papiers !')
-                    }
-                  }}
-                >
-                  <Share className="mr-2" style={{ width: "20px", height: "20px" }} />
-                  Partager
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
+      <div className="flex items-center gap-4 mb-2">
+        <p className="flex items-center text-sm">
+          <Timer className="h-4 w-4 mr-1" />
+          {selectedJob.posted}
+        </p>
+        <p className="flex text-red-600 items-center text-sm">
+          <TimerOff className="h-4 w-4 mr-1" />
+          {selectedJob.expire}
+        </p>
+      </div>
+
+      <h4 className="font-semibold text-gray-800 pt-2">
+        Description du poste :
+      </h4>
+      <div className="bg-amber-50/5 p-1 rounded-md">
+        <ol className="list-disc list-inside text-sm text-gray-700 mb-6 space-y-1">
+          {selectedJob.description.split("\n").map((line, i) => (
+            <ol key={i}>{line}</ol>
+          ))}
+        </ol>
+      </div>
+
+      {/* Exigences */}
+      {selectedJob.requirements && (
+        <>
+          <h4 className="font-semibold text-gray-800 mb-2">Exigences :</h4>
+          <ul className="list-disc list-inside text-sm text-gray-700 mb-6 space-y-1">
+            {selectedJob.requirements.map((req, i) => (
+              <li key={i}>{req}</li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {/* --- Boutons d’action --- */}
+      <div className="grid grid-cols-2 gap-4 w-full sm:flex-row justify-center">
+        {/* Postuler */}
+        <Button asChild className="bg-amber-600 hover:bg-amber-700 text-white rounded-full px-8">
+          {selectedJob.mail ? (
+            <a
+              className="w-full flex items-center justify-center"
+              href={`mailto:${selectedJob.mail}`}
+              onClick={async (e) => {
+                e.preventDefault();
+                await trackEvent(selectedJob.id, "click");
+                window.location.href = `mailto:${selectedJob.mail}`;
+              }}
+            >
+              <Send className="mr-2" style={{ width: "20px", height: "20px" }} />
+              Postuler
+            </a>
+          ) : selectedJob.link ? (
+            <a
+              className="w-full flex items-center justify-center"
+              href={selectedJob.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={async (e) => {
+                e.preventDefault();
+                await trackEvent(selectedJob.id, "click");
+                window.open(selectedJob.link, "_blank", "noopener");
+              }}
+            >
+              <Send className="mr-2" style={{ width: "20px", height: "20px" }} />
+              Postuler
+            </a>
+          ) : (
+            <button
+              disabled
+              className="w-full flex items-center justify-center opacity-50 cursor-not-allowed"
+            >
+              <Send className="mr-2" style={{ width: "20px", height: "20px" }} />
+              Postuler
+            </button>
+          )}
+        </Button>
+
+        {/* Partager */}
+        <Button
+          className="border text-white border-amber-600 hover:bg-amber-500 rounded-full px-8"
+          onClick={async () => {
+            await trackEvent(selectedJob.id, "share");
+
+            const shareText = `
+📢 *Offre d'emploi : ${selectedJob.title}*
+🏢 Entreprise : ${selectedJob.company}
+📍 Localisation : ${selectedJob.location || "Non précisée"}, ${getCountryLabel(selectedJob.countryId)}
+💼 Type : ${selectedJob.type || "Non précisé"}
+💰 Salaire : ${selectedJob.salary || "Négociable"}
+🕒 Publiée : ${selectedJob.posted}
+⏳ Expire : ${selectedJob.expire}
+
+📄 Description :
+${selectedJob.description}
+
+👉 Postulez dès maintenant ici :
+${shareUrl}
+
+#Emploi #Recrutement #ArtiVisio
+            `.trim();
+
+            if (navigator.share) {
+              navigator.share({
+                title: `Offre d'emploi : ${selectedJob.title}`,
+                text: shareText,
+                url: shareUrl,
+              });
+            } else {
+              await navigator.clipboard.writeText(shareText);
+              alert("✅ Détails de l'offre copiés dans le presse-papiers !");
+            }
+          }}
+        >
+          <Share className="mr-2" style={{ width: "20px", height: "20px" }} />
+          Partager
+        </Button>
+      </div>
+    </div>
+  </div>
+)}
+
       </section>
     </div>
     

@@ -113,7 +113,7 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#1F1F1F] px-4 pt-40">
+    <div className="min-h-screen flex items-center justify-center bg-[#1F1F1F] px-4 pt-30">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -121,13 +121,13 @@ export default function AdminLogin() {
         className="w-full max-w-md"
       >
         <Card className="bg-white rounded-2xl shadow-lg border border-[#F97316]">
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             <div className="mb-6 text-center">
               <h1 className="text-2xl font-bold text-[#6B4C3B]">Espace Administrateur</h1>
               <p className="text-sm text-gray-600">Connexion sécurisée - Artivisio</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="text-sm font-medium text-[#6B4C3B]">Email</label>
                 <Input
