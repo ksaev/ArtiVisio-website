@@ -531,43 +531,43 @@ export default function OffresEmploiPage() {
           onClick={async () => {
             await trackEvent(selectedJob.id, "share");
 
-            const shareText = `
-📢 *Offre d'emploi : ${selectedJob.title}*
-🏢 Entreprise : ${selectedJob.company}
-📍 Localisation : ${selectedJob.location || "Non précisée"}, ${getCountryLabel(selectedJob.countryId)}
-💼 Type : ${selectedJob.type || "Non précisé"}
-💰 Salaire : ${selectedJob.salary || "Négociable"}
-🕒 Publiée : ${selectedJob.posted}
-⏳ Expire : ${selectedJob.expire}
+              const shareText = `
+              📢 *Offre d'emploi : ${selectedJob.title}*
+              🏢 Entreprise : ${selectedJob.company}
+              📍 Localisation : ${selectedJob.location || "Non précisée"}, ${getCountryLabel(selectedJob.countryId)}
+              💼 Type : ${selectedJob.type || "Non précisé"}
+              💰 Salaire : ${selectedJob.salary || "Négociable"}
+              🕒 Publiée : ${selectedJob.posted}
+              ⏳ Expire : ${selectedJob.expire}
 
-📄 Description :
-${selectedJob.description}
+              📄 Description :
+              ${selectedJob.description}
 
-👉 Postulez dès maintenant ici :
-${shareUrl}
+              👉 Postulez dès maintenant ici :
+              ${shareUrl}
 
-#Emploi #Recrutement #ArtiVisio
-            `.trim();
+              #Emploi #Recrutement #ArtiVisio
+                          `.trim();
 
-            if (navigator.share) {
-              navigator.share({
-                title: `Offre d'emploi : ${selectedJob.title}`,
-                text: shareText,
-                url: shareUrl,
-              });
-            } else {
-              await navigator.clipboard.writeText(shareText);
-              alert("✅ Détails de l'offre copiés dans le presse-papiers !");
-            }
-          }}
-        >
-          <Share className="mr-2" style={{ width: "20px", height: "20px" }} />
-          Partager
-        </Button>
-      </div>
-    </div>
-  </div>
-)}
+                          if (navigator.share) {
+                            navigator.share({
+                              title: `Offre d'emploi : ${selectedJob.title}`,
+                              text: shareText,
+                              url: shareUrl,
+                            });
+                          } else {
+                            await navigator.clipboard.writeText(shareText);
+                            alert("✅ Détails de l'offre copiés dans le presse-papiers !");
+                          }
+                        }}
+                      >
+                        <Share className="mr-2" style={{ width: "20px", height: "20px" }} />
+                        Partager
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
       </section>
     </div>
