@@ -281,7 +281,7 @@ export default function OffresEmploiPage() {
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 " variants={containerVariants} initial="hidden" animate="visible">
            {filteredJobs.map((job) => (
               <motion.div key={job.id} variants={itemVariants}>
-                <Card className="flex flex-col justify-between h-[480px] bg-white/80 backdrop-blur-sm border-amber-200/50 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden">
+                <Card className="flex flex-col justify-between h-[470px] bg-white/80 backdrop-blur-sm border-amber-200/50 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden sm:h-[490px]">
                   <CardHeader className="flex-shrink-0">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                       <div>
@@ -341,7 +341,7 @@ export default function OffresEmploiPage() {
                     {/* Bloc Exigences tronqué */}
                     <div className="flex-grow overflow-hidden">
                       <h4 className="font-semibold text-gray-800 mb-2">Exigences :</h4>
-                      <ul className="list-disc list-inside text-sm text-gray-600 space-y-1 line-clamp-4 overflow-hidden">
+                      <ul className="list-disc list-inside text-sm text-gray-600 space-y-1 line-clamp-3 overflow-hidden sm:line-clamp-4">
                         {job.requirements.map((req, index) => (
                           <li key={index}>{req}</li>
                         ))}
