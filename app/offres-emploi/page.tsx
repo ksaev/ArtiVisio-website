@@ -279,73 +279,90 @@ export default function OffresEmploiPage() {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 " variants={containerVariants} initial="hidden" animate="visible">
-            {filteredJobs.map((job) => (
-              <motion.div key={job.id} variants={itemVariants}>
-                <Card className="bg-white/80 backdrop-blur-sm border-amber-200/50 hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
-                  <CardHeader>
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      <div>
-                        <CardTitle className="text-xl font-bold text-gray-800 mb-2">{job.title} <span className="text-red-800 font-bold"> ({isJobExpired(job) ? "Expirée" : "Active"}) </span></CardTitle> 
-                        <div className="flex items-center text-amber-700 font-medium mb-2">
-                          <Building className="h-4 w-4 mr-2" />
-                          {job.company} 
-                        </div>
-                        <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                          <div className="flex items-center">
-                            <MapPin className="h-4 w-4 mr-1" />
-                            {job.location ? job.location : "Lieu non spécifié"}, {getCountryLabel(job.countryId)}
-                          </div>
-                          <div className="flex items-center gap-4">
-                            <div className="flex items-center">
-                              <Banknote className="h-4 w-4 mr-1" />
-                              {job.salary ? job.salary : "Négociable"}    
-                            </div>
-                            <div className="flex items-center">
-                              <Clock className="h-4 w-4 mr-1" />
-                              {job.type ? job.type : "Non precisé"}
-                            </div>
-                          </div>
+           {filteredJobs.map((job) => (
+  <motion.div key={job.id} variants={itemVariants}>
+    <Card className="flex flex-col justify-between h-[470px] bg-white/80 backdrop-blur-sm border-amber-200/50 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] overflow-hidden">
+      <CardHeader className="flex-shrink-0">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <CardTitle className="text-xl font-bold text-gray-800 mb-2">
+              {job.title}{" "}
+              <span
+                className={`font-bold ${
+                  isJobExpired(job) ? "text-red-800" : "text-green-700"
+                }`}
+              >
+                ({isJobExpired(job) ? "Expirée" : "Active"})
+              </span>
+            </CardTitle>
 
-                          <div className="flex items-center gap-4">
-                            <div className="flex items-center">
-                              <Timer className=" h-4 w-4 mr-1" />
-                              {job.posted}   
-                            </div>
-                            <div className="flex text-red-600 items-center">
-                              <TimerOff className=" h-4 w-4 mr-1" />
-                              {job.expire}
-                            </div>
-                          </div>
+            <div className="flex items-center text-amber-700 font-medium mb-2">
+              <Building className="h-4 w-4 mr-2" />
+              {job.company}
+            </div>
 
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium capitalize">
-                          {getSectorLabel(job.sector)}
-                        </span>
-                      </div>
-                    </div>
+            <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+              <div className="flex items-center">
+                <MapPin className="h-4 w-4 mr-1" />
+                {job.location || "Lieu non spécifié"}, {getCountryLabel(job.countryId)}
+              </div>
 
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-gray-800 mb-2">Exigences :</h4>
-                      <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        {job.requirements.map((req, index) => (
-                          <li key={index}>{req}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Button onClick={() => setSelectedJob(job)} className="w-full justify-center bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300">
-                        <Eye className="mr-2" style={{ width: "30px", height: "30px" }} />
-                        Voir l'offre complète
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <div className="flex items-center">
+                <Banknote className="h-4 w-4 mr-1" />
+                {job.salary || "Négociable"}
+              </div>
+
+              <div className="flex items-center">
+                <Clock className="h-4 w-4 mr-1" />
+                {job.type || "Non précisé"}
+              </div>
+
+              <div className="flex items-center">
+                <Timer className="h-4 w-4 mr-1" />
+                {job.posted}
+              </div>
+
+              <div className="flex items-center text-red-600">
+                <TimerOff className="h-4 w-4 mr-1" />
+                {job.expire}
+              </div>
+            </div>
+          </div>
+
+          <div className="text-right">
+            <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium capitalize">
+              {getSectorLabel(job.sector)}
+            </span>
+          </div>
+        </div>
+      </CardHeader>
+
+      <CardContent className="flex flex-col justify-between flex-grow">
+        {/* Bloc Exigences tronqué */}
+        <div className="flex-grow overflow-hidden">
+          <h4 className="font-semibold text-gray-800 mb-2">Exigences :</h4>
+          <ul className="list-disc list-inside text-sm text-gray-600 space-y-1 line-clamp-4 overflow-hidden">
+            {job.requirements.map((req, index) => (
+              <li key={index}>{req}</li>
             ))}
+          </ul>
+        </div>
+
+        {/* Bouton */}
+        <div className="mt-4">
+          <Button
+            onClick={() => setSelectedJob(job)}
+            className="w-full justify-center bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold rounded-full transition-all duration-300"
+          >
+            <Eye className="mr-2" style={{ width: "28px", height: "28px" }} />
+            Voir l'offre complète
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  </motion.div>
+))}
+
           </motion.div>
 
           {filteredJobs.length === 0 && (
