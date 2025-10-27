@@ -553,7 +553,7 @@ export default function OffresEmploiPage() {
         ${selectedJob.company || "Entreprise confidentielle"}
         ${selectedJob.location || "Localisation non précisée"}, ${getCountryLabel(selectedJob.countryId)}
 
-        Une belle opportunité professionnelle t’attend. Découvre les détails et postule ici :
+        Une belle opportunité professionnelle t’attend. Découvre les détails et postule ici 👇
         `;
 
             if (navigator.share) {
