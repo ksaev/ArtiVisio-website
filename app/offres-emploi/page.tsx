@@ -549,11 +549,7 @@ export default function OffresEmploiPage() {
             await trackEvent(selectedJob.id, "share");
 
             const shareText = 
-        `💼 ${selectedJob.title}
-        🏢 ${selectedJob.company || "Entreprise confidentielle"}
-        📍 ${selectedJob.location || "Localisation non précisée"}, ${getCountryLabel(selectedJob.countryId)}
-
-        🚀 Une belle opportunité professionnelle t’attend !
+        `💼 *${selectedJob.title}*\n🏢 ${selectedJob.company || "Entreprise confidentielle"}\n📍 ${selectedJob.location || "Localisation non précisée"}, ${getCountryLabel(selectedJob.countryId)}\n🚀 Une belle opportunité professionnelle t’attend !
         Découvre tous les détails et postule ici 👇
         `;
 
