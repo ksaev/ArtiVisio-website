@@ -113,11 +113,11 @@ export default function CoachingPage() {
   ];
 
   const chiffres = [
-  { label: "Clients Accompagnés", value: 500, icon: Users },
-  { label: "Séances Réalisées", value: 1200, icon: Calendar },
-  { label: "Taux de Satisfaction", value: 98, icon: Star, suffix: "%" },
-  { label: "Années d’Expérience", value: 5, icon: Award },
-];
+  { label: "Clients Accompagnés", value: 45, icon: Users },
+  { label: "Séances Réalisées", value: 120, icon: Calendar },
+  { label: "Taux de Satisfaction", value: 97, icon: Star, suffix: "%" },
+  { label: "Années d’Expérience", value: 3, icon: Award },
+  ];
 
   // --- FAQ
   const faqItems = [
@@ -278,7 +278,7 @@ export default function CoachingPage() {
                       className="text-2xl md:text-2xl font-extrabold text-amber-700 mb-2"
                     >
                       {Math.floor(item.value)}
-                      {item.suffix ?? ""}
+                      {item.suffix ? item.suffix : "+"}
                     </motion.span>
 
                     <p className="text-gray-600 font-medium">{item.label}</p>
