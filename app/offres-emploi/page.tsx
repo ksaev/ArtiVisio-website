@@ -554,7 +554,7 @@ export default function OffresEmploiPage() {
         ${selectedJob.location || "Localisation non précisée"}, ${getCountryLabel(selectedJob.countryId)}
 
         Une belle opportunité professionnelle t’attend. Découvre les détails et postule ici :
-        ${shareUrl}`;
+        `;
 
             if (navigator.share) {
               navigator.share({
