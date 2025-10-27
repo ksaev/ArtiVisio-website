@@ -544,43 +544,36 @@ export default function OffresEmploiPage() {
 
         {/* Partager */}
         <Button
-          className="border text-white border-amber-600 hover:bg-amber-500 rounded-full px-8"
+          className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white font-semibold rounded-full px-8 hover:opacity-90 shadow-md"
           onClick={async () => {
             await trackEvent(selectedJob.id, "share");
 
-              const shareText = `
-              📢 *Offre d'emploi : ${selectedJob.title}*
-              🏢 Entreprise : ${selectedJob.company}
-              📍 Localisation : ${selectedJob.location || "Non précisée"}, ${getCountryLabel(selectedJob.countryId)}
-              💼 Type : ${selectedJob.type || "Non précisé"}
-              💰 Salaire : ${selectedJob.salary || "Négociable"}
-              🕒 Publiée : ${selectedJob.posted}
-              ⏳ Expire : ${selectedJob.expire}
+            const shareText = `
+        💼 *${selectedJob.title}*  
+        🏢 ${selectedJob.company || "Entreprise confidentielle"}  
+        📍 ${selectedJob.location || "Localisation non précisée"}, ${getCountryLabel(selectedJob.countryId)}
 
-              📄 Description :
-              ${selectedJob.description}
+        🚀 Une belle opportunité professionnelle t’attend.  
+        Découvre tous les détails et postule ici 👇  
+        ${shareUrl}
+            `.trim();
 
-              👉 Postulez dès maintenant ici :
-              ${shareUrl}
+            if (navigator.share) {
+              navigator.share({
+                title: `Offre d'emploi : ${selectedJob.title}`,
+                text: shareText,
+                url: shareUrl,
+              });
+            } else {
+              await navigator.clipboard.writeText(shareText);
+              alert("✅ Lien de l’offre copié ! Partage-le autour de toi ✨");
+            }
+          }}
+        >
+          <Share className="mr-2" style={{ width: "20px", height: "20px" }} />
+          Partager
+        </Button>
 
-              #Emploi #Recrutement #ArtiVisio
-                          `.trim();
-
-                          if (navigator.share) {
-                            navigator.share({
-                              title: `Offre d'emploi : ${selectedJob.title}`,
-                              text: shareText,
-                              url: shareUrl,
-                            });
-                          } else {
-                            await navigator.clipboard.writeText(shareText);
-                            alert("✅ Détails de l'offre copiés dans le presse-papiers !");
-                          }
-                        }}
-                      >
-                        <Share className="mr-2" style={{ width: "20px", height: "20px" }} />
-                        Partager
-                      </Button>
                     </div>
                   </div>
                 </div>
