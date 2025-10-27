@@ -549,11 +549,12 @@ export default function OffresEmploiPage() {
             await trackEvent(selectedJob.id, "share");
 
             const shareText = 
-        `*${selectedJob.title}*
-        ${selectedJob.company || "Entreprise confidentielle"}
-        ${selectedJob.location || "Localisation non précisée"}, ${getCountryLabel(selectedJob.countryId)}
+        `💼 ${selectedJob.title}
+        🏢 ${selectedJob.company || "Entreprise confidentielle"}
+        📍 ${selectedJob.location || "Localisation non précisée"}, ${getCountryLabel(selectedJob.countryId)}
 
-        Une belle opportunité professionnelle t’attend. Découvre les détails et postule ici 👇
+        🚀 Une belle opportunité professionnelle t’attend !
+        Découvre tous les détails et postule ici 👇
         `;
 
             if (navigator.share) {
@@ -571,6 +572,8 @@ export default function OffresEmploiPage() {
           <Share className="mr-2" style={{ width: "20px", height: "20px" }} />
           Partager
         </Button>
+
+
 
 
                     </div>
