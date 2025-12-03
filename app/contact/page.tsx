@@ -94,7 +94,7 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: "Téléphone",
-      value: "+225 01 53 26 51 47",
+      value: "+225 27 31 93 46 36",
       description: "Lun-Ven 9h-18h",
     },
     {
