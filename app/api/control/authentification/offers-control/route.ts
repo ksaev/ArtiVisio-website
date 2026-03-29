@@ -3,31 +3,28 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const offers = await prisma.jobOffer.findMany();
+    const offers = await prisma.jobOffer.findMany({
+      orderBy: { posted: "desc" },
+    });
 
     const today = new Date();
 
-    const activeCount = await prisma.jobOffer.count({
-      where: { expire: { gte: today } },
-    });
+    const activeCount = offers.filter(o => new Date(o.expire) >= today).length;
+    const expiredCount = offers.filter(o => new Date(o.expire) < today).length;
 
-    const expiredCount = await prisma.jobOffer.count({
-      where: { expire: { lt: today } },
-    });
+    const sectorMap: Record<string, number> = {};
 
-    const offersBySectorRaw = await prisma.jobOffer.groupBy({
-      by: ["sector"],
-      _count: { sector: true },
-    });
+    for (const offer of offers) {
+      sectorMap[offer.sector] = (sectorMap[offer.sector] || 0) + 1;
+    }
 
-    const offersBySector = offersBySectorRaw.map((item) => ({
-      sector: item.sector,
-      count: item._count.sector,
+    const offersBySector = Object.entries(sectorMap).map(([sector, count]) => ({
+      sector,
+      count,
     }));
 
-    // Calcul des totaux clics et partages
-    const totalClicks = offers.reduce((sum, offer) => sum + (offer.clickCount ?? 0), 0);
-    const totalShares = offers.reduce((sum, offer) => sum + (offer.shareCount ?? 0), 0);
+    const totalClicks = offers.reduce((sum, o) => sum + (o.clickCount ?? 0), 0);
+    const totalShares = offers.reduce((sum, o) => sum + (o.shareCount ?? 0), 0);
 
     return NextResponse.json({
       offers,
@@ -40,22 +37,39 @@ export async function GET() {
       },
     });
   } catch (error) {
-    return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
+    console.error(error);
+
+    return NextResponse.json(
+      { error: "Erreur serveur" },
+      { status: 500 }
+    );
   }
 }
 
 export async function DELETE(request: Request) {
   try {
-    const url = new URL(request.url);
-    const id = url.searchParams.get("id");
-    if (!id) return NextResponse.json({ error: "Id manquant" }, { status: 400 });
+    const { searchParams } = new URL(request.url);
+    const id = Number(searchParams.get("id"));
+
+    if (!id || isNaN(id)) {
+      return NextResponse.json(
+        { error: "ID invalide" },
+        { status: 400 }
+      );
+    }
 
     await prisma.jobOffer.delete({
-      where: { id: Number(id) },
+      where: { id },
     });
 
     return NextResponse.json({ message: "Offre supprimée" });
+
   } catch (error) {
-    return NextResponse.json({ error: "Erreur suppression" }, { status: 500 });
+    console.error(error);
+
+    return NextResponse.json(
+      { error: "Erreur suppression" },
+      { status: 500 }
+    );
   }
 }
