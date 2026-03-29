@@ -1,11 +1,21 @@
 import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg"; // Si tu es sur Postgres
+import { PrismaPg } from "@prisma/adapter-pg";
 
-// Adapter direct TCP pour Prisma v7
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
 
-// Instanciation
-const prisma = new PrismaClient({ adapter });
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL!,
+});
 
-export { prisma };
+export const prisma =
+  globalForPrisma.prisma ??
+  new PrismaClient({
+    adapter,
+  });
+
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma;
+}

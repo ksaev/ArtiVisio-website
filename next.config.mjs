@@ -1,17 +1,13 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
+  reactStrictMode: true,
+
+  turbopack: {
+    root: "./"
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+
   images: {
-    unoptimized: true,
-  },
+    domains: []
+  }
+};
 
-}
-
-
-export default nextConfig
-
+export default nextConfig;
