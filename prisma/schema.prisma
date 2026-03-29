@@ -16,7 +16,6 @@ model Administrateur {
 
 model JobOffer {
   id           Int      @id @default(autoincrement())
-  externalId   String?  @unique // ID de l'API externe pour éviter les doublons
   title        String
   company      String
   location     String
