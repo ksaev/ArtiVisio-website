@@ -4,7 +4,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model Administrateur {
@@ -17,6 +16,7 @@ model Administrateur {
 
 model JobOffer {
   id           Int      @id @default(autoincrement())
+  externalId   String?  @unique // ID de l'API externe pour éviter les doublons
   title        String
   company      String
   location     String
@@ -35,9 +35,7 @@ model JobOffer {
 }
 
 model Newsletter {
-
   id        String   @id @default(uuid())
   email     String   @unique
-  createdAt DateTime @default(now())  
-
+  createdAt DateTime @default(now())
 }
